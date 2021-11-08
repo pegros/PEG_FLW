@@ -1,0 +1,6 @@
+<design:component label="SFPEG Force Close">
+	<design:attribute name="targetPageRef"
+                      label="Target Page Ref"
+                      default='{"type":"standard__namedPage","attributes": {"pageName":"home"}}'
+                      description="Target Lightning Page Reference as a JSON stringified object, see relevant Lightning documentation for details."/>
+</design:component>

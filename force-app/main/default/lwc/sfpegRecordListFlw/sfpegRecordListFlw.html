@@ -1,0 +1,335 @@
+<template>
+
+    <div class={cardClass}>
+    <lightning-card  title={cardTitle} icon-name={cardIcon} >
+
+        <!-- Debug information display -->
+        <template if:true={isDebug}>
+            <div slot="footer" class="slds-region_narrow" style="text-align:left; width:100%;">
+                <dl class="slds-dl_horizontal">
+                    <dt class="slds-dl_horizontal__label">Display Mode:</dt>
+                    <dd class="slds-dl_horizontal__detail">{displayMode}</dd>
+                    <dt class="slds-dl_horizontal__label">Tile Size:</dt>
+                    <dd class="slds-dl_horizontal__detail">{tileSize}</dd>
+                    <dt class="slds-dl_horizontal__label">Title Field:</dt>
+                    <dd class="slds-dl_horizontal__detail">{nameField}</dd>
+                    <dt class="slds-dl_horizontal__label">Detail FieldSet:</dt>
+                    <dd class="slds-dl_horizontal__detail">{fieldSetName}</dd>
+                    <dt class="slds-dl_horizontal__label">Records #Input / #Display:</dt>
+                    <dd class="slds-dl_horizontal__detail">{recordList.length} / {displayItems.length}</dd>
+                    <dt class="slds-dl_horizontal__label">Ready?:</dt>
+                    <dd class="slds-dl_horizontal__detail">{isReady}</dd>
+                    <dt class="slds-dl_horizontal__label">Actions #Parsed / Input:</dt>
+                    <dd class="slds-dl_horizontal__detail slds-hyphenate">{actionListJson.length} / {actionListStr}</dd>
+                    <dt class="slds-dl_horizontal__label">Show Modal? / Record Name / Header / #Fields</dt>
+                    <dd class="slds-dl_horizontal__detail slds-hyphenate">{showModal} / {modalDisplayItem.label} / {modalHeader} / {modalFields.length}</dd>
+                </dl>
+            </div>
+        </template>
+
+        <template if:true={isReady}>
+            <div class="slds-card__body_inner"> 
+                <lightning-layout   multiple-rows="true"
+                                    horizontal-align="center" >
+                    <template for:each={displayItems} for:item="eachRecord">
+                        <lightning-layout-item  key={eachRecord.label}
+                                                size={tileSize} >
+                            <!-- RECORD DISPLAY -->
+                            <div    class="slds-box slds-box_x-small slds-var-m-around_xx-small recordBox " 
+                                    id={eachRecord.label}>
+                                <div class="slds-media slds-media_center">
+                                    <div class="slds-media__body slds-hyphenate">
+                                        <lightning-formatted-text   value={eachRecord.label}
+                                                                    class="slds-text-title_bold">
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <!-- ACTION DISPLAY -->
+                                    <template if:true={showActions}>
+                                        <div class="slds-media__figure slds-media__figure_reverse slds-var-p-left-x-small">
+                                            <lightning-button-group>
+                                            <!--actionListJson -->
+                                                <template for:each={eachRecord.actions} for:item="eachAction">
+                                                    <!-- BUTTON ACTION DISPLAY -->
+                                                    <template if:false={eachAction.isMenu}>
+                                                        <template if:true={eachAction.hasLabel}>
+                                                            <template if:true={eachAction.isDisabled}>
+                                                                <lightning-button
+                                                                    disabled
+                                                                    label={eachAction.label}
+                                                                    icon-name={eachAction.iconName}
+                                                                    icon-position={eachAction.iconPosition}
+                                                                    name={eachAction.name}
+                                                                    title={eachAction.title}
+                                                                    value={eachRecord}
+                                                                    variant={eachAction.variant}
+                                                                    key={eachAction.name}
+                                                                    onclick={onButtonClick} >
+                                                                </lightning-button>
+                                                            </template>
+                                                            <template if:false={eachAction.isDisabled}>
+                                                                <lightning-button
+                                                                    label={eachAction.label}
+                                                                    icon-name={eachAction.iconName}
+                                                                    icon-position={eachAction.iconPosition}
+                                                                    name={eachAction.name}
+                                                                    title={eachAction.title}
+                                                                    value={eachRecord}
+                                                                    variant={eachAction.variant}
+                                                                    key={eachAction.name}
+                                                                    onclick={onButtonClick} >
+                                                                </lightning-button>
+                                                            </template>
+                                                        </template>
+                                                        <template if:false={eachAction.hasLabel}>
+                                                            <template if:true={eachAction.isDisabled}>
+                                                                <lightning-button-icon 
+                                                                    disabled
+                                                                    icon-name={eachAction.iconName}
+                                                                    size={eachAction.size}
+                                                                    name={eachAction.name}
+                                                                    title={eachAction.title}
+                                                                    value={eachRecord}
+                                                                    variant={eachAction.variant}
+                                                                    key={eachAction.name}
+                                                                    onclick={onButtonClick} >
+                                                                </lightning-button-icon>
+                                                            </template>
+                                                            <template if:false={eachAction.isDisabled}>
+                                                                <lightning-button-icon 
+                                                                    icon-name={eachAction.iconName}
+                                                                    size={eachAction.size}
+                                                                    name={eachAction.name}
+                                                                    title={eachAction.title}
+                                                                    value={eachRecord}
+                                                                    variant={eachAction.variant}
+                                                                    key={eachAction.name}
+                                                                    onclick={onButtonClick} >
+                                                                </lightning-button-icon>
+                                                            </template>
+                                                        </template>
+                                                    </template>
+                                                    <!-- MENU ACTION DISPLAY -->
+                                                    <template if:true={eachAction.isMenu}>
+                                                        <template if:true={eachAction.hasIcon}>
+                                                            <template if:false={eachAction.isDisabled}>
+                                                                <lightning-button-menu
+                                                                    label={eachAction.label} 
+                                                                    icon-name={eachAction.iconName}
+                                                                    icon-size={eachAction.iconSize}
+                                                                    name={eachAction.name}
+                                                                    menu-alignment={eachAction.alignement}
+                                                                    title={eachAction.title}
+                                                                    variant={eachAction.variant}
+                                                                    value={eachRecord}
+                                                                    key={eachAction.name}
+                                                                    onselect={onMenuSelect} >
+                                                                    <template for:each={eachAction.options} for:item="eachOption">
+                                                                        <template if:true={eachOption.isDisabled}>
+                                                                            <lightning-menu-item
+                                                                                disabled
+                                                                                label={eachOption.label}
+                                                                                icon-name={eachOption.iconName}
+                                                                                value={eachOption}
+                                                                                key={eachOption.label}>
+                                                                            </lightning-menu-item>
+                                                                        </template>
+                                                                        <template if:false={eachOption.isDisabled}>
+                                                                            <lightning-menu-item
+                                                                                label={eachOption.label}
+                                                                                icon-name={eachOption.iconName}
+                                                                                value={eachOption}
+                                                                                key={eachOption.label}>
+                                                                            </lightning-menu-item>
+                                                                        </template>
+                                                                    </template>
+                                                                </lightning-button-menu>
+                                                            </template>
+                                                            <template if:true={eachAction.isDisabled}>
+                                                                <lightning-button-menu
+                                                                    disabled
+                                                                    label={eachAction.label} 
+                                                                    icon-name={eachAction.iconName}
+                                                                    icon-size={eachAction.iconSize}
+                                                                    name={eachAction.name}
+                                                                    menu-alignment={eachAction.alignement}
+                                                                    title={eachAction.title}
+                                                                    variant={eachAction.variant}
+                                                                    value={eachRecord}
+                                                                    key={eachAction.name}>
+                                                                </lightning-button-menu>
+                                                            </template>
+                                                        </template>
+                                                        <template if:false={eachAction.hasIcon}>
+                                                            <template if:false={eachAction.isDisabled}>
+                                                                <lightning-button-menu
+                                                                    label={eachAction.label} 
+                                                                    icon-size={eachAction.iconSize}
+                                                                    name={eachAction.name}
+                                                                    menu-alignment={eachAction.alignement}
+                                                                    title={eachAction.title}
+                                                                    variant={eachAction.variant}
+                                                                    value={eachRecord}
+                                                                    key={eachAction.name}
+                                                                    onselect={onMenuSelect} >
+                                                                    <template for:each={eachAction.options} for:item="eachOption">
+                                                                        <template if:true={eachOption.isDisabled}>
+                                                                            <lightning-menu-item
+                                                                                disabled
+                                                                                label={eachOption.label}
+                                                                                icon-name={eachOption.iconName}
+                                                                                value={eachOption}
+                                                                                key={eachOption.label}>
+                                                                            </lightning-menu-item>
+                                                                        </template>
+                                                                        <template if:false={eachOption.isDisabled}>
+                                                                            <lightning-menu-item
+                                                                                label={eachOption.label}
+                                                                                icon-name={eachOption.iconName}
+                                                                                value={eachOption}
+                                                                                key={eachOption.label}>
+                                                                            </lightning-menu-item>
+                                                                        </template>
+                                                                    </template>
+                                                                </lightning-button-menu>
+                                                            </template>
+                                                            <template if:true={eachAction.isDisabled}>
+                                                                <lightning-button-menu
+                                                                    disabled
+                                                                    label={eachAction.label} 
+                                                                    icon-size={eachAction.iconSize}
+                                                                    name={eachAction.name}
+                                                                    menu-alignment={eachAction.alignement}
+                                                                    title={eachAction.title}
+                                                                    variant={eachAction.variant}
+                                                                    value={eachRecord}
+                                                                    key={eachAction.name} >
+                                                                </lightning-button-menu>
+                                                            </template>
+                                                        </template>
+                                                    </template>
+                                                </template>
+                                            </lightning-button-group>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- DETAIL DISPLAY -->
+                                <!-- slds-media slds-var-m-bottom_x-small-->
+                                <div class={detailClass} >
+                                    <!-- TILES MODE for DETAILS -->
+                                    <template if:true={isTiles}>
+                                        <ul class="slds-list_horizontal  slds-has-dividers_left slds-listbox slds-listbox_horizontal">
+                                            <template for:each={eachRecord.details} for:item="eachField">
+                                                <li class="slds-item slds-text-body_small"
+                                                    title={eachField.label}
+                                                    key={eachField.label} >
+                                                    {eachField.value}
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </template>
+
+                                    <!-- TABLE MODE for DETAILS -->
+                                    <template if:true={isTable}>
+                                        <dl class="slds-dl_horizontal slds-has-dividers_top">
+                                            <template for:each={eachRecord.details} for:item="eachField">
+                                                <dt class="slds-dl_horizontal__label slds-text-color_weak slds-truncate slds-text-title"
+                                                    key={eachField.label} title={eachField.label} >
+                                                    {eachField.label}
+                                                </dt>
+                                                <dd class="slds-dl_horizontal__detail slds-text-body_small"
+                                                    key={eachField.value}>
+                                                    {eachField.value}
+                                                </dd>
+                                            </template>
+                                        </dl>
+                                    </template>
+
+                                    <!-- TABLE MODE with MULITPLE COLUMS for DETAILS -->
+                                    <template if:true={isTableMulti}>
+                                        <div class="slds-form slds-grid slds-gutters slds-wrap fullWidth">
+                                            <template for:each={eachRecord.details} for:item="eachField">
+                                            <!-- slds-col slds-form-element slds-form-element_stacked-->
+                                                <div class={tableFieldClass} key={eachField.label}>
+                                                    <label class="slds-form-element__label slds-truncate tableLabel" title={eachField.label}>
+                                                        {eachField.label}
+                                                    </label>
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-form-element__static slds-text-body_small">{eachField.value}</div>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </template>
+
+        <!-- Edit Modal display -->
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning-button-icon  icon-name="utility:close" variant="bare-inverse"
+                                                class="slds-modal__close" title={cancelLabel}
+                                                size="large"    onclick={onModalCancel} >
+                        </lightning-button-icon>
+                        <h2 class="slds-modal__title slds-hyphenate">
+                            {modalHeader}
+                        </h2>
+                        <p> {modalDisplayItem.label}
+                       </p>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+
+                        <!-- {modalDisplayItem.value.sobjectType} -->
+                        <lightning-record-edit-form object-api-name={sobjectName}
+                                                    record-type-id={modalDisplayItem.value.RecordTypeId}
+                                                    onsubmit={onModalSave}
+                              	                    onload={onModalLoad} >
+                            <lightning-messages>
+                            </lightning-messages>
+        
+                            <template for:each={modalFields} for:item="eachModalField">
+                                <lightning-input-field  field-name={eachModalField.name}
+                                                        key={eachModalField.name}
+                                                        required={eachModalField.required}
+                                                        value={eachModalField.value}
+                                                        onchange={onModalFieldChange}>
+                                </lightning-input-field>
+                            </template>
+
+                            <lightning-button-group	class="slds-m-top_small slds-align_absolute-center" >
+                                <lightning-button   icon-name="utility:close"
+                                                    label={cancelLabel} 
+                                                    onclick={onModalCancel}>
+                                </lightning-button>
+                                <lightning-button   type="submit"
+                                                    icon-name="utility:check"
+                                                    variant="brand"
+                                                    label={saveLabel}>
+                                </lightning-button>
+                            </lightning-button-group>
+                        </lightning-record-edit-form>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- Loading spinner display -->
+        <template if:false={isReady}>
+             <div style="height:120px;">
+                <lightning-spinner alternative-text="Loading" size="medium">
+                </lightning-spinner>
+            </div>
+        </template>   
+
+    </lightning-card>
+    </div>
+</template>

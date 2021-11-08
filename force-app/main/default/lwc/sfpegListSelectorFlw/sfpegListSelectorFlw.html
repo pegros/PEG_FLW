@@ -1,0 +1,136 @@
+<template>
+
+    <div class={cardClass}>
+    <lightning-card  title={cardTitle} icon-name={cardIcon} >
+
+        <!-- Debug information display -->
+        <template if:true={isDebug}>
+            <div slot="footer" class="slds-region_narrow" style="text-align:left; width:100%;">
+                <dl class="slds-dl_horizontal">
+                    <dt class="slds-dl_horizontal__label">Display Mode:</dt>
+                    <dd class="slds-dl_horizontal__detail">{displayMode}</dd>
+                    <dt class="slds-dl_horizontal__label">Tile Size:</dt>
+                    <dd class="slds-dl_horizontal__detail">{tileSize}</dd>
+                    <dt class="slds-dl_horizontal__label">Title Field:</dt>
+                    <dd class="slds-dl_horizontal__detail">{nameField}</dd>
+                    <dt class="slds-dl_horizontal__label">Key Field:</dt>
+                    <dd class="slds-dl_horizontal__detail">{recordKey}</dd>
+                    <dt class="slds-dl_horizontal__label">Detail FieldSet:</dt>
+                    <dd class="slds-dl_horizontal__detail">{fieldSetName}</dd>
+                    <dt class="slds-dl_horizontal__label">Records #Input / #Display:</dt>
+                    <dd class="slds-dl_horizontal__detail">{recordList.length} / {displayItems.length}</dd>
+                    <dt class="slds-dl_horizontal__label">Selection:</dt>
+                    <dd class="slds-dl_horizontal__detail">{selection}</dd>
+                </dl>
+            </div>
+        </template>
+
+        <template if:true={isReady}>
+
+            <!-- List mode display -->
+            <template if:true={isList}>
+                <div class="slds-card__body_inner">
+                    <ul class="slds-list_horizontal  slds-listbox slds-listbox_horizontal">
+                        <template for:each={displayItems} for:item="record">
+                            <li key={record.name} class="slds-item slds-var-m-around_xx-small">
+                                <div    class="slds-box slds-box_xx-small recordBox" 
+                                        id={record.name}
+                                        onclick={handleSelection} >
+                                    <lightning-formatted-text   value={record.label} >
+                                    </lightning-formatted-text>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+
+            <!-- Pill mode display -->
+            <template if:true={isPills}>
+                <div class="slds-card__body_inner">
+                    <lightning-pill-container   variant="bare"
+                                                items={displayItems}
+                                                onitemremove={handleRemove} >
+                    </lightning-pill-container>
+                </div>
+            </template>
+
+            <!-- Tiles mode display -->
+            <template if:true={isTiles}>
+                <div class="slds-card__body_inner">
+                    <lightning-layout   multiple-rows="true"
+                                        horizontal-align="center" >
+                        <template for:each={displayItems} for:item="record">
+                            <lightning-layout-item  key={record.name}
+                                                    size={tileSize} >
+                                <div    class="slds-box slds-box_x-small slds-var-m-around_xx-small recordBox" 
+                                        id={record.name}
+                                        onclick={handleSelection}>
+                                    <lightning-formatted-text   value={record.label}
+                                                                class="slds-text-title_bold">
+                                    </lightning-formatted-text><br/>
+                                    <ul class="slds-list_horizontal  slds-has-dividers_left slds-listbox slds-listbox_horizontal">
+                                        <template for:each={record.details} for:item="field">
+                                            <li class="slds-item slds-text-body_small"
+                                                key={field.label} >
+                                                {field.value}
+                                                <!--
+                                                <lightning-formatted-text   value={field.value}
+                                                                            class="slds-text-body_small"  >
+                                                </lightning-formatted-text>
+                                                -->
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+                </div>
+            </template>
+
+            <!-- Table mode display -->
+            <template if:true={isTable}>
+                <div class="slds-card__body_inner">
+                    <lightning-layout   multiple-rows="true"
+                                        horizontal-align="center" >
+                        <template for:each={displayItems} for:item="record">
+                            <lightning-layout-item  key={record.name}
+                                                    size={tileSize} >
+                                <div    class="slds-box slds-box_x-small slds-var-m-around_xx-small recordBox slds-region_narrow" 
+                                        id={record.name}
+                                        onclick={handleSelection} >
+                                    <lightning-formatted-text   value={record.label}
+                                                                class="slds-text-title_bold">
+                                    </lightning-formatted-text><br/>
+
+                                    <dl class="slds-dl_horizontal slds-has-dividers_top">
+                                        <template for:each={record.details} for:item="field">
+                                            <dt class="slds-dl_horizontal__label slds-text-color_weak slds-truncate slds-text-title"
+                                                key={field.label}>
+                                                {field.label}
+                                            </dt>
+                                            <dd class="slds-dl_horizontal__detail slds-text-body_small"
+                                                key={field.value}>
+                                                {field.value}
+                                            </dd>
+                                        </template>
+                                    </dl>
+                                </div>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+                </div>
+            </template>
+        </template>
+
+        <!-- Loading spinner display -->
+        <template if:false={isReady}>
+             <div style="height:120px;">
+                <lightning-spinner alternative-text="Loading" size="medium">
+                </lightning-spinner>
+            </div>
+        </template>     
+    </lightning-card>
+    </div>
+</template>

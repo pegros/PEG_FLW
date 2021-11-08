@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG List Selector</masterLabel>
+
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="cardTitle"
+                        label="Card Title"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardIcon"
+                        label="Card Icon"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardClass"
+                        label="Card CSS Class"
+                        type="String"
+                        role="inputOnly"
+                        default="slds-var-m-bottom_x-small"
+                        description="CSS Classes for the wrapping card div"/>
+            <property   name="displayMode"
+                        label="Display Mode"
+                        type="String"
+                        role="inputOnly"
+                        description="Display mode of the records (list,pills,tiles,table)."/>
+            <property   name="tileSize"
+                        label="Tile Size"
+                        type="Integer"
+                        role="inputOnly"
+                        description="Tile width (X on 12)."/>
+                                    
+            <property   name="nameField"
+                        label="Title Field"
+                        type="String"
+                        role="inputOnly"
+                        description="API name of the Name field to be used as Title to display records."/>
+            <property   name="fieldSetName"
+                        label="Detail FieldSet"
+                        type="String"
+                        role="inputOnly"
+                        description="Name of the fieldSet to be used to display additional info in tiles (as ObjectApiName.FieldSetName)."/>
+            <property   name="recordKey"
+                        label="Key Field"
+                        type="String"
+                        role="inputOnly"
+                        default="Id"
+                        description="API name of the field to be used as unique record identifier for selection (Salesforce Id by default)."/>
+            
+            <property   name="isDebug"
+                        label="Show Debug?"
+                        type="Boolean"
+                        role="inputOnly"/>
+
+            <propertyType name="T"
+                        extends="SObject"
+                        label="Object"
+                        description="Select an object API Name." />
+            <property   name="recordList"
+                        label="RecordList"
+                        type="{T[]}"
+                        role="inputOnly" 
+                        required="true" 
+                        description="List of records to choose from."/>
+            <property   name="selectedRecord"
+                        label="Selected Record"
+                        type="{T}"
+                        description="Selected Record in the list (usually output, but may be input to init selection)."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

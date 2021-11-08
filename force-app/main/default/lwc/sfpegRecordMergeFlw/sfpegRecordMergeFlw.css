@@ -1,0 +1,36 @@
+.fieldBox {
+    width:100%;
+    height: 40px;
+    margin-bottom: 1px;
+}
+.fieldSelect {
+    /*stroke: steelblue;*/
+    /*border-color: var(--lwc-colorBorderBrand);*/
+    border-color: var(--lwc-brandAccessible);
+    border-style: solid;
+    border-width:  2px;
+    border-radius: var(--lwc-borderRadiusMedium);
+    padding: 1px;
+    padding-bottom: 0px;
+    min-height: 40px;
+    margin-bottom: 1px;
+    background-color: var(--lwc-colorBackgroundRowSelected);
+    /*background-color: var(--lwc-colorBrand);*/
+    /*opacity: 0.2; colorBackgroundRowSelected*/
+}
+.fieldNoSelect {
+    /*stroke: steelblue;*/
+    padding: 3px;
+    padding-bottom: 2px;
+    min-height: 40px;
+    margin-bottom: 1px;
+    /*opacity: 0.2;*/
+}
+.fieldLabel {
+    display: inline-block;
+}
+.fieldLabelContainer {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}

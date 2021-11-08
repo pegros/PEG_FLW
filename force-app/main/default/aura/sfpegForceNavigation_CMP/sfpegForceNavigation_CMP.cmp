@@ -1,0 +1,45 @@
+<aura:component implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+                access="global" 
+                description="This component enables to force the closing of the current record tab and the reopening of another one according to the console configuration (requires the GRC Navigation Handler to be included in the console utility bar)">
+    
+    <!-- Component Configuration -->
+    <aura:attribute name="targetString"	type="String"
+                    access="global"		
+                    description="Sequence of targets (as a JSON list of field API names), the first being used to close and reopen the current tab." />
+	<aura:attribute name="isMainTab"	type="Boolean"
+                    access="global"		default="true"
+                    description="Flag to force reopen of current record as main tab (or subtab if false)." />
+    
+    <!-- Internal parameters -->
+    <aura:attribute name="targetJSON"	type="List"
+                    access="private"
+                    description="JSON parsing of targetString attribute" />    
+    
+    <!-- LDS Operation -->
+    <aura:attribute name="recordObject"      type="Object"  access="private"
+                    description="Current Record data fetched via LDS." />
+	<aura:attribute name="recordFields"      type="Object"  access="private"
+                    description="Current Record data fetched via LDS (alternate format)."/>
+	<aura:attribute name="ldsError"          type="String"  access="private"
+                    description="LDS Record Data load error."/>
+
+    <!-- Component Initialisation -->
+    <aura:handler name="init"	value="{!this}"
+                  action="{!c.doInit}"/>
+       
+    <!-- Component Utilities -->
+    <lightning:workspaceAPI	aura:id="wkspUtil"/>
+    
+    <!-- LDS Record Field Loading and Tracking -->
+    <aura:if isTrue="{!v.targetJSON.length > 0}">
+    <force:recordData aura:id="ldsUtil" 
+        fields="{!v.targetJSON}" 
+		recordId="{!v.recordId}"  
+		targetError="{!v.ldsError}"
+		targetRecord="{!v.recordObject}"
+		targetFields="{!v.recordFields}"
+		recordUpdated="{!c.handleLoad}"
+        mode="VIEW" />
+    </aura:if>
+    
+</aura:component>

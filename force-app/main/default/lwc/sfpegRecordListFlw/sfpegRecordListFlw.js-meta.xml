@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Record List Display</masterLabel>
+
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="cardTitle"
+                        label="Card Title"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardIcon"
+                        label="Card Icon"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardClass"
+                        label="Card CSS Class"
+                        type="String"
+                        role="inputOnly"
+                        default="slds-var-m-bottom_x-small"
+                        description="CSS Classes for the wrapping card div"/>
+            <property   name="displayMode"
+                        label="Display Mode"
+                        type="String"
+                        role="inputOnly"
+                        description="Display mode of the records (list,pills,tiles,table)."/>
+            <property   name="tileSize"
+                        label="Tile Size"
+                        type="Integer"
+                        role="inputOnly"
+                        description="Tile width (X on 12)."/>
+            <property   name="listHeight"
+                        label="List Height"
+                        type="Integer"
+                        role="inputOnly"
+                        description="Record list display height in px (0 : no scroll)."/>
+            <property   name="tableColumns"
+                        label="Table Columns Number"
+                        type="Integer"
+                        role="inputOnly"
+                        description="Number of columns in case of table display (1 by default)."/>
+            <property   name="stackedDisplay"
+                        label="Stacked labels ?"
+                        type="Boolean"
+                        role="inputOnly"
+                        description="Display field labels in stacked mode when in table display (1 by default)."/>
+                        
+
+            <property   name="nameField"
+                        label="Title Field"
+                        type="String"
+                        role="inputOnly"
+                        description="API name of the Name field to be used as Title to display records."/>
+            <property   name="fieldSetName"
+                        label="Detail FieldSet"
+                        type="String"
+                        role="inputOnly"
+                        description="Name of the fieldSet to be used to display additional info in tiles (as ObjectApiName.FieldSetName)."/>
+
+            <property   name="isDebug"
+                        label="Show Debug?"
+                        type="Boolean"
+                        role="inputOnly"/>
+
+            <propertyType name="T"
+                        extends="SObject"
+                        label="Object"
+                        description="Select an object API Name." />
+            <property   name="recordList"
+                        label="Record List"
+                        type="{T[]}"
+                        role="inputOnly" 
+                        required="true" 
+                        description="List of records to choose from."/>
+            <property   name="outputList"
+                        label="Output Record List"
+                        role="outputOnly"
+                        type="{T[]}"
+                        description="Possibly updated Record list."/>
+
+            <property   name="actionListStr"
+                        label="Action Configuration"
+                        role="inputOnly"
+                        type="String"
+                        description="Configuration of the the actions available for each record in the list (as a stringified JSON list)."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

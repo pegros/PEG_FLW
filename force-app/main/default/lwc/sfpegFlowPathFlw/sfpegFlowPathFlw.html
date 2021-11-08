@@ -1,0 +1,65 @@
+<template>
+    <div class={pathClass}>
+
+    <!-- Tab mode Display -->
+    <template if:true={isTab}>
+        <lightning-tabset   active-tab-value={currentStep}
+                            variant="standard"
+                            title={currentStep}>
+            <template for:each={steps} for:item="step">
+                <lightning-tab  label={step}
+                                value={step}
+                                key={step}
+                                onactive={enterStep}>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </template>
+
+    <!-- Path mode Display -->
+    <template if:true={isPath}>
+        <lightning-progress-indicator   current-step={currentStep}
+                                        type="path"
+                                        variant="shaded" >
+            <template for:each={steps} for:item="step">
+                <lightning-progress-step    label={step}
+                                            value={step}
+                                            key={step}
+                                            onstepfocus={enterStep} >
+                </lightning-progress-step>
+            </template>
+        </lightning-progress-indicator>
+    </template>
+
+    <!-- Progress Bar mode Display -->
+    <template if:true={isProgress}>
+        <lightning-progress-indicator   current-step={currentStep}
+                                        type="base"
+                                        variant="shaded" >
+            <template for:each={steps} for:item="step">
+                <lightning-progress-step    label={step}
+                                            value={step}
+                                            key={step}
+                                            onstepfocus={enterStep}>
+                </lightning-progress-step>
+            </template>
+        </lightning-progress-indicator>
+    </template>
+
+    <!-- Button bar mode Display -->
+    <template if:true={isButton}>
+        <div class={buttonClass} >
+                <template for:each={steps} for:item="step">
+                    <lightning-button   key={step.label}
+                                        label={step.label}
+                                        title={step.label}
+                                        variant={step.variant}
+                                        onclick={enterStep}
+                                        class="slds-m-horizontal_xx-small">
+                    </lightning-button>
+                </template>
+        </div>
+    </template>
+
+    </div>
+</template>

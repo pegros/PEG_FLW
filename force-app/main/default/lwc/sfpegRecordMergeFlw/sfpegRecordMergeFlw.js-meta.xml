@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Record Merge</masterLabel>
+
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="cardTitle"
+                        label="Card Title"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardIcon"
+                        label="Card Icon"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardClass"
+                        label="Card CSS Class"
+                        type="String"
+                        role="inputOnly"
+                        default="slds-var-m-bottom_x-small"
+                        description="CSS Classes for the wrapping card div"/>
+                           
+            <property   name="fieldSetName"
+                        label="Detail FieldSet"
+                        type="String"
+                        role="inputOnly"
+                        description="Name of the fieldSet to be used to display additional info in tiles (as ObjectApiName.FieldSetName)."/>
+
+            <property   name="mainLabel"
+                        label="Main Header Label"
+                        type="String"
+                        role="inputOnly"
+                        default="Main"
+                        description="Header label of main record" />
+            <property   name="secondLabel"
+                        label="Second Header Label"
+                        type="String"
+                        default="Second"
+                        role="inputOnly"
+                        description="Header label of second record" />
+            <property   name="targetLabel"
+                        label="Target Header Label"
+                        type="String"
+                        default="Target"
+                        role="inputOnly"
+                        description="Header label of target record" />
+
+            <property   name="stackedLabels"
+                        label="Display Labels stacked?"
+                        type="Boolean"
+                        default="false"
+                        role="inputOnly"
+                        description="Flag to display labels stacked instead of separate column." />
+            <property   name="hideTarget"
+                        label="Hide Target?"
+                        type="Boolean"
+                        default="false"
+                        role="inputOnly"
+                        description="Flag to hide target record (no edit possible)" />
+            <property   name="isDebug"
+                        label="Show Debug?"
+                        type="Boolean"
+                        default="false"
+                        role="inputOnly"/>
+
+            <propertyType name="T"
+                        extends="SObject"
+                        label="Object"
+                        description="Select an object API Name." />
+            <property   name="mainRecord"
+                        label="Main Input Record"
+                        role="inputOnly"
+                        type="{T}"
+                        description="Main Record to be used."/>
+            <property   name="secondRecord"
+                        label="Second Input Record"
+                        role="inputOnly"
+                        type="{T}"
+                        description="Second Record to be used."/>
+            <property   name="newRecord"
+                        label="Output Record"
+                        role="outputOnly"
+                        type="{T}"
+                        description="Record merged/edited."/>
+                        
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

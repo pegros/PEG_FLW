@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Record Editor</masterLabel>
+
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="cardTitle"
+                        label="Card Title"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardIcon"
+                        label="Card Icon"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardClass"
+                        label="Card CSS Class"
+                        type="String"
+                        role="inputOnly"
+                        default="slds-var-m-bottom_x-small"
+                        description="CSS Classes for the wrapping card div"/>
+            <property   name="tileSize"
+                        label="Field Size"
+                        type="Integer"
+                        role="inputOnly"
+                        description="Field display size (X on 12)."/>
+                                    
+            <property   name="fieldSetName"
+                        label="Detail FieldSet"
+                        type="String"
+                        role="inputOnly"
+                        description="Name of the fieldSet to be used to display additional info in tiles (as ObjectApiName.FieldSetName)."/>
+            <property   name="isRW"
+                        label="Use RW (vs M/O)?"
+                        type="Boolean"
+                        role="inputOnly"
+                        description='Flag to map "required" flag value of fields (in fieldset configuration) as "read-write".'/>
+
+            <property   name="isDebug"
+                        label="Show Debug?"
+                        type="Boolean"
+                        role="inputOnly"/>
+
+            <propertyType name="T"
+                        extends="SObject"
+                        label="Object"
+                        description="Select an object API Name." />
+            <property   name="mainRecord"
+                        label="Input Record"
+                        role="inputOnly"
+                        type="{T}"
+                        description="Record to be displayed/edited."/>
+            <property   name="newRecord"
+                        label="Output Record"
+                        role="outputOnly"
+                        type="{T}"
+                        description="Record edited."/>
+
+            <!-- OBSOLETE -->
+            <property   name="isEdit"
+                        label="Obsolete"
+                        type="Boolean"
+                        role="inputOnly" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

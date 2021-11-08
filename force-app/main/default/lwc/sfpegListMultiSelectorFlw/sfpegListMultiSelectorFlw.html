@@ -1,0 +1,214 @@
+<template>
+
+    <div class={cardClass}>
+    <lightning-card  title={cardTitle} icon-name={cardIcon} >
+
+        <!-- Debug information display -->
+        <template if:true={isDebug}>
+            <div slot="footer" class="slds-region_narrow" style="text-align:left; width:100%;">
+                <dl class="slds-dl_horizontal">
+                    <dt class="slds-dl_horizontal__label">Display Mode:</dt>
+                    <dd class="slds-dl_horizontal__detail">{displayMode}</dd>
+                    <dt class="slds-dl_horizontal__label">Tile Size:</dt>
+                    <dd class="slds-dl_horizontal__detail">{tileSize}</dd>
+                    <dt class="slds-dl_horizontal__label">Title Field:</dt>
+                    <dd class="slds-dl_horizontal__detail">{nameField}</dd>
+                    <dt class="slds-dl_horizontal__label">Key Field:</dt>
+                    <dd class="slds-dl_horizontal__detail">{keyField}</dd>
+                    <dt class="slds-dl_horizontal__label">Detail FieldSet:</dt>
+                    <dd class="slds-dl_horizontal__detail">{fieldSetName}</dd>
+                    <dt class="slds-dl_horizontal__label">Records #Input / #Display:</dt>
+                    <dd class="slds-dl_horizontal__detail">{recordList.length} / {displayItems.length}</dd>
+                    <dt class="slds-dl_horizontal__label">Search Scope / Criteria :</dt>
+                    <dd class="slds-dl_horizontal__detail">{searchScope.label} / {searchString} </dd>
+                    <dt class="slds-dl_horizontal__label">Sort Field / Direction :</dt>
+                    <dd class="slds-dl_horizontal__detail">{sortedBy} / {sortDirection} </dd>
+                    <dt class="slds-dl_horizontal__label">Selection #Items:</dt>
+                    <dd class="slds-dl_horizontal__detail">{selectionList.length}</dd>
+                </dl>
+            </div>
+        </template>
+
+        <template if:true={isReady}>
+            <div class="slds-card__body_inner"> 
+
+                <!-- Selection display (optional) -->
+                <template if:true={showSelection}>
+                    <!-- slds-var-m-bottom_xx-large -->
+                    <div class="slds-var-m-bottom_medium">
+                        <!-- slds-text-heading_small -->
+                        <p class="slds-text-heading_small slds-var-m-bottom_xx-small">{selectHeader}</p>
+                        <!-- slds-box slds-box_xx-small -->
+                        <div class="" style="min-height:36px;">
+                            <template for:each={displayItems} for:item="eachItem">
+                                <template if:true={eachItem.isSelected}>
+                                    <lightning-pill label={eachItem.label}
+                                                    class="slds-var-m-around_xx-small selectionPill"
+                                                    key={eachItem.id}
+                                                    id={eachItem.id}
+                                                    onremove={handleSelect}>
+                                    </lightning-pill>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Search Bar Display (optional) -->
+                <template if:true={showSearch}>
+                    <div class="slds-var-m-bottom_medium">
+                    <p class="slds-text-heading_small slds-var-m-bottom_xx-small">{searchHeader}</p>
+                    <!--
+                    <lightning-button-group class="slds-text-color_default slds-var-m-bottom_small">
+                    -->
+                    <div class="slds-grid slds-grid_vertical-align-center">
+                        <div class="slds-col slds-grow-none slds-var-p-right_x-small">
+                        <lightning-button-menu  alternative-text="Scope selection menu"
+                                                value={searchScope}
+                                                onselect={handleScopeChange}
+                                                label={searchScope.label}
+                                                class="slds-button_first">
+                            <template for:each={searchScopes} for:item="eachScope">
+                                <lightning-menu-item value={eachScope}
+                                                    label={eachScope.label}
+                                                    key={eachScope.value} 
+                                                    checked={eachScope.isChecked}>
+                                </lightning-menu-item>
+                            </template>
+                        </lightning-button-menu>
+                        </div>
+                        <!--
+                        <div onkeyup={filterList} class="slds-button_last" >
+                            <lightning-input    class="searchInput"
+                                                placeholder="Merci de renseigner un critère de recherche."
+                                                type="search"
+                                                name="SearchString"
+                                                value={searchString}
+                                                variant="label-hidden"
+                                                onchange={handleSearch} >
+                            </lightning-input>
+                        </div>
+                        -->
+                        <div class="slds-col" onkeyup={handleSearchEntry} >
+                        <lightning-input    class=""
+                                            placeholder={searchPlaceholder}
+                                            type="search"
+                                            name="SearchString"
+                                            value={searchString}
+                                            variant="label-hidden"
+                                            onchange={handleSearchChange} >
+                        </lightning-input>
+                        </div>
+                        <!--
+                        <lightning-button-icon  icon-name="utility:search"
+                                                alternative-text="Search"
+                                                title="Search"
+                                                class="slds-button_last"
+                                                variant="brand"
+                                                onclick={handleSearch}>
+                        </lightning-button-icon>
+                        -->
+                    </div>
+                    <!--
+                    </lightning-button-group>
+                    -->
+                    </div>
+                </template>
+
+                <!-- Record List display   -->
+                <div class=" " >
+                    <div class="slds-media slds-media_center slds-var-m-bottom_xx-small">
+                        <div class="slds-media__body slds-var-m-top_small">
+                            <p class="slds-text-heading_small">{listHeader}</p>
+                        </div>
+
+                        <!-- Sort Button Menu Display (optional) -->
+                        <template if:true={showSort}>
+                            <div class="slds-media__figure slds-media__figure_reverse">
+                                <lightning-button-menu  icon-name="utility:sort"        icon-size={buttonSize}
+                                                        variant="border-filled"         menu-alignment="right"
+                                                        alternative-text={sortTitle}    label={sortTitle}
+                                                        onselect={handleSortSelect} >
+                                    <template for:each={sortFields} for:item="iterField">
+                                        <lightning-menu-item    key={iterField.name}
+                                                                value={iterField.name}
+                                                                label={iterField.label} 
+                                                                icon-name={iterField.iconName}>
+                                        </lightning-menu-item> 
+                                    </template>
+                                </lightning-button-menu>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Content Display -->
+                    <div class={searchDivClass} style={searchDivStyle} >
+                        <!-- Tiles mode content display -->
+                        <template if:true={isTiles}>
+                            <lightning-layout   multiple-rows="true"    horizontal-align="center" >
+                                <template for:each={displayItems} for:item="eachItem">
+                                    <template if:true={eachItem.isFiltered}>
+                                        <lightning-layout-item  key={eachItem.id}   size={tileSize} >
+                                            <a id={eachItem.id} onclick={handleSelect}>
+                                                <div class={eachItem.class} >
+                                                    <lightning-formatted-text   value={eachItem.label}  class="slds-text-title_bold">
+                                                    </lightning-formatted-text><br/>
+                                                    <ul class="slds-list_horizontal  slds-has-dividers_left slds-listbox slds-listbox_horizontal">
+                                                        <template for:each={eachItem.details} for:item="eachField">
+                                                            <li key={eachField.label} class="slds-item slds-text-body_small" title={eachField.label}>
+                                                                {eachField.value}
+                                                            </li>
+                                                        </template>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                        </lightning-layout-item>
+                                    </template>
+                                </template>
+                            </lightning-layout>
+                        </template>
+
+                        <!-- Table mode content display -->
+                        <template if:true={isTable}>
+                            <lightning-layout   multiple-rows="true"
+                                        horizontal-align="center" >
+                                <template for:each={displayItems} for:item="eachItem">
+                                    <template if:true={eachItem.isFiltered}>
+                                        <lightning-layout-item  key={eachItem.name}
+                                                                size={tileSize} >
+                                            <a id={eachItem.id} onclick={handleSelect}>
+                                                <div class={eachItem.class} >
+                                                    <lightning-formatted-text   value={eachItem.label}    class="slds-text-title_bold">
+                                                    </lightning-formatted-text><br/>
+                                                    <dl class="slds-dl_horizontal slds-has-dividers_top">
+                                                        <template for:each={eachItem.details} for:item="eachField">
+                                                            <dt key={eachField.label}   class="slds-dl_horizontal__label slds-text-color_weak slds-truncate slds-text-title">
+                                                                {eachField.label}
+                                                            </dt>
+                                                            <dd key={eachField.value}   class="slds-dl_horizontal__detail slds-text-body_small">
+                                                                {eachField.value}
+                                                            </dd>
+                                                        </template>
+                                                    </dl>
+                                                </div>
+                                            </a>
+                                        </lightning-layout-item>
+                                    </template>
+                                </template>
+                            </lightning-layout>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Loading Spinner DDisplay -->
+        <template if:false={isReady}>
+             <div style="height:120px;">
+                <lightning-spinner alternative-text="Loading" size="medium">
+                </lightning-spinner>
+            </div>
+        </template>     
+    </lightning-card>
+    </div>
+</template>

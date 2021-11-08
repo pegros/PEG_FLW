@@ -1,0 +1,196 @@
+<template>
+
+    <div class={cardClass}>
+        <lightning-card  title={cardTitle} icon-name={cardIcon} >
+
+            <!-- Debug information display -->
+            <template if:true={isDebug}>
+                <div slot="footer" class="slds-region_narrow" style="text-align:left; width:100%;">
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">FieldSet/Object/RT:</dt>
+                        <dd class="slds-dl_horizontal__detail">{fieldSetName} / {objectName} / {objectRecordType}</dd>
+                        <dt class="slds-dl_horizontal__label">Stacked Labels:</dt>
+                        <dd class="slds-dl_horizontal__detail">{stackedLabels}</dd>
+                        <dt class="slds-dl_horizontal__label">label variant / Hide Target:</dt>
+                        <dd class="slds-dl_horizontal__detail">{labelVariant} / {hideTarget}</dd>
+                        <dt class="slds-dl_horizontal__label">Fields (main/second/new):</dt>
+                        <dd class="slds-dl_horizontal__detail">{mainRecordFields.length} / {secondRecordFields.length} / {newRecordFields.length}</dd>
+                        <dt class="slds-dl_horizontal__label">Modification:</dt>
+                        <dd class="slds-dl_horizontal__detail">{lastModif}</dd>
+                        <dt class="slds-dl_horizontal__label">Target Object:</dt>
+                        <dd class="slds-dl_horizontal__detail" style="word-wrap: break-word;">{targetJson}</dd>
+                        <dt class="slds-dl_horizontal__label">Target Fields:</dt>
+                        <dd class="slds-dl_horizontal__detail" style="word-wrap: break-word;">{targetFieldsJson}</dd>
+                    </dl>
+                </div>
+            </template>
+
+            <template if:true={isReady}>
+                <div class={cardContentClass}>
+                    <lightning-layout   horizontal-align="center"
+                                        pull-to-boundary="small"
+                                        vertical-align="stretch" >
+
+                        <!-- 1st Column : Optional List of Field Labels -->
+                        <template if:false={stackedLabels}>
+                        <lightning-layout-item  size="2" padding="horizontal-small">
+                            <div class="fieldBox" >
+                            </div>
+                            <template for:each={mainRecordFields} for:item="field">
+                                <!-- slds-var-m-top_small slds-var-p-top_small fieldBox -->
+                                <div    class="fieldNoSelect fieldLabelContainer slds-text-align_right"  key={field.desc.name}
+                                        data-type="field"   data-name={field.desc.name} >
+                                        <div class="fieldLabel">
+                                <lightning-formatted-text   value={field.desc.label}
+                                                            class="slds-truncate">
+                                </lightning-formatted-text>
+                                </div>
+                                </div>
+                            </template>
+                        </lightning-layout-item>
+                        </template>
+                        
+                        <!-- 2nd Column : List of Main record Fields -->
+                        <lightning-layout-item  size={recordSize} >
+                            <lightning-record-edit-form object-api-name={objectName}
+                                                        record-type-id={objectRecordType}
+                                                        onload={handleLoad} >
+                                <div class="fieldBox slds-var-p-top_x-small">
+                                    <div class="slds-align_absolute-center">
+                                        <lightning-button variant="base" label={mainLabel}
+                                                    value="main"
+                                                    title="Select all Main fields"
+                                                    icon-name="utility:chevrondown"
+                                                    icon-position="right"
+                                                    onclick={handleSelect} >
+                                        </lightning-button>
+                                    </div>
+                                </div>
+                                <template for:each={mainRecordFields} for:item="field">
+                                    <div    class={field.class} key={field.desc.name}
+                                            data-type="field"   data-name={field.desc.name}>
+                                        <div class="slds-media slds-media_center slds-media_small">
+                                            <div class="slds-media__body">
+                                                <lightning-input-field  field-name={field.desc.name}
+                                                                        value={field.value}
+                                                                        variant={labelVariant}
+                                                                        disabled="true" >
+                                                </lightning-input-field>
+                                            </div>
+                                            <div class="slds-media__figure slds-media__figure_reverse">
+                                                <lightning-button-icon  icon-name="utility:chevronleft"
+                                                            name={field.desc.name}
+                                                            variant="bare" alternative-text="select"
+                                                            class="slds-m-left_xx-small" title="select"
+                                                            onclick={handleClickM}>
+                                                </lightning-button-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </lightning-record-edit-form>
+                        </lightning-layout-item>
+
+                        <!-- 3rd Column : List of Second record Fields -->
+                        <lightning-layout-item  size={recordSize} >
+                            <lightning-record-edit-form object-api-name={objectName}
+                                                        record-type-id={objectRecordType}
+                                                        onload={handleLoad} >
+                                <div class="fieldBox slds-var-p-top_x-small">
+                                    <div class="slds-align_absolute-center">
+                                        <lightning-button variant="base" label={secondLabel}
+                                                    value="second"
+                                                    title="Select all Second fields"
+                                                    icon-name="utility:chevrondown"
+                                                    icon-position="right"
+                                                    onclick={handleSelect} >
+                                        </lightning-button>
+                                    </div>
+                                </div>
+                                <template for:each={secondRecordFields} for:item="field">
+                                    <div    class={field.class} key={field.desc.name}
+                                            data-type="field"   data-name={field.desc.name}>
+                                        <div class="slds-media slds-media_center slds-media_small">
+                                            <div class="slds-media__figure slds-media_small">
+                                                <lightning-button-icon  icon-name="utility:chevronright"
+                                                                        name={field.desc.name}
+                                                                        variant="bare" alternative-text="select"
+                                                                        class="slds-m-left_xx-small" title="select"
+                                                                        onclick={handleClickS}>
+                                                </lightning-button-icon>
+                                            </div>
+                                            <div class="slds-media__body">
+                                                <lightning-input-field  field-name={field.desc.name}
+                                                                value={field.value}
+                                                                variant={labelVariant}
+                                                                disabled="true" >
+                                                </lightning-input-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </lightning-record-edit-form>
+                        </lightning-layout-item>
+
+                        <!-- 4th Column : Optional List of Target record Fields (for output) -->
+                        <template if:false={hideTarget}>
+                        <lightning-layout-item  size="3" padding="horizontal-small">
+                            <lightning-record-edit-form object-api-name={objectName}
+                                                        record-type-id={objectRecordType} >
+                                <div class="fieldBox slds-var-p-top_small">
+                                    <div class="slds-align_absolute-center" style="font-weight:bold;">
+                                        <lightning-formatted-text   value={targetLabel}>
+                                        </lightning-formatted-text>
+                                    </div>
+                                </div>
+                                <template for:each={newRecordFields} for:item="field">
+                                    <div    class="fieldNoSelect"   key={field.desc.name}
+                                            data-type="field"       data-name={field.desc.name}>
+                                    <div class="slds-media">
+                                        <div class="slds-media__body">
+                                            <lightning-input-field  key={field.desc.name}
+                                                                    field-name={field.desc.name}
+                                                                    class="targetEditField"
+                                                                    value={field.value}
+                                                                    variant="label-hidden"
+                                                                    onchange={handleChange}  >
+                                            </lightning-input-field>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </template>
+                            </lightning-record-edit-form>
+                        </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+
+                    <!-- Cancel/Merge Buttons Display (if cancel/merge events need to be triggered) -->
+                    <template if:true={displayButtons}>
+                        <div class="slds-align_absolute-center slds-var-p-top_small">
+                            <lightning-button-group>
+                                <template if:true={displayCancelButton}>
+                                    <lightning-button   label={cancelButton}
+                                                        onclick={handleCancel}>
+                                    </lightning-button>
+                                </template>
+                                <template if:true={displayMergeButton}>
+                                    <lightning-button   label={mergeButton} variant="brand"
+                                                        onclick={handleMerge}>
+                                    </lightning-button>
+                                </template>
+                            </lightning-button-group>
+                        </div>
+                    </template>
+                </div>     
+            </template>
+
+            <!-- Loading spinner display -->
+            <template if:false={isReady}>
+                <div style="height:120px;">
+                    <lightning-spinner alternative-text="Loading" size="medium">
+                    </lightning-spinner>
+                </div>
+            </template>     
+        </lightning-card>
+    </div>
+</template>

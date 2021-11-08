@@ -1,0 +1,74 @@
+<aura:documentation>
+	<aura:description>
+    <div class="slds-m-top_large">
+    <h4>Overview</h4>
+        <p>The <code>&lt;sfpegForceNavigation_CMP&gt;</code> component enables
+            to handle multiple automatic navigation use cases on Lightning record pages:</p>
+        <ul>
+            <li>enforce the reopening of the current record according to the configuration of 
+            a Lightning console, e.g. as a main tab instead of a sub-tab</li>
+            <li>enforce the closing of the current tab and the opening of another one, as 
+            configured in an ordered list of possible targets, e.g. to force the navigation
+            to the new opportunity after lead conversion.</li>
+        </ul>
+        <p>It just needs to be put in the Lightning record page layout and requires only
+            a single main parameter to be set, i.e. <code>targetString</code>. This parameter is
+            an ordered list of lookup API field names on the current object, the first 
+            one with a value being used as Target.</p>
+        <ul>
+        	<li>If the target ID and the current record ID are the same, it simply checks
+            whether the current record is opened in a sub-tab (or a tab if the <code>isMainTab</code>
+            parameter is set to <code>false</code>) and triggers the navigation
+        	logic in that case.</li>
+            <li>If the target ID and the current record ID are different, it directly
+            triggers the navigation logic.</li>
+        </ul>
+        <p>It has no HTML content and should be placed preferably at the bottom of a 
+            page to avoid generating an empty extra void in the page layout (because of
+            margins around components)</p>
+        <p>To execute the navigation logic, it generates a <a href="/docs/component-library/bundle/c:sfpegTabOpen_EVT/specification">
+        <code>sfpegTabOpen_EVT</code></a> App event (with the current tab ID and target record ID),
+        which is then handled by the <a href="/docs/component-library/bundle/c:sfpegNavigationManager_CMP/documentation">
+        <code>&lt;sfpegNavigationManager_CMP&gt;</code></a> component to actually
+        execute the close/open logic. This second component should be added in the utility bar
+        to enforce the App tab opening configuration.</p>
+        <p>Notes:</p>
+        <ul>
+        <li>By default, the <code>targetString</code> is set to <code>["Id"]</code>, which
+            enables to support the "force reopen of record as main tab" case.</li>
+            <li>By default, the <code>isMainTab</code> is set to <code>true</code>, which
+            forces the reporning of the current record as a main tab.</li>
+		<li>See also the <a href="/docs/component-library/bundle/c:sfpegForceClose_CMP/documentation">
+        <code>&lt;sfpegForceClose_CMP&gt;</code></a> component for other similar use cases.</li>
+		</ul>
+    <br/>
+    </div>   
+        
+    <div class="slds-m-top_large">
+        <h4>Legal Notice</h4>
+        <p>Author: P-E GROS / Dec 2020</p>
+        <br/>
+        <p>MIT License</p>
+        <br/>
+        <p>Copyright (c) 2021 pegros</p>
+        <br/>
+        <p> Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:</p>
+        <br/>
+        <p> The above copyright notice and this permission notice shall be included in all
+            copies or substantial portions of the Software.</p>
+        <br/>
+        <p> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            SOFTWARE.</p>
+    </div>
+    </aura:description>
+</aura:documentation>

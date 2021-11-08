@@ -1,0 +1,73 @@
+<template>
+
+    <div class={cardClass}>
+        <lightning-card  title={cardTitle} icon-name={cardIcon} >
+
+            <!-- Debug information display -->
+            <template if:true={isDebug}>
+                <div slot="footer" style="text-align:left; width:100%;" >
+                    <p>Field Size: {tileSize}</p>
+                    <p>RW mode: {isRW}</p>
+                    <p>FieldSet: {fieldSetName} / Object: {objectName}</p>
+                    <p>Fields: {recordFields.length}</p>
+                    <p>RecordType: {objectRecordType}</p>
+                    <p>Last Modification : {lastModif}</p>
+                </div>
+            </template>
+
+            <template if:true={isReady}>
+
+                <!-- Record Field Display -->
+                <div class="slds-card__body_inner">
+                <lightning-record-edit-form object-api-name={objectName}
+                                            record-type-id={objectRecordType}>
+                    <lightning-messages>
+                    </lightning-messages>
+
+                    <lightning-layout   multiple-rows="true" horizontal-align="end"
+                                         >
+                        <template for:each={recordFields} for:item="field">
+                            <lightning-layout-item  key={field.desc.name}
+                                                    size={tileSize} >
+                                <lightning-input-field  field-name={field.desc.name}
+                                                        value={field.value}
+                                                        variant="label-stacked"
+                                                        disabled={field.readonly}
+                                                        required={field.mandatory}
+                                                        onchange={handleChange}  >
+                                </lightning-input-field>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+                </lightning-record-edit-form>
+                </div>
+
+                <!-- Merge Button display (if cancel/validate events need to be triggered) -->
+                <template if:true={displayButtons}>
+                    <div class="slds-align_absolute-center slds-var-p-top_small">
+                        <lightning-button-group>
+                            <template if:true={displayCancelButton}>
+                                <lightning-button   label={cancelButton}
+                                                    onclick={handleCancel}>
+                                </lightning-button>
+                            </template>
+                            <template if:true={displayValidateButton}>
+                                <lightning-button   label={validateButton} variant="brand"
+                                                    onclick={handleValidate}>
+                                </lightning-button>
+                            </template>
+                        </lightning-button-group>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Loading spinner display -->
+            <template if:false={isReady}>
+                <div style="height:120px;">
+                    <lightning-spinner alternative-text="Loading" size="medium">
+                    </lightning-spinner>
+                </div>
+            </template>     
+        </lightning-card>
+    </div>
+</template>

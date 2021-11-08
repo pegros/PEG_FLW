@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG List Multi-Selector</masterLabel>
+
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="cardTitle"
+                        label="Card Title"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardIcon"
+                        label="Card Icon"
+                        type="String"
+                        role="inputOnly" />
+            <property   name="cardClass"
+                        label="Card CSS Class"
+                        type="String"
+                        role="inputOnly"
+                        default="slds-var-m-bottom_x-small"
+                        description="CSS Classes for the wrapping card div"/>
+            <property   name="displayMode"
+                        label="Display Mode"
+                        type="String"
+                        role="inputOnly"
+                        description="Display mode of the records (list,pills,tiles,table)."/>
+            <property   name="tileSize"
+                        label="Tile Size"
+                        type="Integer"
+                        role="inputOnly"
+                        description="Tile width (X on 12)."/>
+            <property   name="showSelection"
+                        label="Show Selection?"
+                        type="Boolean"
+                        default="true"
+                        role="inputOnly"
+                        description="Flag to display Selection List component."/>
+            <property   name="showSearch"
+                        label="Show Search?"
+                        type="Boolean"
+                        default="true"
+                        role="inputOnly"
+                        description="Flag to display Search Bar component."/>
+            <property   name="searchHeight"
+                        label="Search List Height"
+                        type="Integer"
+                        role="inputOnly"
+                        description="Search list display height in px (0 : no scroll)."/>
+            <property   name="isSearchAuto"
+                        label="Set auto Search?"
+                        type="Boolean"
+                        default="true"
+                        role="inputOnly"
+                        description="Flag to set Search input in automatic mode."/>
+                        
+            <property   name="showSort"
+                        label="Show Sort?"
+                        type="Boolean"
+                        default="true"
+                        role="inputOnly"
+                        description="Flag to display Sort Button Menu."/>
+            <property   name="defaultSortedBy"
+                        label="Default Sort Field"
+                        type="String"
+                        role="inputOnly"
+                        description="API name of the field to be used to sort records by defaut (in asc mode)."/>
+                        
+            <property   name="nameField"
+                        label="Title Field"
+                        type="String"
+                        role="inputOnly"
+                        description="API name of the Name field to be used as Title to display records."/>
+            <property   name="nameLabel"
+                        label="Title Label"
+                        type="String"
+                        role="inputOnly"
+                        description="Label of the Name field to be used as Title to display records."/>
+            <property   name="keyField"
+                        label="Key Field"
+                        type="String"
+                        role="inputOnly"
+                        default="Id"
+                        description="API name of the field to be used as unique record identifier for selection (Salesforce Id by default)."/>        
+            <property   name="selectName"
+                        label="Title as default Search?"
+                        type="Boolean"
+                        role="inputOnly"
+                        description="Flag to set record title fields as default search option."/>
+
+            <property   name="fieldSetName"
+                        label="Detail FieldSet"
+                        type="String"
+                        role="inputOnly"
+                        description="Name of the fieldSet to be used to display additional info in tiles (as ObjectApiName.FieldSetName)."/>
+
+            <property   name="isDebug"
+                        label="Show Debug?"
+                        type="Boolean"
+                        role="inputOnly"/>
+
+            <propertyType name="T"
+                        extends="SObject"
+                        label="Object"
+                        description="Select an object API Name." />
+            <property   name="recordList"
+                        label="RecordList"
+                        type="{T[]}"
+                        role="inputOnly" 
+                        required="true" 
+                        description="List of records to choose from."/>
+            <property   name="selectionList"
+                        label="Selected Records"
+                        role="outputOnly"
+                        type="{T[]}"
+                        description="Selected Record in the list."/>
+            <property   name="preselectionList"
+                        label="Preselected Records"
+                        role="inputOnly"
+                        type="{T[]}"
+                        description="Records preselected in the list."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

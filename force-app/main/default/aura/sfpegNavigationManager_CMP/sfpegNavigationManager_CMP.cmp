@@ -1,0 +1,31 @@
+<aura:component implements="lightning:backgroundUtilityItem,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
+                access="global"
+                description="Console utility toolbar hidden component to manage tab related custom events">
+    
+    <!-- Technical context attributes -->
+    <aura:attribute name="isConsole"  type="Boolean" 
+                    access="private"  default="false"
+                    description="Flag to indicate if the component is in console or standard mode."/>
+    
+    <!-- Component Initialisation -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"
+                  description="Init of component: determination of console/standard mode."/>
+    
+	<!-- Main event handling -->
+    <aura:handler event="c:sfpegTabOpen_EVT"
+                  action="{!c.handleTabOpen}"
+                  description="Handling Tab open requests" />
+    <!--
+    <aura:handler event="lightning:tabFocused"
+                  action="{!c.handleTabFocus}"
+                  description="Handling standard Tab focus events" />
+    <aura:handler event="lightning:tabCreated"
+                  action="{!c.handleTabCreate}"
+                  description="Handling standard Tab create events" />
+    -->
+
+    <!-- Component Utilities -->
+    <lightning:workspaceAPI	aura:id="wkspUtil"/>
+    <lightning:navigation	aura:id="navUtil"/>
+    
+</aura:component>

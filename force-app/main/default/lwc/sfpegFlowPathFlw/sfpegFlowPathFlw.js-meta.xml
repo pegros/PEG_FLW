@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="sfpegFlowPathFlw">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Flow Path</masterLabel>
+    <description>This component enables to display a path within a Flow, e.g. to follow/control flow steps.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="pathClass"        label="Wrapping CSS Class"
+                        type="String"           role="inputOnly"
+                        default="slds-p-vertical_x-small slds-var-m-bottom_x-small"
+                        description="CSS Classes for the wrapping div"/>
+            <property   name="steps"            type="String[]"
+                        label="List of Steps"   role="inputOnly"/>
+            <property   name="stepsConfig"      type="String"
+                        label="List of Steps (JSON)"    role="inputOnly"
+                        description="JSON stringified string array alternative to 'List of Steps' (for simpler config.)"/>
+            <property   name="currentStep"      type="String"
+                        label="Current Step"/>
+            <property   name="mode"             type="String"
+                        label="Display Mode"    role="inputOnly"
+                        description="Should be one of the following possibilities: 'path', 'progress', 'tab', or 'button'"
+                        default="path"          required="true"/>
+            <property   name="triggerNext"      type="Boolean"
+                        label="Trigger Next?"   role="inputOnly"
+                        description="If selected, updates currentStep and triggers Next event"
+                        default="false"         required="true"/>
+            <property   name="alignment"        type="String"
+                        label="Alignment"       role="inputOnly"
+                        description="In case of 'button' display, controls the alignment of the buttons (should have 'center', 'start' or 'end' value)."
+                        default="center"        required="true"/>
+            <property   name="hasTopBorder"     type="Boolean"
+                        label="Top Border?"     role="inputOnly"
+                        description="In case of 'button' display, adds a top border above the button, to emulate a custom footer"
+                        default="false"         required="true"/>
+
+            <property   name="isDebug"
+                        label="Show Debug?"
+                        type="Boolean"
+                        default="false"
+                        role="inputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,31 @@
+.searchInput {
+    display: inline-block !important;
+    /*width: 100% !important;*/
+}
+.searchScope {
+    display: inline-block !important;
+    /*width: 100% !important;*/
+}
+.selectedItem {
+    border-color: var(--lwc-brandAccessible) !important;
+    border-width:  2px !important;
+}
+.selectionPill {
+    /*border-color: var(--lwc-brandAccessible) !important;
+    border-width:  2px !important;
+    border-style: solid;
+    border-width:  2px;
+    border-radius: var(--lwc-borderRadiusMedium);*/
+    /*padding: 5px;*/
+    --sds-c-pill-color-border: var(--lwc-brandAccessible);
+    --sds-c-pill-sizing-border: 2px;
+    --sds-c-pill-line-height: 1.5;
+    font-weight: bold !important;
+    /*--sds-c-button-color-background: var(--lwc-colorTextIconInverse);
+    --sds-c-button-color-border: var(--lwc-colorTextIconInverse);
+    --sds-c-button-text-color: var(--lwc-colorTextIconInverse);
+    --sds-c-button-text-color-bare: var(--lwc-colorTextIconInverse);*/
+    /*--sds-c-icon-color-background: var(--lwc-colorTextIconInverse) !important;
+    color: var(--lwc-colorTextIconInverse);
+    padding-left: 2px !important;*/
+}

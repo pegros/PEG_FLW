@@ -1,0 +1,15 @@
+<aura:event type="APPLICATION"
+            description="Custom event to request the closing of a tab and the opening of a record or a page"
+            access="global" >
+
+    <aura:attribute name="sourceId"		type="String"
+                    access="global"		
+                    description="Source tab ID to be closed (optional)." />
+    <aura:attribute name="targetId"		type="String"
+                    access="global"
+                    description="Target record ID to be opened (mandatory if targetPage not set)." />
+    <aura:attribute name="targetPage"	type="Object"
+                    access="global"
+                    description="Target page ref be opened (mandatory if targetId not set)." />
+    
+</aura:event>

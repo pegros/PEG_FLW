@@ -1,0 +1,88 @@
+<aura:documentation>
+	<aura:description>
+    <div class="slds-m-top_large">
+        <h4>Overview</h4>
+        <p>The <code>&lt;sfpegFlowEmbed_CMP&gt;</code> component enables to execute
+        a Flow within a tab (applying the standard SLDS white background) and control
+        the termination of the Flow (to redirect the user to a record page).</p>
+        <p>When using the standard default Flow URL, the User indeed gets a grey
+        background and loops back to the start of the Flow when clicking on the
+        termination, keeping the User on the Flow tab.</p>
+        <p>This adressable Lightning component takes the following variables as input
+        (to be set in the URL):</p>
+        <ul>
+            <li><code>c__flow</code>: Developer name of the Flow to be launched</li>
+            <li><code>c__recordId</code>: Id of the record to be provided as input to the Flow
+                (within its <code>recordId</code> input variable)</li>
+            <li><code>c__target</code>: name of the Flow output variable providing the Id of the
+                record to which the user should be redirected upon flow completion.</li>
+            <li><code>c__label</code>: label to be set on the Flow tab.</li>
+        </ul>
+        <p>Typical use case is to use a flow to create a related object and redirect
+        the user to the newly created object if successful, or back to the original
+        record upon failure.</p>
+        <br/>
+    </div>
+
+    <div class="slds-m-top_large">
+        <h4>Console Mode Usage</h4>
+        <p>When in non console mode, the component executes the termination logic
+        (flow close + redirection to the target) automatically thanks to the standard
+        <code>lightning:navigation</code> component.</p>
+        <p>When in console mode however, the component generates a <code>c:sfpegTabOpen_EVT</code>
+        App event (with the current tab ID and target record Id) whichhas then to be handled by
+        a <a href="/docs/component-library/bundle/c:sfpegNavigationManager_CMP/documentation">
+        <code>&lt;sfpegNavigationManager_CMP&gt;</code></a> component in the utility bar to
+        actually execute the close/open logic.</p>
+        <br/>
+    </div>
+
+    <div class="slds-m-top_large">
+        <h4>Launch Options</h4>
+		<p>The component may be typically launched from a standard detail page URL button 
+        with the following target:</p> 
+<pre>/lightning/cmp/c__sfpegFlowEmbed_CMP?c__flow=flowDevName&amp;c__recordId={!MyObject__c.Id}&amp;c__target=flowOutputId&amp;c__label=flowTabTitle"</pre>
+        <p>Alternatively, you may open it from a custom Lightning component, leveraging
+            the standard <code>lightning:navigation</code> component teh following way:</p>
+<pre>let flow = component.get(“v.flow”);
+let recordId = component.get(“v.recordId”);
+let navService = component.find("navService"); 
+let pageReference = {
+  "type": "standard__webPage", 
+  "attributes": {
+    "url":
+"/lightning/cmp/c__sfpegFlowEmbed_CMP?c__flow=" + flow + "&amp;c__recordId=" + saveResult.recordId + "&amp;c__target=targetId&amp;c__label=MOC”
+  }
+};
+navService.navigate(pageReference,false);</pre>
+        <br/>
+    </div>   
+        
+    <div class="slds-m-top_large">
+        <h4>Legal Notice</h4>
+        <p>Author: P-E GROS / Dec 2020</p>
+        <br/>
+        <p>MIT License</p>
+        <br/>
+        <p>Copyright (c) 2021 pegros</p>
+        <br/>
+        <p> Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:</p>
+        <br/>
+        <p> The above copyright notice and this permission notice shall be included in all
+            copies or substantial portions of the Software.</p>
+        <br/>
+        <p> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            SOFTWARE.</p>
+    </div>
+    </aura:description>
+</aura:documentation>

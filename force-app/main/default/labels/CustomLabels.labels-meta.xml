@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>sfpegListMultiSelectorAll</fullName>
+        <categories>PEG Component LWC Option Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegListMultiSelectorAll</shortDescription>
+        <value>All</value>
+    </labels>
+    <labels>
+        <fullName>sfpegListMultiSelectorHeader</fullName>
+        <categories>PEG Component LWC Section Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegListMultiSelectorHeader</shortDescription>
+        <value>Selected Items</value>
+    </labels>
+    <labels>
+        <fullName>sfpegListMultiSelectorSearchHeader</fullName>
+        <categories>PEG Component LWC Section Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegListMultiSelectorSearchHeader</shortDescription>
+        <value>Filter your elements</value>
+    </labels>
+    <labels>
+        <fullName>sfpegListMultiSelectorListHeader</fullName>
+        <categories>PEG Component LWC Section Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegListMultiSelectorListHeader</shortDescription>
+        <value>Available Items</value>
+    </labels>
+    <labels>
+        <fullName>sfpegListMultiSelectorSearchPlaceholder</fullName>
+        <categories>PEG Component LWC Input Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegListMultiSelectorSearchPlaceholder</shortDescription>
+        <value>Please enter search criteria...</value>
+    </labels>
+    <labels>
+        <fullName>sfpegListMultiSelectorSortAction</fullName>
+        <categories>PEG Component LWC Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegListMultiSelectorSortAction</shortDescription>
+        <value>Sort</value>
+    </labels>
+    
+
+    <labels>
+        <fullName>sfpegRecordListSaveLabel</fullName>
+        <categories>PEG Component LWC Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegRecordListSaveLabel</shortDescription>
+        <value>Validate</value>
+    </labels>
+    <labels>
+        <fullName>sfpegRecordListCancelLabel</fullName>
+        <categories>PEG Component LWC Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sfpegRecordListCancelLabel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+</CustomLabels>
