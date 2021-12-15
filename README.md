@@ -4,6 +4,11 @@ This package contains a set of Lightning components aiming at enhancing the Ligh
 
 They were built as contributions/examples for former & ongoing Advisory assignments by [Pierre-Emmanuel Gros](https://github.com/pegros).
 
+
+They are explicitly dedicated to Flow Designer but another package with more generaly availble
+components is available on this repository (see [PEG_FLW](https://github.com/pegros/PEG_FLW) package).
+
+
 ## Introduction
 
 Flows have progressed a lot over the recent releases and provide a powerful way to implement various functionalities on the platform. They enable to replace complex Lighting components / pages by streamlined guided processes directly configurable.
