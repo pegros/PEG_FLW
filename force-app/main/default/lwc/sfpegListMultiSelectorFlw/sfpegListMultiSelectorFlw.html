@@ -171,7 +171,7 @@
                         <!-- Table mode content display -->
                         <template if:true={isTable}>
                             <lightning-layout   multiple-rows="true"
-                                        horizontal-align="center" >
+                                                horizontal-align="center" >
                                 <template for:each={displayItems} for:item="eachItem">
                                     <template if:true={eachItem.isFiltered}>
                                         <lightning-layout-item  key={eachItem.name}
