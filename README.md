@@ -198,3 +198,60 @@ The display of record actions is configured as
 
 For actions, dynamic conditions may be defined to activate them on a per record basis. For menus, options may be fixed or dynamic based on a record field.
 
+
+### Flow Embed
+
+You may easily launch a Flow in the FlowEmbed component via an URL button on a record.
+
+![Flow Embed!](/media/FlowEmbed.png)
+
+You just need to build a relative URL with
+* The FlowEmbed URL root
+* The devName of the Flow to execute
+* A possible recordID to be provided as Flow input
+* The Flow field providing the target record ID to be opened upon completion.
+* The tab label
+
+![Flow Embed Button!](/media/FlowEmbedButton.png)
+
+You may also also easily open this tab it from any custom lightning code leveraging the Aura navigation service.
+
+```
+let flow = component.get(“v.flow”);
+let recordId = component.get(“v.recordId”);
+let navService = component.find("navService"); 
+let pageReference = {
+  "type": "standard__webPage", 
+  "attributes": {
+    "url":
+"/lightning/cmp/c__PEG_FlowEmbed_CMP?c__flow=" + flow + "&c__recordId=" + saveResult.recordId + "&c__target=targetId&c__label=MOC”
+  }
+};
+navService.navigate(pageReference,false);
+```
+
+### Flow Invocable Actions
+
+The Apex Actions are easily accessible from the App Builder
+* Object Types need to be first defined for both input and output parameters
+* Depending on the method, record or record lists as well as other text parameters need to be defined.
+
+![Flow Actions!](/media/FlowActions.png)
+
+Flow Action Selection in Flow Builder
+
+![Flow Actions Object Selection!](/media/FlowActionsObject.png)
+
+Flow "Object" Action Configuration in Flow Builder
+
+![Flow Actions Get Duplicates!](/media/FlowActionsGetDuplicates.png)
+
+Flow "Get Duplicates" Action Configuration in Flow Builder
+
+![Flow Actions Get Fieldset Data!](/media/FlowActionsGetFieldsetData.png)
+
+Flow "Get Fieldset Data" Action Configuration in Flow Builder
+
+![Flow Actions Execute DML!](/media/FlowActionsExecuteDML.png)
+
+Flow "Execute DML" Action Configuration in Flow Builder
