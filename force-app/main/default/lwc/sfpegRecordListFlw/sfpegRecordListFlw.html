@@ -7,22 +7,29 @@
         <template if:true={isDebug}>
             <div slot="footer" class="slds-region_narrow" style="text-align:left; width:100%;">
                 <dl class="slds-dl_horizontal">
-                    <dt class="slds-dl_horizontal__label">Display Mode:</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Display Mode:</dt>
                     <dd class="slds-dl_horizontal__detail">{displayMode}</dd>
-                    <dt class="slds-dl_horizontal__label">Tile Size:</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Tile Size:</dt>
                     <dd class="slds-dl_horizontal__detail">{tileSize}</dd>
-                    <dt class="slds-dl_horizontal__label">Title Field:</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Title Field:</dt>
                     <dd class="slds-dl_horizontal__detail">{nameField}</dd>
-                    <dt class="slds-dl_horizontal__label">Detail FieldSet:</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Detail FieldSet:</dt>
                     <dd class="slds-dl_horizontal__detail">{fieldSetName}</dd>
-                    <dt class="slds-dl_horizontal__label">Records #Input / #Display:</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Records #Input / #Display:</dt>
                     <dd class="slds-dl_horizontal__detail">{recordList.length} / {displayItems.length}</dd>
-                    <dt class="slds-dl_horizontal__label">Ready?:</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Ready?:</dt>
                     <dd class="slds-dl_horizontal__detail">{isReady}</dd>
-                    <dt class="slds-dl_horizontal__label">Actions #Parsed / Input:</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Actions #Parsed / Input:</dt>
                     <dd class="slds-dl_horizontal__detail slds-hyphenate">{actionListJson.length} / {actionListStr}</dd>
-                    <dt class="slds-dl_horizontal__label">Show Modal? / Record Name / Header / #Fields</dt>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Show Modal? / Record Name / Header / #Fields</dt>
                     <dd class="slds-dl_horizontal__detail slds-hyphenate">{showModal} / {modalDisplayItem.label} / {modalHeader} / {modalFields.length}</dd>
+                    <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                    <dd class="slds-dl_horizontal__detail">
+                        <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegRecordListFlw.md"
+                                                    label="See Help on GitHub"
+                                                    target="_blank">
+                        </lightning-formatted-url>
+                    </dd>
                 </dl>
             </div>
         </template>

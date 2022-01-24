@@ -61,5 +61,25 @@
         </div>
     </template>
 
+
+    <!-- Debug Information Display -->
+    <template if:true={isDebug}>
+        <div class="slds-box slds-theme_default slds-m-top_small"  >
+            <dl class="slds-dl_horizontal">
+                <dt class="slds-dl_horizontal__label slds-truncate">Configuration:</dt>
+                <dd class="slds-dl_horizontal__detail">Mode: {mode} / Trigger Next?: {triggerNext}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Current Step:</dt>
+                <dd class="slds-dl_horizontal__detail">{currentStep}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                <dd class="slds-dl_horizontal__detail">
+                    <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowPathFlw.md"
+                                                label="See Help on GitHub"
+                                                target="_blank">
+                    </lightning-formatted-url>
+                </dd>
+            </dl>
+        </div>
+    </template>
+
     </div>
 </template>

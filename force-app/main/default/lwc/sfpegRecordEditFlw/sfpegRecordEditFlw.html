@@ -5,13 +5,28 @@
 
             <!-- Debug information display -->
             <template if:true={isDebug}>
-                <div slot="footer" style="text-align:left; width:100%;" >
-                    <p>Field Size: {tileSize}</p>
-                    <p>RW mode: {isRW}</p>
-                    <p>FieldSet: {fieldSetName} / Object: {objectName}</p>
-                    <p>Fields: {recordFields.length}</p>
-                    <p>RecordType: {objectRecordType}</p>
-                    <p>Last Modification : {lastModif}</p>
+                <div slot="footer" class="slds-region_narrow" style="text-align:left; width:100%;">
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label slds-truncate">Field Size:</dt>
+                        <dd class="slds-dl_horizontal__detail">{tileSize}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">RW mode:</dt>
+                        <dd class="slds-dl_horizontal__detail">{isRW}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">Configuration:</dt>
+                        <dd class="slds-dl_horizontal__detail">FieldSet: {fieldSetName} / Object: {objectName}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">#Fields:</dt>
+                        <dd class="slds-dl_horizontal__detail">{recordFields.length}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">RecordType:</dt>
+                        <dd class="slds-dl_horizontal__detail">{objectRecordType}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">Last Modification:</dt>
+                        <dd class="slds-dl_horizontal__detail">{lastModif}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                        <dd class="slds-dl_horizontal__detail">
+                            <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegRecordEditFlw.md"
+                                                        label="See Help on GitHub"
+                                                        target="_blank">
+                            </lightning-formatted-url>
+                        </dd>
+                    </dl>
                 </div>
             </template>
 
