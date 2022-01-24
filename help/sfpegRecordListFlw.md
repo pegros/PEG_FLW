@@ -1,8 +1,21 @@
 ---
-# sfpegRecordEditFlw Component
+# sfpegRecordListFlw Component
 ---
 
 ## Introduction
+
+The purpose of this component is to display a list of Salesforce records initialized / fetched by a Flow
+and interact with it via a set of predfined actions.
+
+Typical use cases include validating/completing a set of opportunities after having selected a set 
+of target products, e.g. by revising their default due date or selecting the portfolio to which they
+are to be linked.
+
+---
+
+## Component Configuration
+
+### Global Layout
 
 This component enables to display a list of records and provide options to interact with them
 * The type of object has to be first selected
@@ -12,6 +25,9 @@ This component enables to display a list of records and provide options to inter
 ![Record List](/media/RecordList.png)
 
 Card Title & Icon are optional and configurable. List of fields displayed is configured via a FieldSet on the applicable object (the exact set of fields being automatically filtered according to FLS). 
+
+
+### Flow Builder Configuration
 
 The display of each record is configured via
 * A display mode (tiles, table), as well as #columns and stacked display option when in table mode
@@ -33,21 +49,11 @@ The display of record actions is configured as
 ![Record List](/media/RecordListActions.png)
 
 
----
-
-## Component Configuration
-
-### Global Layout
-
-To be continued
-
-### Flow Builder Configuration
-
-To be continued
-
 ### Actions Configuration
 
-For actions, dynamic conditions may be defined to activate them on a per record basis. For menus, options may be fixed or dynamic based on a record field.
+For actions, dynamic conditions may be defined to activate them on a per record basis.
+For menus, options may be fixed or dynamic based on a record field.
+The following configuration example provides examples of the various suppported options.
 
 ```
 [
