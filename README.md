@@ -56,7 +56,9 @@ Additional objective was to keep the control of data fetch/save within the Flow 
 ### Invocable Apex Actions
 
 * **Get Duplicates**: to get the list of records matching a given record via applicable duplicate rules (and the concatenated corresponding warnings)
+
 * **Get Records Data**: to get a same set of fields (via a fieldset) for a list of records (e.g. the duplicates for which data of the compact layout is returned)
+
 * **Execute DML**: to bypass “warn” duplicate rules upon record insert / update.
 
 
