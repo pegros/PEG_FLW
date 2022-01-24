@@ -54,7 +54,7 @@ Additional objective was to keep the control of data fetch/save within the Flow 
 
 This component basically displays the current step of a Flow process within a sequence of steps, leveraging the standard LWC lightning-progress-indicator component in Path mode for display.
 
-![Flow Path!](/media/FlowPath.png)
+![Flow Path](/media/FlowPath.png)
 
 In a standard configuration,
 * Admins configure the stages available for the flow and update the current stage value depending on the progress with an “assignment” node.
@@ -62,11 +62,11 @@ In a standard configuration,
 
 More complex configurations enable to use different sets of steps (a list of labels), different layouts (basic progress bar, tab list) and let this component be “active” (i.e. trigger the Flow “next” event while providing the selected step/tab as output). 
 
-![Flow Path as Progress Bar!](/media/FlowPathBar.png)
+![Flow Path as Progress Bar](/media/FlowPathBar.png)
 
 Flow Path as Progress Bar
 
-![Flow Path as Tab Set!](/media/FlowPathTabs.png)
+![Flow Path as Tab Set](/media/FlowPathTabs.png)
 
 Flow Path as Tab Set
 
@@ -78,7 +78,7 @@ This component enables to simply select a record from a list provided as input.
 * The list of records is provided as input
 * The selected record is provided as output (but may be provided as input as well for init)
 
-![List Selector!](/media/ListSelector.png)
+![List Selector](/media/ListSelector.png)
 
 The display of each individual record is configured by providing
 * The display mode (list, tiles, table)
@@ -88,11 +88,11 @@ The display of each individual record is configured by providing
 No validation is enforced to check that a record is actually selected when the user clicks on “next”
 This control must be done explicitly in the Flow.
 
-![List Selector as List!](/media/ListSelectorList.png)
+![List Selector as List](/media/ListSelectorList.png)
 
 List Selector as simple List
 
-![List Selector as Table!](/media/ListSelectorTable.png)
+![List Selector as Table](/media/ListSelectorTable.png)
 
 List Selector tor as Table
 
@@ -104,7 +104,7 @@ This component enables to select a set of records from a list provided as input.
 * The list of records is provided as input
 * The selected record is provided as output (but may be provided as input as well for init)
 
-![List Multi-Selector!](/media/ListMultiSelect.png)
+![List Multi-Selector](/media/ListMultiSelect.png)
 
 Card Title & Icon are optional and configurable. The selected records may clearly  appears in a pill list (and be easily deselected). Selected records are also highlighted in the possibly filtered record list. Details are configured via a FieldSet on the applicable object (the exact set of fields being automatically filtered according to FLS) Only simple field types are supported: string, date, numbers !
 
@@ -115,7 +115,7 @@ The display of each individual record is configured by providing
 
 No validation is enforced to check that a record is actually selected when the user clicks on “next”. This control must be done explicitly in the Flow.
 
-![List Multi-Selector as Table!](/media/ListMultiSelectTable.png)
+![List Multi-Selector as Table](/media/ListMultiSelectTable.png)
 
 List Multi-Selector as Table
 
@@ -129,7 +129,7 @@ This component leverages the standard LWC **[lightning-record-edit-form](https:/
 * The original record is provided as input
 * The (updated) record is provided as output
 
-![Record Edit Form!](/media/RecordEdit.png)
+![Record Edit Form](/media/RecordEdit.png)
 
 Card Title & Icon are optional and configurable. The number of fields on each row is configurable.
 
@@ -138,14 +138,14 @@ The list of fields displayed is configured via a fieldset (dev name as input) wi
 * Map the required/optional values to read-write/read-only
 * (User FLS being always applied anyway)
 
-![Record Edit Form RW!](/media/RecordEditRW.png)
+![Record Edit Form RW](/media/RecordEditRW.png)
 
 As for List Selector, no validation is enforced to check that all required fields are properly filled
 This control must be done explicitly in the Flow
 
 The component relies on the **[lightning-record-edit-form](https://developer.salesforce.com/docs/component-library/bundle/lightning-record-edit-form/documentation)** ccomponent and thus requires the _recordTypeId_ (if applicable) to be provided in the input record (even if not displayed) for the picklists to be properly filtered. When using dependent picklists, parent fields must also be included in the FieldSet.
 
-### Reccord Merge
+### Record Merge
 
 This component leverages the standard LWC **[lightning-record-edit-form](https://developer.salesforce.com/docs/component-library/bundle/lightning-record-edit-form/documentation)** component to provide a User controlled way to merge 2 record Flow variables
 * The type of object has to be first selected
@@ -153,7 +153,7 @@ This component leverages the standard LWC **[lightning-record-edit-form](https:/
 * The target record is provided as output
 * The list of fields displayed is configured via a fieldset (dev name as input)
 
-![Record Merge Form!](/media/RecordMerge.png)
+![Record Merge Form](/media/RecordMerge.png)
 
 Card Title & Icon are optional and configurable. The selected target field value source is clearly identified. The source of each field value may be selected individually All field values of a record may be selected at once via the top selector.
 
@@ -166,7 +166,7 @@ Alternate variants enable to
 * Stack field labels vertically
 * Remove manual override option
 
-![Record Merge Form in 2 colums!](/media/RecordMerge2.png)
+![Record Merge Form in 2 colums](/media/RecordMerge2.png)
 
 The field label may be stacked vertically. The manual target value override may be hidden.
 
@@ -178,7 +178,7 @@ This component enables to display a list of records and provide options to inter
 * The list of records is provided as input
 * A set of actions may be configured with record dependent menu contents & activation rules
 
-![Record List!](/media/RecordList.png)
+![Record List](/media/RecordList.png)
 
 Card Title & Icon are optional and configurable. List of fields displayed is configured via a FieldSet on the applicable object (the exact set of fields being automatically filtered according to FLS). 
 
@@ -187,11 +187,11 @@ The display of each record is configured via
 * A Name field to be used as tile title
 * A fieldset dev name listing the fields to be displayed as tile details
 
-![Record List as Table!](/media/RecordListTable.png)
+![Record List as Table](/media/RecordListTable.png)
 
 Record List as Table
 
-![Record List as Tiles!](/media/RecordListTiles.png)
+![Record List as Tiles](/media/RecordListTiles.png)
 
 Record List as Tiles
 
@@ -199,7 +199,7 @@ The display of record actions is configured as
 * a single list of menus & buttons with record dependent dynamic activation rules 
 * triggering actions  for navigation, record data update or record manual edit (via popup)
 
-![Record List!](/media/RecordListActions.png)
+![Record List](/media/RecordListActions.png)
 
 For actions, dynamic conditions may be defined to activate them on a per record basis. For menus, options may be fixed or dynamic based on a record field.
 
@@ -208,7 +208,7 @@ For actions, dynamic conditions may be defined to activate them on a per record 
 
 You may easily launch a Flow in the FlowEmbed component via an URL button on a record.
 
-![Flow Embed!](/media/FlowEmbed.png)
+![Flow Embed](/media/FlowEmbed.png)
 
 You just need to build a relative URL with
 * The FlowEmbed URL root
@@ -217,7 +217,7 @@ You just need to build a relative URL with
 * The Flow field providing the target record ID to be opened upon completion.
 * The tab label
 
-![Flow Embed Button!](/media/FlowEmbedButton.png)
+![Flow Embed Button](/media/FlowEmbedButton.png)
 
 You may also also easily open this tab it from any custom lightning code leveraging the Aura navigation service.
 
@@ -241,22 +241,22 @@ The Apex Actions are easily accessible from the App Builder
 * Object Types need to be first defined for both input and output parameters
 * Depending on the method, record or record lists as well as other text parameters need to be defined.
 
-![Flow Actions!](/media/FlowActions.png)
+![Flow Actions](/media/FlowActions.png)
 
 Flow Action Selection in Flow Builder
 
-![Flow Actions Object Selection!](/media/FlowActionsObject.png)
+![Flow Actions Object Selection](/media/FlowActionsObject.png)
 
 Flow "Object" Action Configuration in Flow Builder
 
-![Flow Actions Get Duplicates!](/media/FlowActionsGetDuplicates.png)
+![Flow Actions Get Duplicates](/media/FlowActionsGetDuplicates.png)
 
 Flow "Get Duplicates" Action Configuration in Flow Builder
 
-![Flow Actions Get Fieldset Data!](/media/FlowActionsGetFieldsetData.png)
+![Flow Actions Get Fieldset Data](/media/FlowActionsGetFieldsetData.png)
 
 Flow "Get Fieldset Data" Action Configuration in Flow Builder
 
-![Flow Actions Execute DML!](/media/FlowActionsExecuteDML.png)
+![Flow Actions Execute DML](/media/FlowActionsExecuteDML.png)
 
 Flow "Execute DML" Action Configuration in Flow Builder
