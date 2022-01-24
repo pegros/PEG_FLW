@@ -46,10 +46,12 @@ Additional objective was to keep the control of data fetch/save within the Flow 
 ![Record Edit Form](/media/RecordEdit.png)
 
 * **[RecordList](/help/sfpegRecordListFlw.md)**: displays a list  of records and enables to launch various actions conditionally.
-* **RecordMerge**: enables to merge 2 records provided as input into another one as output, based on a fieldset, the user being also able to modify it manually.
 
 ![List Selector](/media/ListSelector.png)
 
+* **RecordMerge**: enables to merge 2 records provided as input into another one as output, based on a fieldset, the user being also able to modify it manually.
+
+![Record Merge Form](/media/RecordMerge.png)
 
 ### Invocable Apex Actions
 
