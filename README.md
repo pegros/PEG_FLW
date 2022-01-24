@@ -37,7 +37,7 @@ Additional objective was to keep the control of data fetch/save within the Flow 
 
 ![List Selector](/media/ListSelector.png)
 
-* **[ListMultiSelector]((/help/sfpegListMultiSelectorFlw.md)**: similar to the ListSelector but in multi-select mode with a search bar
+* **[ListMultiSelectorFlw]((/help/sfpegListMultiSelectorFlw.md)**: similar to the ListSelector but in multi-select mode with a search bar
 
 ![List Multi-Selector](/media/ListMultiSelect.png)
 
