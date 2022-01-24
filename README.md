@@ -117,8 +117,6 @@ No validation is enforced to check that a record is actually selected when the u
 
 ![List Multi-Selector as Table](/media/ListMultiSelectTable.png)
 
-List Multi-Selector as Table
-
 “Table” mode shows field names next to values. The height of the display list may also be set to trigger a scroll. The width of each tile is configurable (as a ratio of a 12 unit grid).
 
 
