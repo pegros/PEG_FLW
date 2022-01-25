@@ -25,6 +25,9 @@ A core set of 6 **flow ready** LWC components has been implemented to address th
 
 Additional objective was to keep the control of data fetch/save within the Flow logic (not in the components)
 
+## Overall Approach
+
+
 ## Content of the Package
 
 ### LWC Components

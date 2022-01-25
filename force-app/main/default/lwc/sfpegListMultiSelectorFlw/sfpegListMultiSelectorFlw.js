@@ -80,6 +80,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
     @api showSort = false;          // Flag to display Sort button-menu.
     @api isSearchAuto = false;      // Flag to trigger automatic search upon search bar user entry 
     @api defaultSortedBy = null;    // API name of the field by which the list should be sorted by default (optional)
+    @api isSingleSelect = false;    // Flag to enforce single selection (instead of multiple)
 
     // Internal fields for Selection
     @track isReady      = false;        // Controls initialisation of the component.
@@ -338,8 +339,8 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
                 //if (this.isDebug) console.log('handleSelection: record Id',eachRecord.Id);
                 //if (this.isDebug) console.log('handleSelection: test ',(eachRecord.Id === selectId));
                 //return (eachRecord.Id === selectId);
-                if (this.isDebug) console.log('handleSelection: record Key',eachRecord[this.keyField]);
-                if (this.isDebug) console.log('handleSelection: test selection ',(eachRecord[this.keyField] === selectId));
+                //if (this.isDebug) console.log('handleSelection: record Key',eachRecord[this.keyField]);
+                //if (this.isDebug) console.log('handleSelection: test selection ',(eachRecord[this.keyField] === selectId));
                 return ((eachRecord[this.keyField]) === selectId);
             });
             if (this.isDebug) console.log('handleSelection: selectedRecord fetched',JSON.stringify(selectedRecord)); 
@@ -349,7 +350,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
             let selectedItem = this.displayItems.find(item => (item.id === selectId));
             if (this.isDebug) console.log('handleSelection: selectedItem fetched',JSON.stringify(selectedItem));
 
-            // select new tile
+            // unselect previously selected tile
             if (selectedIndex != -1) {
                 if (this.isDebug) console.log('handleSelection: unselecting record',selectId);
 
@@ -370,8 +371,24 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
                 this.dispatchEvent(unselectEvent);
                 if (this.isDebug) console.log('handleSelection: unselectEvent dispatched'); 
             }
+            // select new tile
             else {
                 if (this.isDebug) console.log('handleSelection: selecting new record',selectId);
+
+                // unselect previously selected tile if single selection is enforced
+                if ((this.isSingleSelect) && (this.selectionList.length >0)) {
+                    if (this.isDebug) console.log('handleSelection: unselecting previous selected record (single select mode)');
+
+                    let currentSelection = this.selectionList.shift();
+                    if (this.isDebug) console.log('handleSelection: current item removed from selection ',JSON.stringify(currentSelection));
+                    let currentId = currentSelection[this.keyField];
+                    if (this.isDebug) console.log('handleSelection: current record key ',currentId);
+
+                    let currentItem = this.displayItems.find(item => (item.id === currentId));
+                    currentItem.isSelected = false;
+                    currentItem.class = 'slds-box slds-box_x-small slds-var-m-around_xx-small slds-theme_default';
+                    if (this.isDebug) console.log('handleSelection: currentItem fetched and deselected ',JSON.stringify(currentItem));
+                }
 
                 this.selectionList.push(selectedRecord);
                 if (this.isDebug) console.log('handleSelection: selectionList updated');          

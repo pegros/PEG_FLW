@@ -24,6 +24,7 @@
                         role="inputOnly"
                         default="slds-var-m-bottom_x-small"
                         description="CSS Classes for the wrapping card div"/>
+                        
             <property   name="displayMode"
                         label="Display Mode"
                         type="String"
@@ -34,12 +35,20 @@
                         type="Integer"
                         role="inputOnly"
                         description="Tile width (X on 12)."/>
+
             <property   name="showSelection"
                         label="Show Selection?"
                         type="Boolean"
                         default="true"
                         role="inputOnly"
                         description="Flag to display Selection List component."/>
+            <property   name="isSingleSelect"
+                        label="Single Selection?"
+                        type="Boolean"
+                        default="false"
+                        role="inputOnly"
+                        description="Flag to enforce single instead of multiple selection."/>
+
             <property   name="showSearch"
                         label="Show Search?"
                         type="Boolean"
