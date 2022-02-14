@@ -1,0 +1,47 @@
+<aura:documentation>
+	<aura:description>
+		<div class="slds-m-top_large">
+			<h4>Overview</h4>
+			<p>The <code>&lt;c:sfpegFloaRedirectionAction_CMP&gt;</code> component enables
+				to force a redirection to a target record from a Flow.</p>
+   			<p>It just needs to be put as in a last custom action in a Flow to trigger
+            	a Flow quick action popup close a redirection to a target record page.</p>
+			<p>Two options are actually available, </p>
+
+        	<p>Notes:</p>
+        	<ul>
+    			<li>By default, the <code>targetPage</code> is set to open the standard home page.</li>
+				<li>See also the <a href="/docs/component-library/bundle/c:sfpegForceNavigation_CMP/documentation">
+       				<code>&lt;sfpegForceNavigation_CMP&gt;</code></a> component for other similar use case.</li>
+			</ul>
+    		<br/>
+	    </div>   
+
+    	<div class="slds-m-top_large">
+        	<h4>Legal Notice</h4>
+       		<p>Author: P-E GROS / Dec 2020</p>
+        	<br/>
+        	<p>MIT License</p>
+        	<br/>
+        	<p>Copyright (c) 2021 pegros</p>
+        	<br/>
+        	<p> Permission is hereby granted, free of charge, to any person obtaining a copy
+            	of this software and associated documentation files (the "Software"), to deal
+	            in the Software without restriction, including without limitation the rights
+    	        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        	    copies of the Software, and to permit persons to whom the Software is
+            	furnished to do so, subject to the following conditions:</p>
+        	<br/>
+        	<p> The above copyright notice and this permission notice shall be included in all
+            	copies or substantial portions of the Software.</p>
+        	<br/>
+        	<p> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            	SOFTWARE.</p>
+    	</div>
+	</aura:description>
+</aura:documentation>

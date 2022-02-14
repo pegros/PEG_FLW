@@ -44,6 +44,10 @@ Additional objective was to keep the control of data fetch/save within the Flow 
 
 ![List Multi-Selector](/media/ListMultiSelect.png)
 
+* **[CheckboxSelectFlw](/help/sfpegCheckboxSelectFlw.md)** : enables to select multiple items within a single record list via multiple checkbox groups.
+
+![Checkbox Selector](/media/CheckboxSelect.png)
+
 * **[RecordEdit](/help/sfpegRecordEditFlw.md)**: enables to display a record card in edit/read mode based on a fieldset, taking a Flow record as input and providing a possibly modified record as output
 
 ![Record Edit Form](/media/RecordEdit.png)

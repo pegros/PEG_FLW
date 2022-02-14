@@ -1,0 +1,75 @@
+<template>
+
+    <div class={cardClass}>
+        <lightning-card  title={cardTitle} icon-name={cardIcon} >
+
+            <!-- Sections Display -->
+            <template if:true={isReady}>
+                
+                <!-- Error Display -->
+                <template if:true={errorMessage}>
+                    <div class="slds-media slds-media_center slds-m-vertical_x-small slds-p-horizontal_small">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="utility:error" size="x-small"
+                                            variant="error">
+                            </lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <lightning-formatted-text   value={errorMessage}    class="slds-text-color_error">
+                            </lightning-formatted-text>
+                        </div>
+                    </div>
+                </template> 
+
+                 <!-- Checkbox Sections Display -->
+                <div class="slds-p-horizontal_small">
+                <lightning-layout   multiple-rows="true"    horizontal-align="end"   vertical-align="start">
+                    <template for:each={sectionList} for:item="iterSection">
+                        <lightning-layout-item  key={iterSection.label}   size={sectionSize}
+                                                class="slds-m-bottom_x-small">
+                            <lightning-checkbox-group   name={iterSection.label}
+                                                        label={iterSection.label}
+                                                        options={iterSection.options}
+                                                        value={iterSection.selected}
+                                                        onchange={handleOptionChange}>
+                            </lightning-checkbox-group>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+                </div>
+            </template>
+
+            <!-- Loading Spinner Display -->
+            <template if:false={isReady}>
+                 <div style="height:120px;">
+                    <lightning-spinner  alternative-text="Loading"  size="medium">
+                    </lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Debug information display -->
+            <template if:true={isDebug}>
+                <div slot="footer" class="slds-region_narrow" style="text-align:left; width:100%;">
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label slds-truncate">Key / Label Fields:</dt>
+                        <dd class="slds-dl_horizontal__detail slds-wrap">{keyField} / {labelField}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">Section Field:</dt>
+                        <dd class="slds-dl_horizontal__detail slds-wrap">{sectionField}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">#Records / #Sections:</dt>
+                        <dd class="slds-dl_horizontal__detail slds-wrap">{recordList.length} / {sectionList.length}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">#Selections / #Added / #Removed:</dt>
+                        <dd class="slds-dl_horizontal__detail slds-wrap">{selectionList.length} / {addedList.length} / {removedList.length}</dd>
+                        <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                        <dd class="slds-dl_horizontal__detail">
+                            <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegCheckboxSelectFlw.md"
+                                                        label="See Help on GitHub"
+                                                        target="_blank">
+                            </lightning-formatted-url>
+                        </dd>
+                    </dl>
+                </div>
+            </template>
+
+        </lightning-card>
+    </div>
+</template>

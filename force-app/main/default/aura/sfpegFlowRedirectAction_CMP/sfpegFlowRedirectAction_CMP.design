@@ -1,0 +1,9 @@
+<design:component label="SFPEG Redirect Action">
+   <design:attribute    name="targetId"
+                        label="Target ID"
+                        description="Salesforce ID of the target record to open" />
+   <design:attribute    name="isPreview"
+                        label="File Preview?"
+                        default="false"
+                        description="Open file preview instead of record page" />
+</design:component>

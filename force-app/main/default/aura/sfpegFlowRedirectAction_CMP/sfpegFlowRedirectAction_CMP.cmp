@@ -1,0 +1,9 @@
+<aura:component     implements="force:lightningQuickAction, lightning:availableForFlowActions"
+                    description="Action component to redirect the user to a specific target record page">
+    <aura:attribute name="targetId"     type="String"
+                    access="global"
+                    description="Record ID to which the user should be redirected"/>
+    <aura:attribute name="isPreview"    type="Boolean"
+                    access="global"     default="false"
+                    description="Indicates that the redirection should be made towards a File Preview instead of a standard record page."/>
+</aura:component>
