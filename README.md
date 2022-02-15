@@ -96,3 +96,13 @@ Flow Action Selection in Flow Builder
 Flow "Object" Action Configuration in Flow Builder
 
 Please refer to [Flow Actions](/help/sfpegFlowApexActions.md)
+
+
+### Technical Details
+
+For dependency reasons, you may need first to deploy the **sfpegTabOpen_EVT** Aura
+Lightning Event alone before being able to deploy the whole package via SFDX, ie. 
+running a targeted deploy
+> sfdx force:source:deploy -w 10 --verbose -p force-app/main/default/aura/sfpegTabOpen_EVT
+before executing the whole deploy
+> sfdx force:source:deploy -w 10 --verbose -p force-app/main/default

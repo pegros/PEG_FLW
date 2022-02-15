@@ -30,10 +30,10 @@
                 <dt class="slds-dl_horizontal__label slds-truncate">target:</dt>
                 <dd class="slds-dl_horizontal__detail">{target}</dd>
                 <dd class="slds-dl_horizontal__detail">
-                    <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowEmbedCmp.md"
+                    <lightning:formattedUrl     value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowEmbedCmp.md"
                                                 label="See Help on GitHub"
                                                 target="_blank">
-                    </lightning-formatted-url>
+                    </lightning:formattedUrl>
                 </dd>
             </dl>
         </div>
