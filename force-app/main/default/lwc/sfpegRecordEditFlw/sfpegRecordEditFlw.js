@@ -54,6 +54,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
     
     @api isRW = false;          // Flag to alter the behaviour of the "required" flag of the fieldset items (if false, the standard "required" meaning is kept)
     @api isDebug = false;       // Flag to display debug info.
+
     /* OBSOLETE */
     @api isEdit = false;        // Obsolete 
 
@@ -100,10 +101,10 @@ export default class SfpegRecordEditFlw extends LightningElement {
                 if (this.isDebug) console.log('wiredFieldSet: current value ', this.mainRecord[item.name]);
 
                 this.recordFields.push({
-                    "desc" : item,
-                    "mandatory" : (this.isRW ? false : item.required),
-                    "readonly" : (this.isRW ? !item.required : false),
-                    "value" : this.mainRecord[item.name]
+                    desc : item,
+                    mandatory : (this.isRW ? false : item.required),
+                    readonly : (this.isRW ? !item.required : false),
+                    value : this.mainRecord[item.name]
                 });
             });
             if (this.isDebug) console.log('wiredFieldSet: recordFields init OK', JSON.stringify(this.recordFields));

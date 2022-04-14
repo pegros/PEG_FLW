@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Image File</masterLabel>
+    <description>This component enables to display the image contained in a file via its download URL.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="wrapperCss"       label="Wrapping CSS Class"
+                        type="String"           role="inputOnly"
+                        description="CSS classes for the wrapping div"/>
+            <property   name="fileUrl"          label="File URL"
+                        type="String"           role="inputOnly"
+                        description="Download URL of the image file to diplay."/>
+            <property   name="fileName"         label="File ALT Name"
+                        type="String"           role="inputOnly"
+                        description="Alternate file name to display on the image"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

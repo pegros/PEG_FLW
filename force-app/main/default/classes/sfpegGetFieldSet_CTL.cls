@@ -99,7 +99,7 @@ public static Map<String,Object> getFieldSetDesc(final String name) {
 
 /***
 * @description Simple method to fetch the list of fields allowed for the user included in
-*              a list of configured field sets. THis method iterates over the list by 
+*              a list of configured field sets. This method iterates over the list by 
 *              calling the unitary getFieldSetDesc method and agregates the resuts.
 * @param       fieldSets            List of Field Set's Dev Names  
 * @return      Map<String,Object>   Map of maps containing the fieldSet description

@@ -112,7 +112,7 @@ export default class SfpegCheckboxSelectFlw extends LightningElement {
             let itemKey = item[this.keyField];
             let itemSection = item[this.sectionField];
             let itemLabel = item[this.labelField];
-            let section = this.sectionList.find(item => item.label == itemSection);
+            let section = this.sectionList.find(item => item.label === itemSection);
             if (!section) {
                 if (this.isDebug) console.log('connected: initializing section ',itemSection);
                 section = {label: itemSection, options: [], selected: []};

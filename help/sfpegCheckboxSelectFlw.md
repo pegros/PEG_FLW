@@ -69,6 +69,8 @@ and `cardTitle` to define the header of the containing **card**
 * `cardClass` to provide a CSS class for the overall div container
 * `columnNumber` to provide the number of sections per row (which should be a divider of 12)
 
+_Note_: The order in which the **Groups** are displayed in the component corresponds
+to the order in which they appear first in the record list provided as input. 
 
 ---
 
