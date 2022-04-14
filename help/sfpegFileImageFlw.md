@@ -47,7 +47,12 @@ should be:
 
 ## Configuration Examples
 
-To be continued
+The snapshot below leverages the standard `CampaignImage` field on the Campaign object
+and a formula to build the referenced image file download URL to display a graphical
+presentation of a campaign record.
+
+![File Image](/media/FileImage.png)
+
 
 ---
 
