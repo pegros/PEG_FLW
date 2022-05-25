@@ -16,16 +16,17 @@ Flows have progressed a lot over the recent releases and provide a powerful way 
 However, some simple interaction requirements are not supported:
 * Display the progress of a flow graphically (e.g. leveraging the standard “stages”)
 * Select one record out of a list fetched via a “getRecord” node
-Leverage the full width of a flow page to display/edit record data efficiently (e.g. fields on 3 columns)
+* ~~Leverage the full width of a flow page to display/edit record data efficiently (e.g. fields on 3 columns)~~
 * Simply merge data from a Salesforce record with data fetched from an external source
 
 Implementing custom Lightning components each time there is a similar use case is not a sustainable approach (in terms of implementation/maintenance delays/costs, UX consistency, performances…).
 
 A core set of 6 **flow ready** LWC components has been implemented to address these needs in a generic, configurable way. 
 
-Additional objective was to keep the control of data fetch/save within the Flow logic (not in the components)
-
-## Overall Approach
+At last, a key design pattern is to clearly separate User Interaction from data logic.
+The Flow process is in charge of getting / processing / updating record data
+while the Components only display record data and supports local user interaction
+(selection, data input) in the browser. 
 
 
 ## Content of the Package
@@ -72,11 +73,12 @@ Additional objective was to keep the control of data fetch/save within the Flow 
 
 ### Aura Components
 
-* **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**: addressable component enabling to properly execute and terminate a Flow launched via URL, the user being redirected to a target record provided as output of the Flow upon completion
+* **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**: addressable component enabling to properly display, execute and terminate a Flow launched via URL, the user being redirected to a target record provided as output of the Flow upon completion
 
 * **NavigationManager**: utility bar component handling the redirection requests in console mode, in order to open the target record page, close the Flow page and ensure proper focus on the target record page.
 
 * **ForceNavigation**: invisible component working with the **NavigationManager** to force the display of a record in main tab / subtab of a Lightning console App.
+
 
 ### Utility Aura Apex Controllers
 
@@ -107,3 +109,9 @@ running a targeted deploy
 > sfdx force:source:deploy -w 10 --verbose -p force-app/main/default/aura/sfpegTabOpen_EVT
 before executing the whole deploy
 > sfdx force:source:deploy -w 10 --verbose -p force-app/main/default
+
+### Miscellaneous
+
+The **[PEG_LIST](https://github.com/pegros/PEG_LIST)** package may also be 
+leveraged to launch Flows in popups from the utility bar
+(see its **[sfpegActionUtility](https://github.com/pegros/PEG_LIST/blob/master/help/sfpegActionUtilityCmp.md)** component).
