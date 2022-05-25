@@ -70,6 +70,7 @@ while the Components only display record data and supports local user interactio
 
 * **Execute DML**: to bypass “warn” duplicate rules upon record insert / update.
 
+Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)**.
 
 ### Aura Components
 
@@ -79,22 +80,11 @@ while the Components only display record data and supports local user interactio
 
 * **ForceNavigation**: invisible component working with the **NavigationManager** to force the display of a record in main tab / subtab of a Lightning console App.
 
+See standard Aura documentation of the components for details.
 
 ### Utility Aura Apex Controllers
 
 * **GetFieldset**: to retrieve the set of fields contained in a fieldset and authorized for the current user (via FLS), to be used in LWC components & Apex actions
-
-### Flow Invocable Actions
-
-* **getDuplicates** to evaluate duplicate rules on a record
-
-* **getFieldSetData** to enrich a list of records with values for all fields of a fieldset
-(enables to enrich results returned by the **getDuplicates** action)
-
-* **executeDML** to execute a DML (create/update) while bypassing warning level
-duplicate rules
-
-Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)**.
 
 
 ### Technical Details
