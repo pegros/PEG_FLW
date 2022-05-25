@@ -86,19 +86,15 @@ while the Components only display record data and supports local user interactio
 
 ### Flow Invocable Actions
 
-The Apex Actions are easily accessible from the Flow Builder
-* Object Types need to be first defined for both input and output parameters
-* Depending on the method, record or record lists as well as other text parameters need to be defined.
+* **getDuplicates** to evaluate duplicate rules on a record
 
-![Flow Actions](/media/FlowActions.png)
+* **getFieldSetData** to enrich a list of records with values for all fields of a fieldset
+(enables to enrich results returned by the **getDuplicates** action)
 
-Flow Action Selection in Flow Builder
+* **executeDML** to execute a DML (create/update) while bypassing warning level
+duplicate rules
 
-![Flow Actions Object Selection](/media/FlowActionsObject.png)
-
-Flow "Object" Action Configuration in Flow Builder
-
-Please refer to [Flow Actions](/help/sfpegFlowApexActions.md)
+Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)**.
 
 
 ### Technical Details

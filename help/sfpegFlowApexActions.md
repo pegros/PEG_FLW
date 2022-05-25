@@ -10,24 +10,39 @@ The Apex Actions are easily accessible from the Flow Builder
 
 ![Flow Actions](/media/FlowActions.png)
 
-Flow Action Selection in Flow Builder
+_Flow Action Selection in Flow Builder_
+
+![Flow Actions Object Selection](/media/FlowActionsObject.png)
+
+_Flow "Object" Action Configuration in Flow Builder_
+
 
 ## Configuration
 
-### getDuplicates Action
+### **getDuplicates** Action
+
+It enables to evaluate duplicate rules on a record.
 
 ![Flow Actions Get Duplicates](/media/FlowActionsGetDuplicates.png)
 
-Flow "Get Duplicates" Action Configuration in Flow Builder
+_Flow "Get Duplicates" Action Configuration in Flow Builder_
 
-###  getFieldSetData Action
+
+### **getFieldSetData** Action
+
+It enables to enrich a list of records with values for all fields of a fieldset
+(enables to enrich results returned by the **getDuplicates** action)
 
 ![Flow Actions Get Fieldset Data](/media/FlowActionsGetFieldsetData.png)
 
-Flow "Get Fieldset Data" Action Configuration in Flow Builder
+_Flow "Get Fieldset Data" Action Configuration in Flow Builder_
 
-### executeDML Action
+
+### **executeDML** Action
+
+It to execute a DML (create/update) while bypassing warning level
+duplicate rules
 
 ![Flow Actions Execute DML](/media/FlowActionsExecuteDML.png)
 
-Flow "Execute DML" Action Configuration in Flow Builder
+_Flow "Execute DML" Action Configuration in Flow Builder_
