@@ -103,7 +103,7 @@ export default class SfpegRecordMergeFlw extends LightningElement {
     }
     
     get cardContentClass() {
-        let contentClass = 'slds-card__body_inner'
+        let contentClass = 'slds-card__body_inner slds-var-p-horizontal_medium '
                         + ((this.hideTarget && this.stackedLabels) ? ' slds-var-m-horizontal_medium' : '');
         if (this.isDebug) console.log('cardContentClass: ', contentClass);
         return contentClass;
