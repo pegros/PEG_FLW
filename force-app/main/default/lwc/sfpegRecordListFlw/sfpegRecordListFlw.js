@@ -680,25 +680,21 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         switch (fieldDesc.type) {
             case 'BOOLEAN':
                 return (fieldValue?'☑︎':'☐');
-                break;
             case 'STRING':
                 return fieldValue;
-                break;
             case 'DATE':
             case 'DATETIME':
                 return new Intl.DateTimeFormat(LOCALE).format(new Date(fieldValue));
-                break;
             case 'CURRENCY':
                 return CURRENCY_FMT.format(fieldValue);
-                break;
             case 'DOUBLE':
             case 'INT':
             case 'LONG':
                 return NUMBER_FMT.format(fieldValue);
-                break;
             case 'PERCENT':
                 return PERCENT_FMT.format(fieldValue/100);
-            break;
+            case 'TEXTAREA':
+                return fieldValue.replace(/<[^>]*>?/gm, ' ');
             default:
                 return '' + fieldValue;
         }

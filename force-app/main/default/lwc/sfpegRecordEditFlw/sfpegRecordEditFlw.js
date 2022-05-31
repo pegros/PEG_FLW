@@ -47,7 +47,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
     @api tileSize = 4;          // tile size (in tiles mode)
     @api cardClass;             // CSS Classes for the wrapping card div
     @api fieldSetName = null;   // fieldset for additional info in tiles
-    @api mainRecord;            // input record
+    @api mainRecord = {};       // input record
     @api newRecord;             // output record
     @api cancelButton = null;   // Cancel Button label (no button displayed if null, used to trigger "cancel event" in non Flow use cases) 
     @api validateButton = null; // Validate Button label (no button displayed if null, used to trigger "validate event" in non Flow use cases) 
