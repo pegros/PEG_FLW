@@ -33,10 +33,10 @@
         </template>
 
         <template if:true={isReady}>
+            <div class={listDivClass} style={listDivStyle}>
 
-            <!-- List mode display -->
-            <template if:true={isList}>
-                <div class="slds-card__body_inner slds-var-p-horizontal_medium">
+                <!-- List mode display -->
+                <template if:true={isList}>
                     <ul class="slds-list_horizontal  slds-listbox slds-listbox_horizontal">
                         <template for:each={displayItems} for:item="record">
                             <li key={record.name} class="slds-item slds-var-m-around_xx-small">
@@ -49,24 +49,20 @@
                             </li>
                         </template>
                     </ul>
-                </div>
-            </template>
+                </template>
 
-            <!-- Pill mode display -->
-            <template if:true={isPills}>
-                <div class="slds-card__body_inner">
+                <!-- Pill mode display -->
+                <template if:true={isPills}>
                     <lightning-pill-container   variant="bare"
                                                 items={displayItems}
                                                 onitemremove={handleRemove} >
                     </lightning-pill-container>
-                </div>
-            </template>
+                </template>
 
-            <!-- Tiles mode display -->
-            <template if:true={isTiles}>
-                <div class="slds-card__body_inner">
+                <!-- Tiles mode display (horizontal-align="center") -->
+                <template if:true={isTiles}>
                     <lightning-layout   multiple-rows="true"
-                                        horizontal-align="center" >
+                                         >
                         <template for:each={displayItems} for:item="record">
                             <lightning-layout-item  key={record.name}
                                                     size={tileSize} >
@@ -93,14 +89,11 @@
                             </lightning-layout-item>
                         </template>
                     </lightning-layout>
-                </div>
-            </template>
+                </template>
 
-            <!-- Table mode display -->
-            <template if:true={isTable}>
-                <div class="slds-card__body_inner">
-                    <lightning-layout   multiple-rows="true"
-                                        horizontal-align="center" >
+                <!-- Table mode display (horizontal-align="center") -->
+                <template if:true={isTable}>
+                    <lightning-layout   multiple-rows="true" >
                         <template for:each={displayItems} for:item="record">
                             <lightning-layout-item  key={record.name}
                                                     size={tileSize} >
@@ -127,8 +120,8 @@
                             </lightning-layout-item>
                         </template>
                     </lightning-layout>
-                </div>
-            </template>
+                </template>
+             </div>
         </template>
 
         <!-- Loading spinner display -->

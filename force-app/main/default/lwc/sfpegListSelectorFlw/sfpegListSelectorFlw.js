@@ -60,6 +60,7 @@ export default class SfpegListSelectorFlw extends LightningElement {
     @api recordList;                // input record list to display
     @api selectedRecord = null;     // output selected record
     @api isDebug = false;           // Flag to display debug info.
+    @api listHeight = 0;            // List DIV height (in pixels)
 
     // Internal fields
     @track displayItems = [] ;      // items used to display records.
@@ -84,6 +85,14 @@ export default class SfpegListSelectorFlw extends LightningElement {
     get isTable() {
         if (this.isDebug) console.log('connectedCallback: isTable', this.displayMode === 'table');
         return this.displayMode === 'table';
+    }
+    get listDivClass() {
+        if (this.isDebug) console.log('connectedCallback: listDivClass', (this.listHeight == 0 ? '' :'slds-scrollable_y'));
+        return "slds-card__body_inner slds-var-p-horizontal_medium " + (this.listHeight == 0 ? '' :'slds-scrollable_y');
+    }
+    get listDivStyle() {
+        if (this.isDebug) console.log('connectedCallback: listDivStyle', (this.listHeight == 0 ? '' :'max-height:' + this.listHeight + 'px'));
+        return (this.listHeight == 0 ? '' :'max-height:' + this.listHeight + 'px;');
     }
 
     // Display Data getters

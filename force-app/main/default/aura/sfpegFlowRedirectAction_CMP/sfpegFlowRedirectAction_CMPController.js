@@ -7,7 +7,7 @@
         let isPreview = component.get("v.isPreview");
         console.log('invoke: isPreview fetched',isPreview);
 
-        let redirectAction;
+        /*let redirectAction;
         if (isPreview) {
             console.log('invoke: setting preview action');
             redirectAction = $A.get("e.lightning:openFiles");
@@ -19,7 +19,35 @@
             redirectAction.setParams({ recordId: targetId });
         }
 
-        console.log('invoke: END / triggering redirection');
+        console.log('invoke: triggering redirection');
         redirectAction.fire();
+        console.log('invoke: END / redirection fired');*/
+
+        let navService = component.find('navService');
+        let pageReference;
+        if (isPreview) {
+            console.log('invoke: setting preview action');
+            pageReference =  {
+                type: 'standard__namedPage',
+                attributes: { pageName: 'filePreview' },
+                state : {
+                    recordIds: targetId,
+                    selectedRecordId: targetId
+                }
+            }
+        }
+        else {
+            console.log('invoke: setting navigation action');
+            pageReference =  {
+                type: 'standard__recordPage',
+                attributes: {
+                    recordId: targetId,
+                    actionName: 'view'
+                }
+            }
+        }
+        console.log('invoke: triggering navigation');
+        navService.navigate(pageReference);
+        console.log('invoke: navigation triggered');
     }
 })

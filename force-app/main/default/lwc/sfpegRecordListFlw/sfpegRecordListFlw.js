@@ -694,7 +694,10 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
             case 'PERCENT':
                 return PERCENT_FMT.format(fieldValue/100);
             case 'TEXTAREA':
-                return fieldValue.replace(/<[^>]*>?/gm, ' ');
+                const parser = new DOMParser();
+                let valueElement = parser.parseFromString(fieldValue.replace(/<[^>]*>?/gm, ' '), 'text/html');
+                return valueElement.body.innerText;
+                //return fieldValue.replace(/<[^>]*>?/gm, ' ');
             default:
                 return '' + fieldValue;
         }

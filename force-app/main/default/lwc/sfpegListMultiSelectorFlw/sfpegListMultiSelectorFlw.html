@@ -152,9 +152,9 @@
 
                     <!-- Content Display -->
                     <div class={searchDivClass} style={searchDivStyle} >
-                        <!-- Tiles mode content display -->
+                        <!-- Tiles mode content display (horizontal-align="center") -->
                         <template if:true={isTiles}>
-                            <lightning-layout   multiple-rows="true"    horizontal-align="center" >
+                            <lightning-layout   multiple-rows="true">
                                 <template for:each={displayItems} for:item="eachItem">
                                     <template if:true={eachItem.isFiltered}>
                                         <lightning-layout-item  key={eachItem.id}   size={tileSize} >
@@ -177,10 +177,10 @@
                             </lightning-layout>
                         </template>
 
-                        <!-- Table mode content display -->
+                        <!-- Table mode content display (horizontal-align="center") -->
                         <template if:true={isTable}>
                             <lightning-layout   multiple-rows="true"
-                                                horizontal-align="center" >
+                                                 >
                                 <template for:each={displayItems} for:item="eachItem">
                                     <template if:true={eachItem.isFiltered}>
                                         <lightning-layout-item  key={eachItem.name}

@@ -29,6 +29,12 @@
                         type="String"
                         role="inputOnly"
                         description="Display mode of the records (list,pills,tiles,table)."/>
+            <property   name="listHeight"
+                        label="List Height"
+                        type="Integer"
+                        default="0"
+                        role="inputOnly"
+                        description="Max list height (in pixels), 0 meaning no limit."/>
             <property   name="tileSize"
                         label="Tile Size"
                         type="Integer"
