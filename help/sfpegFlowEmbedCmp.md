@@ -65,8 +65,9 @@ let navService = component.find("navService");
 let pageReference = {
   "type": "standard__webPage", 
   "attributes": {
-    "url":
-"/lightning/cmp/c__sfpegFlowEmbed_CMP?c__flow=" + flowName + "&c__recordId=" + saveResult.recordId + "&c__target=targetId&c__label=" + tabLabel
+    "url": "/lightning/cmp/c__sfpegFlowEmbed_CMP?c__flow=" + flowName
+          + "&c__recordId=" + saveResult.recordId
+          + "&c__target=targetId&c__label=" + tabLabel
   }
 };
 navService.navigate(pageReference,false);
