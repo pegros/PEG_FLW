@@ -5,11 +5,14 @@
 ## Introduction
 
 This component enables to execute any Flow in a dedicated Lightning page (or tab in console mode)
-and automatically redirect the user to the proper record decided by the Flow, closing the 
+and automatically redirect the user to the proper record decided by the Flow, automatically closing the 
 Flow tab when in console mode.
 
 It provides a proper component display in a Lightning App (from a SLDS styling perspective) and 
 also enables to adapt the tab label displayed.
+
+When no target record is provided in output, the user is automatically redirecte to the home page.
+
 
 ---
 
@@ -72,3 +75,11 @@ navService.navigate(pageReference,false);
 ---
 
 ## Technical Details
+
+When in console mode, it works in conjunction with the utility bar **sfpegNavigationManager_CMP** component to 
+close the current tab and open/redirect to the target upon Flow completion.
+
+When in standard mode, it directly relies on the **[lightning:navigation](https://developer.salesforce.com/docs/component-library/bundle/lightning:navigation/documentation)** standard utility component to
+redirect the user to the target page.
+
+It relies on the **[lightning:workspaceAPI](https://developer.salesforce.com/docs/component-library/bundle/lightning:workspaceAPI/documentation)** standard utility component to determine whether it is in console mode.

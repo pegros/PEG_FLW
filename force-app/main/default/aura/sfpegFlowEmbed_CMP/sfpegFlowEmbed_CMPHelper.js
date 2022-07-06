@@ -106,19 +106,27 @@
         outputVar.forEach(function(item) {
             if (item.name == target) targetId = item.value;
         });
-        if (!targetId) {
-            console.warn('navigate2target: no targetId found');
-            return;
-        }
-        console.log('navigate2target: targetId fetched',targetId);
 
-        let pageReference = {
-            type: "standard__recordPage",
-            attributes: {
-                recordId: targetId,
-                actionName: "view"
-            }
-        };
+        let pageReference;
+        if (!targetId) {
+            console.warn('navigate2target: no targetId found, redirecting to home');
+            pageReference = {
+                type: 'standard__namedPage',
+                attributes: {
+                    pageName: "home"
+                }
+            };
+        }
+        else {
+            console.log('navigate2target: redirecting to targetId ',targetId);
+            pageReference = {
+                type: "standard__recordPage",
+                attributes: {
+                    recordId: targetId,
+                    actionName: "view"
+                }
+            };
+        }
         console.log('navigate2target: target pageReference init',pageReference);
 
         let wkspUtil = component.find("workspaceUtil");
@@ -158,7 +166,7 @@
             }
         })
         .catch(function(error){
-            console.error('navigate2target: END / error in checking consoe mode ',JSON.stringify(error));  
+            console.error('navigate2target: END / error in checking console mode ',JSON.stringify(error));  
         });
         console.log('navigate2target: checking if in console mode');  
     }
