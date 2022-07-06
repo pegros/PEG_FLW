@@ -437,7 +437,7 @@ export default class SfpegRecordMergeFlw extends LightningElement {
                 if (this.isDebug) console.log('handleLoad: wait done');
 
                 let fieldDivs = this.template.querySelectorAll("div[data-type='field']");
-                if (this.isDebug) console.log('handleLoad: fieldDivs querieds',fieldDivs);
+                if (this.isDebug) console.log('handleLoad: fieldDivs queried ',fieldDivs);
 
                 let fieldDivMap = {};
                 let fieldHeightMap = {};

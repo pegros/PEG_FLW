@@ -1,11 +1,24 @@
 <aura:component implements="lightning:isUrlAddressable" 
                 access="global"
                 description="Component to include execute a flow in a tab and control navigation to a dynamic target upon completion.">
-	
+
     <!-- Component Parameters -->
-    <aura:attribute name="target"	    type="String"
-                    access="private"		
+    <aura:attribute name="flowName"     type="String"
+                    access="private"
+                    description="Name of the flow to be embedded." />
+    <aura:attribute name="recordId"     type="String"
+                    access="private"
+                    description="Source record ID provided." />
+    <aura:attribute name="target"       type="String"
+                    access="private"
                     description="Name of the flow variable providing the target record ID." />
+
+    <aura:attribute name="isDebug"      type="Boolean"
+                    access="private"    default="false"
+                    description="Flag to display debug information." />
+    <aura:attribute name="errorMessage" type="String"
+                    access="private"
+                    description="Error Message displayed in case of initialisation failure." />
 
     <!-- Component Initialisation -->    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"
@@ -16,19 +29,42 @@
 
     <!-- Utilities -->
     <lightning:workspaceAPI aura:id="workspaceUtil"/>
-	<lightning:navigation aura:id="navService"/>
-    
-    <!-- Component Display -->
-    <div    class="slds-box slds-box_x-small slds-theme_default"
-            style="min-height:calc(100vh - 300px);">
-    	<lightning:flow aura:id="flowContainer" onstatuschange="{!c.statusChange}"/>    
-	</div>
+    <lightning:navigation aura:id="navService"/>
 
-    <aura:if isTrue="{isDebug}">
+    <!-- Component Display -->
+    <aura:if isTrue="{!v.errorMessage.length > 0}">
+        <!-- Initialisation Error -->
+        <div class="slds-box slds-box_small slds-media slds-media_center slds-theme_default">
+            <div    class="slds-media__figure">
+                <lightning:icon iconName="utility:warning"  size="small"
+                                variant="warning">
+                </lightning:icon>
+            </div>
+            <div class="slds-media__body" style="word-wrap: break-word !important;">
+                <p class="slds-text-color_default">
+                   {!v.errorMessage}
+                </p>
+            </div>
+        </div>
+    <aura:set attribute="else">
+        <!-- Flow on Initialisation Success -->
+        <div    class="slds-box slds-box_x-small slds-theme_default"
+                style="min-height:calc(100vh - 300px);">
+                <lightning:flow aura:id="flowContainer" onstatuschange="{!c.statusChange}"/>    
+        </div>
+    </aura:set>
+    </aura:if>
+
+    <!-- Debug Information -->
+    <aura:if isTrue="{!v.isDebug}">
         <div class="slds-box slds-theme_default slds-m-top_small"  >
             <dl class="slds-dl_horizontal">
-                <dt class="slds-dl_horizontal__label slds-truncate">target:</dt>
-                <dd class="slds-dl_horizontal__detail">{target}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Flow:</dt>
+                <dd class="slds-dl_horizontal__detail">{!v.flowName}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Record Id:</dt>
+                <dd class="slds-dl_horizontal__detail">{!v.recordId}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Target Field:</dt>
+                <dd class="slds-dl_horizontal__detail">{!v.target}</dd>
                 <dd class="slds-dl_horizontal__detail">
                     <lightning:formattedUrl     value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowEmbedCmp.md"
                                                 label="See Help on GitHub"
@@ -38,4 +74,5 @@
             </dl>
         </div>
     </aura:if>
+
 </aura:component>

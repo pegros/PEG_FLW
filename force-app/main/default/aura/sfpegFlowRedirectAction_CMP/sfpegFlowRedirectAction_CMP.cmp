@@ -7,6 +7,4 @@
     <aura:attribute name="isPreview"    type="Boolean"
                     access="global"     default="false"
                     description="Indicates that the redirection should be made towards a File Preview instead of a standard record page."/>
-    <!-- Utility -->
-    <lightning:navigation aura:id="navService" />
 </aura:component>

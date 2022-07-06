@@ -61,11 +61,11 @@
                         type="{T}"
                         description="Record edited."/>
 
-            <!-- OBSOLETE -->
+            <!-- OBSOLETE 
             <property   name="isEdit"
                         label="Obsolete"
                         type="Boolean"
-                        role="inputOnly" />
+                        role="inputOnly" /> -->
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

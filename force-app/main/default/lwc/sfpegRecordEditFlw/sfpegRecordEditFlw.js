@@ -56,7 +56,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
     @api isDebug = false;       // Flag to display debug info.
 
     /* OBSOLETE */
-    @api isEdit = false;        // Obsolete 
+    //@api isEdit = false;        // Obsolete 
 
     // Internal fields
     @track recordFields = [] ;  // items used to display records.
