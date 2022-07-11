@@ -1,0 +1,39 @@
+<design:component label="SFPEG Launch Flow">
+    <design:attribute   name="actionLabel"
+                        label="Button Label"
+                        default="Start"
+                        description="Label of the action button to trigger the flow." />
+    <design:attribute   name="actionVariant"
+                        label="Button Variant"
+                        datasource="base,neutral,brand,brand-outline,destructive,destructive-text,inverse,success"
+                        default="brand"
+                        description="Display variant for the action button to trigger the flow." />
+
+    <design:attribute   name="flowName"
+                        label="Flow Name"
+                        description="Developer Name of the flow to be launched." />
+
+    <design:attribute   name="useRecordId"
+                        label="Push recordId?"
+                        default="false"
+                        description="Flag to push the current recordId as Flow input." />
+    <design:attribute   name="useSObjectName"
+                        label="Push sObjectName?"
+                        default="false"
+                        description="Flag to push the current sObjectName as Flow input." />
+
+    <design:attribute   name="doRefresh"
+                        label="Do Refresh?"
+                        default="false"
+                        description="Flag to trigger a view refresh upon Flow completion." />
+
+    <design:attribute   name="wrapperCss"
+                        label="Wrapping CSS"
+                        default="slds-box slds-box_x-small slds-theme_default"
+                        description="CSS classes for the wrapping div." />
+
+    <design:attribute   name="isDebug"
+                        label="Show Debug?"
+                        default="false"
+                        description="Flag to display debug information." />
+</design:component>

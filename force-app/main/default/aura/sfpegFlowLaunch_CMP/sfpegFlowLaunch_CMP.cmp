@@ -1,0 +1,84 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+                access="global"
+                description="Component to trigger a flow embedded in a page only upon user trigger.">
+
+    <!-- Configuration Parameters -->
+    <aura:attribute name="wrapperCss"       type="String"
+                    access="global"
+                    description="CSS classes for the wrapping div." />
+    <aura:attribute name="actionLabel"      type="String"
+                    access="global"
+                    description="Label of the action button to trigger the flow." />
+    <aura:attribute name="actionVariant"    type="String"
+                    access="global"         default="brand"
+                    description="Display variant for the action button to trigger the flow." />
+    <aura:attribute name="flowName"         type="String"
+                    access="global"
+                    description="Name of the flow to be embedded." />
+
+    <aura:attribute name="useRecordId"  type="Boolean"
+                    access="global"     default="false"
+                    description="Flag to provide recordId as Flow input." />
+    <aura:attribute name="useSObjectName"  type="Boolean"
+                    access="global"         default="false"
+                    description="Flag to provide sObjectName as Flow input." />
+
+    <aura:attribute name="doRefresh"    type="Boolean"
+                    access="global"     default="false"
+                    description="Flag to trigger a view refresh upon Flow completion." />
+
+    <aura:attribute name="isDebug"      type="Boolean"
+                    access="global"    default="false"
+                    description="Flag to display debug information." />
+
+    <!-- Internal Parameters -->
+    <aura:attribute name="isFlowRunning"    type="Boolean"
+                    access="private"        default="false"
+                    description="Flag to indicating that the flow is running." />
+
+    <!-- Component Display -->
+    <div    class="{#v.wrapperCss + ' slds-clearfix'}">
+        <aura:if isTrue="{!v.isFlowRunning}">
+            <div    class="slds-float_right">
+                <lightning:buttonIcon   iconName="utility:close"
+                                        variant="neutral"
+                                        onclick="{! c.closeClick }"
+                                        alternativeText="Close" />
+            </div>
+            <div class="slds-p-around_none">
+                <lightning:flow aura:id="flowContainer"
+                                onstatuschange="{!c.statusChange}"/> 
+            </div>
+        <aura:set attribute="else">
+            <div    class="slds-float_right">
+                <lightning:button   variant="{#v.actionVariant}"
+                                    label="{#v.actionLabel}"
+                                    title="Base action"
+                                    onclick="{!c.buttonClick}"/>
+            </div>
+        </aura:set>
+        </aura:if>
+    </div>
+
+    <!-- Debug Information -->
+    <aura:if isTrue="{!v.isDebug}">
+        <div class="slds-box slds-theme_default slds-m-top_small"  >
+            <dl class="slds-dl_horizontal">
+                <dt class="slds-dl_horizontal__label slds-truncate">Flow:</dt>
+                <dd class="slds-dl_horizontal__detail">{!v.flowName}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Context:</dt>
+                <dd class="slds-dl_horizontal__detail">{!v.sObjectName} (pushed? {#v.useSObjectName}) / {!v.recordId} (pushed? {#v.useRecordId})</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Do Refresh?:</dt>
+                <dd class="slds-dl_horizontal__detail">{#v.doRefresh}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                <dd class="slds-dl_horizontal__detail">
+                    <lightning:formattedUrl     value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowLaunchCmp.md"
+                                                label="See Help on GitHub"
+                                                target="_blank">
+                    </lightning:formattedUrl>
+                </dd>
+            </dl>
+        </div>
+    </aura:if>
+
+</aura:component>

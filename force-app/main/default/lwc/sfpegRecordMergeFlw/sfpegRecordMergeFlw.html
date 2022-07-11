@@ -146,17 +146,16 @@
                                 <template for:each={newRecordFields} for:item="field">
                                     <div    class="fieldNoSelect"   key={field.desc.name}
                                             data-type="field"       data-name={field.desc.name}>
-                                    <div class="slds-media">
-                                        <div class="slds-media__body">
-                                            <lightning-input-field  key={field.desc.name}
-                                                                    field-name={field.desc.name}
-                                                                    class="targetEditField"
-                                                                    value={field.value}
-                                                                    variant="label-hidden"
-                                                                    onchange={handleChange}  >
-                                            </lightning-input-field>
+                                        <div    class="slds-media">
+                                            <div class="slds-media__body">
+                                                <lightning-input-field  field-name={field.desc.name}
+                                                                        class="targetEditField"
+                                                                        value={field.value}
+                                                                        variant="label-hidden"
+                                                                        onchange={handleChange}  >
+                                                </lightning-input-field>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </template>
                             </lightning-record-edit-form>

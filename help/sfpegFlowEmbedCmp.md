@@ -52,7 +52,7 @@ usually one of the record having been created / selected in the Flow or back to 
 one (if the `c__recordId` input parameter was provided).
 
 
-### Launch from custom Lightning component
+### Launch from Custom Lightning component
 
 You may easily open the flow tab from any custom lightning code leveraging the Aura navigation service,
 e.g. upon click of a button.

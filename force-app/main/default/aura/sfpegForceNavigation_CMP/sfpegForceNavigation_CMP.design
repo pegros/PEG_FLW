@@ -1,9 +1,9 @@
 <design:component label="SFPEG Force Navigation">
-	<design:attribute name="targetString"
+    <design:attribute name="targetString"
                       label="Target IDs"
                       default='["Id"]'
                       description="List of fields to be used as targets (as JSON list of field API names)"/>
-	<design:attribute name="isMainTab"
+    <design:attribute name="isMainTab"
                       label="Reopen as Main Tab?"
                       default="true"
                       description="Force reopen or record as main tab (if true) or subtab (if false)."/>

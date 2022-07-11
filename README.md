@@ -74,6 +74,9 @@ Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)**.
 
 ### Aura Components
 
+* **[FlowLaunch](/help/sfpegFlowLaunchCmp.md)**: App Builder component enabling to execute a Flow 
+embedded within a page, while initialising and launching it only upon explicit user request.
+
 * **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**: addressable component enabling to properly display, execute and terminate a Flow launched via URL, the user being redirected to a target record provided as output of the Flow upon completion
 
 * **NavigationManager**: utility bar component handling the redirection requests in console mode, in order to open the target record page, close the Flow page and ensure proper focus on the target record page.
