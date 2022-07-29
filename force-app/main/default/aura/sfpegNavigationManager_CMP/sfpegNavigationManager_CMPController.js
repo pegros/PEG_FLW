@@ -1,23 +1,24 @@
 ({
-	doInit : function(component, event, helper) {
-        console.log('doInit: START');
-        helper.processInit(component);
-        console.log('doInit: END');	
-	},
+    doInit : function(component, event, helper) {
+        helper.SHOW_DEBUG = component.get("v.isDebug");
+        if (helper.SHOW_DEBUG)  console.log('doInit: START');
+        helper.processInit(component,helper);
+        if (helper.SHOW_DEBUG)  console.log('doInit: END');	
+    },
     handleTabOpen: function(component, event, helper) {
-        console.log('handleTabOpen: START');
+        if (helper.SHOW_DEBUG)  console.log('handleTabOpen: START');
         helper.processTabOpen(component,event,helper);
-        console.log('handleTabOpen: END');
+        if (helper.SHOW_DEBUG)  console.log('handleTabOpen: END');
     },
     handleTabFocus : function(component, event, helper) {
-        console.log('handleTabFocus: START');
-        console.log('handleTabFocus: event params ', JSON.stringify(event.getParams()));
+        if (helper.SHOW_DEBUG)  console.log('handleTabFocus: START');
+        if (helper.SHOW_DEBUG)  console.log('handleTabFocus: event params ', JSON.stringify(event.getParams()));
         helper.processTabFocus(component,event,helper);
-        console.log('handleTabFocus: END');	
-	},
+        if (helper.SHOW_DEBUG)  console.log('handleTabFocus: END');	
+    },
     handleTabCreate : function(component, event, helper) {
-        console.log('handleTabCreate: START');
-        console.log('handleTabCreate: event params ', JSON.stringify(event.getParams()));
-        console.log('handleTabCreate: END');	
-	}
+        if (helper.SHOW_DEBUG)  console.log('handleTabCreate: START');
+        if (helper.SHOW_DEBUG)  console.log('handleTabCreate: event params ', JSON.stringify(event.getParams()));
+        if (helper.SHOW_DEBUG)  console.log('handleTabCreate: END');	
+    }
 })

@@ -1,6 +1,11 @@
 <aura:component implements="lightning:backgroundUtilityItem,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
                 access="global"
                 description="Console utility toolbar hidden component to manage tab related custom events">
+
+    <!-- Component Configuration -->
+    <aura:attribute name="isDebug"      type="Boolean"
+                    access="global"     default="false"
+                    description="Flag to display debug information." />
     
     <!-- Technical context attributes -->
     <aura:attribute name="isConsole"  type="Boolean" 

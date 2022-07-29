@@ -1,3 +1,6 @@
 <design:component label="SFPEG Navigation Manager">
-	
+    <design:attribute   name="isDebug"
+                        label="Show Debug?"
+                        default="false"
+                        description="Flag to activate debug logs." />
 </design:component>
