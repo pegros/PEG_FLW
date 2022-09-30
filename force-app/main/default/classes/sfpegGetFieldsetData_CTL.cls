@@ -30,17 +30,17 @@
 
 public with sharing class sfpegGetFieldsetData_CTL {
 
-/***
-* @description	Invocable method to easily fetch data corresponding to a given
-*               fieldset for a series of records based on their IDs.
-* @param		dataRequests	List of 'DataRequest' records containing the
-*                               records for which data should be fetched and the FieldSet
-*                               name (as 'Object.Fieldset', i.e. Object API & FS Developer
-*                               names). Each record should have an ID !
-* @return		List<List<SObject>>		List of matching records (of same sobject type with
-*                                       proper authorized fieldset fields returned).
-* @exception   	dmlExceptions in case of processing issue.
-***/
+	/***
+	* @description	Invocable method to easily fetch data corresponding to a given
+	*               fieldset for a series of records based on their IDs.
+	* @param		dataRequests	List of 'DataRequest' records containing the
+	*                               records for which data should be fetched and the FieldSet
+	*                               name (as 'Object.Fieldset', i.e. Object API & FS Developer
+	*                               names). Each record should have an ID !
+	* @return		List<List<SObject>>		List of matching records (of same sobject type with
+	*                                       proper authorized fieldset fields returned).
+	* @exception   	dmlExceptions in case of processing issue.
+	***/
 	@InvocableMethod(label='Get Records Data' description='Get data of a given fieldset for a list of records.' category='SF PEG')
 	public static List<List<SObject>> getData(List<DataRequest> dataRequests) {
 		System.debug('getData: START');
@@ -116,10 +116,10 @@ public with sharing class sfpegGetFieldsetData_CTL {
 		return resultList;
 	}
 
-/***
-* @description	Subclass required to pass input parameters into the 'getData' invocable action
-*               (especially to provide the fieldset name).
-***/
+	/***
+	* @description	Subclass required to pass input parameters into the 'getData' invocable action
+	*               (especially to provide the fieldset name).
+	***/
 	public class DataRequest {
 		@InvocableVariable(label='Records to Match' description='Records to match' required=true)
 		public List<SObject> records;
