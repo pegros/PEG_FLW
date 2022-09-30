@@ -6,11 +6,6 @@
         <label>sfpegTest Matching Rule</label>
         <matchingRuleItems>
             <blankValueBehavior>NullNotAllowed</blankValueBehavior>
-            <fieldName>Data__c</fieldName>
-            <matchingMethod>Exact</matchingMethod>
-        </matchingRuleItems>
-        <matchingRuleItems>
-            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
             <fieldName>Name</fieldName>
             <matchingMethod>Exact</matchingMethod>
         </matchingRuleItems>
