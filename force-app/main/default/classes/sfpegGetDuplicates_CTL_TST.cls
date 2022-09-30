@@ -51,10 +51,10 @@ public class sfpegGetDuplicates_CTL_TST {
 	}
 
 	/***
-	* @description Tests the "getDuplicates" method.
+	* @description Tests he "getDuplicates" method.
 	***/
 	@isTest
-    static void testGetDuplicates() {
+	static void testGetDuplicates() {
 		System.debug('testGetDuplicates: START');
 		Test.startTest();
 
@@ -108,14 +108,5 @@ public class sfpegGetDuplicates_CTL_TST {
 		Test.stopTest();
 
 		System.debug('testGetDuplicates: END');
-	}
-
-	@isTest
-	static void testDummy() {
-		System.debug('testDummy: START');
-		Test.startTest();
-		(new sfpegGetDuplicates_CTL.DummyTestClass()).dummyMethod();
-		Test.stopTest();
-		System.debug('testDummy: END');
 	}
 }
