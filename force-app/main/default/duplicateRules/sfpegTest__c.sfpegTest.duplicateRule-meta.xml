@@ -10,7 +10,7 @@
         <matchingRule>sfpegTestMatchingRule</matchingRule>
         <objectMapping xsi:nil="true"/>
     </duplicateRuleMatchRules>
-    <isActive>false</isActive>
+    <isActive>true</isActive>
     <masterLabel>sfpegTest</masterLabel>
     <operationsOnInsert>Alert</operationsOnInsert>
     <operationsOnUpdate>Alert</operationsOnUpdate>
