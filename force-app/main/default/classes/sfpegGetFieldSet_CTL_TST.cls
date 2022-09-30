@@ -30,6 +30,7 @@
 ***/
 
 @isTest
+@SuppressWarnings('PMD.ClassNamingConventions')
 public with sharing class sfpegGetFieldSet_CTL_TST {
 
 	/***
@@ -64,7 +65,6 @@ public with sharing class sfpegGetFieldSet_CTL_TST {
 			List<String> nameList = new List<String>();
 			nameList.add(FieldSetName);
 			sfpegGetFieldSet_CTL.getFieldSetDescs(nameList);
-			//sfpegConfiguration_CTL.getFieldSetDesc('Task.SFPEG_TSTFS');
 			System.debug('testGetFieldSetDesc: no exception raised');
 			System.assert(true);
 		}
@@ -78,7 +78,6 @@ public with sharing class sfpegGetFieldSet_CTL_TST {
 			List<String> nameList = new List<String>();
 			nameList.add(FieldSetNameKO);
 			sfpegGetFieldSet_CTL.getFieldSetDescs(nameList);
-			//sfpegConfiguration_CTL.getFieldSetDesc('Task.SFPEG_TSTFS');
 			System.debug('testGetFieldSetDesc: no exception raised');
 			System.assert(false);
 		}

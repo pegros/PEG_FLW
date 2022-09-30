@@ -30,6 +30,7 @@
 ***/
 
 @isTest
+@SuppressWarnings('PMD.ClassNamingConventions')
 public class sfpegForceDML_CTL_TST {
 
 	/***

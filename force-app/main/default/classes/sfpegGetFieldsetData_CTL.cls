@@ -27,7 +27,7 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 ***/
-
+@SuppressWarnings('PMD.ClassNamingConventions')
 public with sharing class sfpegGetFieldsetData_CTL {
 
 	/***
@@ -94,7 +94,7 @@ public with sharing class sfpegGetFieldsetData_CTL {
 						+ ' WHERE ID in (\'' + String.join(new List<String>(recordIDs),'\',\'') + '\')';
 		System.debug('getData: soqlQuery init ' + soqlQuery);
 
-		Map<ID,SObject> resultMap = new Map<ID,SObject>(database.query(soqlQuery));//NOPMD safe params
+		Map<ID,SObject> resultMap = new Map<ID,SObject>(Database.query(soqlQuery));//NOPMD safe params
 		System.debug('getData: data fetched init ' + resultMap);
 
 		// format record result list
@@ -106,7 +106,7 @@ public with sharing class sfpegGetFieldsetData_CTL {
 			resultList.add(newData);
 			for (SObject iterRcd : iter.records) {
 				System.debug('getData: processing record ' + iterRcd);
-				Sobject iterData = resultMap.get(iterRcd.Id);
+				SObject iterData = resultMap.get(iterRcd.Id);
 				System.debug('getData: iter data fetcched ' + iterData);
 				newData.add(iterData);
 			}

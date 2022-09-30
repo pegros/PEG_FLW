@@ -30,6 +30,7 @@
 ***/
 
 @isTest
+@SuppressWarnings('PMD.ClassNamingConventions')
 public class sfpegGetDuplicates_CTL_TST {
 
 	/***
