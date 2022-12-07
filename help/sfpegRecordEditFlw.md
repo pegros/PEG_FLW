@@ -1,6 +1,4 @@
----
-# sfpegRecordEditFlw Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegRecordEditFlw** UI Flow Component
 
 ## Introduction
 

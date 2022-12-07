@@ -1,6 +1,4 @@
----
-# Flow Apex Actions
----
+# ![Logo](/media/Logo.png) &nbsp; Misc. Invocable Flow Apex Actions
 
 ## Introduction
 

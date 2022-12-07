@@ -1,6 +1,4 @@
----
-# sfpegFlowLaunch_CMP Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegFlowLaunch_CMP** Flow Embedding Component
 
 ## Introduction
 

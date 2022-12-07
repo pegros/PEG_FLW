@@ -1,6 +1,4 @@
----
-# sfpegFlowEmbed_CMP Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegFlowEmbed_CMP** Addressable Component
 
 ## Introduction
 

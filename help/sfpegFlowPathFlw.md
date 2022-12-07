@@ -1,6 +1,4 @@
----
-# sfpegFlowPathFlw Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegFlowPathFlw** UI Flow Component
 
 ## Introduction
 

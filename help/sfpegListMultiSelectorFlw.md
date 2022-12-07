@@ -1,6 +1,4 @@
----
-# sfpegListMultiSelectorFlw Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegListMultiSelectorFlw** UI Flow Component
 
 ## Introduction
 

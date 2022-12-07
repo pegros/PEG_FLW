@@ -1,6 +1,4 @@
----
-# sfpegCheckboxSelectCmp Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegCheckboxSelectCmp** UI Flow Component
 
 ## Introduction
 

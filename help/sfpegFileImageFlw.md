@@ -1,6 +1,4 @@
----
-# sfpegFileImageCmp Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegFileImageCmp** UI Flow Component
 
 ## Introduction
 

@@ -1,6 +1,4 @@
----
-# sfpegRecordListFlw Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegRecordListFlw** UI Flow Component
 
 ## Introduction
 

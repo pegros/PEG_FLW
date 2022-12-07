@@ -1,4 +1,4 @@
-# Customisable Components for Salesforce Flow
+# ![Logo](/media/Logo.png) &nbsp; SFPEG Customisable Components for Salesforce UI **Flows**
 
 This package contains a set of Lightning components aiming at enhancing the Lightning Flow Experience and ease configuuration of Screen flows for various typical use cases.
 

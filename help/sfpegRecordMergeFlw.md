@@ -1,6 +1,4 @@
----
-# sfpegRecordMergeFlw Component
----
+# ![Logo](/media/Logo.png) &nbsp; **sfpegRecordMergeFlw** UI Flow Component
 
 ## Introduction
 
