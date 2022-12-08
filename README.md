@@ -5,8 +5,8 @@ This package contains a set of highly customisable Lightning components aiming a
 They were built as contributions/examples for former & ongoing Advisory assignments by [Pierre-Emmanuel Gros](https://github.com/pegros).
 
 
-They are explicitly dedicated to Flow Designer but another package with more generaly availble
-components is available on this repository (see [PEG_FLW](https://github.com/pegros/PEG_FLW) package).
+They are explicitly dedicated to Flow Designer but another package with more generaly available
+components is available on this repository (see [PEG_LIST](https://github.com/pegros/PEG_LIST) package).
 
 
 ## Introduction
