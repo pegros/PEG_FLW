@@ -8,6 +8,11 @@ They were built as contributions/examples for former & ongoing Advisory assignme
 They are explicitly dedicated to Flow Designer but another package with more generaly available
 components is available on this repository (see [PEG_LIST](https://github.com/pegros/PEG_LIST) package).
 
+⚠️ In Winter 23 release, many new features have been added to Flows. Please investigate them first
+before considering the components in this package (especially Flow Forms and Flow Tables).
+
+ℹ️ You may also have a look at **[UnofficialSF](https://unofficialsf.com/)** to find other interesting
+components.
 
 ## Introduction
 
@@ -33,31 +38,45 @@ while the Components only display record data and supports local user interactio
 
 ### LWC Components
 
-* **[FlowPath](/help/sfpegFlowPathFlw.md)**: primarily enables to display the progress of stages within a Flow (but may also be configured to be used actively to control navigation among Flow pages)
+#### **[FlowPath](/help/sfpegFlowPathFlw.md)**
+
+This component primarily enables to display the progress of stages within a Flow (but may also be configured to be used actively to control navigation among Flow pages)
 
 ![Flow Path](/media/FlowPath.png)
 
-* **[ListSelector](/help/sfpegListSelectorFlw.md)**: enables to select one record (provided as output) out of a list provided as input, each record being displayed as a tile with a set of fields defined in a fieldset.
+#### **[ListSelector](/help/sfpegListSelectorFlw.md)**
+
+This component enables to select one record (provided as output) out of a list provided as input, each record being displayed as a tile with a set of fields defined in a fieldset.
 
 ![List Selector](/media/ListSelector.png)
 
-* **[ListMultiSelectorFlw](/help/sfpegListMultiSelectorFlw.md)**: similar to the ListSelector but in multi-select mode with a search bar
+#### **[ListMultiSelectorFlw](/help/sfpegListMultiSelectorFlw.md)**
+
+This component is similar to the ListSelector but in multi-select mode with a search bar
 
 ![List Multi-Selector](/media/ListMultiSelect.png)
 
-* **[CheckboxSelectFlw](/help/sfpegCheckboxSelectFlw.md)** : enables to select multiple items within a single record list via multiple checkbox groups.
+#### **[CheckboxSelectFlw](/help/sfpegCheckboxSelectFlw.md)**
+
+This component enables to select multiple items within a single record list via multiple checkbox groups.
 
 ![Checkbox Selector](/media/CheckboxSelect.png)
 
-* **[RecordEdit](/help/sfpegRecordEditFlw.md)**: enables to display a record card in edit/read mode based on a fieldset, taking a Flow record as input and providing a possibly modified record as output
+#### **[RecordEdit](/help/sfpegRecordEditFlw.md)**
+
+This component enables to display a record card in edit/read mode based on a fieldset, taking a Flow record as input and providing a possibly modified record as output
 
 ![Record Edit Form](/media/RecordEdit.png)
 
-* **[RecordList](/help/sfpegRecordListFlw.md)**: displays a list  of records and enables to launch various actions conditionally.
+#### **[RecordList](/help/sfpegRecordListFlw.md)**
+
+This component displays a list of records and enables to launch various actions conditionally.
 
 ![Record List](/media/RecordList.png)
 
-* **[RecordMerge](/help/sfpegRecordMergeFlw.md)**: enables to merge 2 records provided as input into another one as output, based on a fieldset, the user being also able to modify it manually.
+#### **[RecordMerge](/help/sfpegRecordMergeFlw.md)**
+
+This component enables to merge 2 records provided as input into another one as output, based on a fieldset, the user being also able to modify it manually.
 
 ![Record Merge Form](/media/RecordMerge.png)
 
@@ -70,20 +89,30 @@ while the Components only display record data and supports local user interactio
 
 * **Execute DML**: to bypass “warn” duplicate rules upon record insert / update.
 
-Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)**.
+Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)** for details.
 
 ### Aura Components
 
-* **[FlowLaunch](/help/sfpegFlowLaunchCmp.md)**: App Builder component enabling to execute a Flow 
-embedded within a page, while initialising and launching it only upon explicit user request.
+#### **[FlowLaunch](/help/sfpegFlowLaunchCmp.md)**
 
-* **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**: addressable component enabling to properly display, execute and terminate a Flow launched via URL, the user being redirected to a target record provided as output of the Flow upon completion
+This App Builder component enables to execute a Flow embedded within a page,
+while initialising and launching it only upon explicit user request.
 
-* **NavigationManager**: utility bar component handling the redirection requests in console mode, in order to open the target record page, close the Flow page and ensure proper focus on the target record page.
+#### **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**
 
-* **ForceNavigation**: invisible component working with the **NavigationManager** to force the display of a record in main tab / subtab of a Lightning console App.
+This addressable component enables to properly display, execute and terminate a Flow launched via URL, the user being redirected to a target record provided as output of the Flow upon completion
 
-See standard Aura documentation of the components for details.
+#### **NavigationManager**
+
+This utility bar component handling the redirection requests in console mode, in order to open the target record page, close the Flow page and ensure proper focus on the target record page.
+
+#### **ForceNavigation**
+
+This component is not directly related to flows but included in the package as it uses features
+provided by the **NavigationManager** and may happen to be helpful when designing a Lightning
+console App.
+
+This invisible component, working with the **NavigationManager**, enables to force the display of a record in main tab / subtab of a Lightning console App.
 
 ### Utility Aura Apex Controllers
 
