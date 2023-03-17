@@ -68,23 +68,30 @@
 
             wkAPI.isConsoleNavigation().then(consoleMode => {
                 if (helper.SHOW_DEBUG) console.log('initComponent: console mode',consoleMode);
-                if (consoleMode) return wkAPI.getEnclosingTabId();
-            }).then( tabId => {
-                if (helper.SHOW_DEBUG) console.log('initComponent: tab ID fetched',tabId);
-                return wkAPI.setTabLabel({
-                    tabId: tabId,
-                    label: state.c__label || "Flow"
-                });
-            }).then( tabInfo => {
-                if (helper.SHOW_DEBUG) console.log('initComponent: tab renamed',tabInfo);
-                return wkAPI.setTabIcon({
-                    tabId: tabInfo.tabId,
-                    iconAlt: "Flow",
-                    icon: "standard:flow"
-                });
-            }).then( tabInfo => {
-                if (helper.SHOW_DEBUG) console.log('initComponent: tab icon changed',tabInfo);
-            }).catch(function(error) {
+                if (consoleMode){
+                	wkAPI.getEnclosingTabId().then( tabId => {
+                		if (helper.SHOW_DEBUG) console.log('initComponent: tab ID fetched',tabId);
+                		if (tabId) return wkAPI.setTabLabel({
+                    		tabId: tabId,
+                    		label: state.c__label || "Flow"
+                		});
+            			throw new Error('tab ID not found');
+		            }).then( tabInfo => {
+                		if (helper.SHOW_DEBUG) console.log('initComponent: tab renamed',tabInfo);
+                		if (tabInfo) return wkAPI.setTabIcon({
+                    		tabId: tabInfo.tabId,
+                    		iconAlt: "Flow",
+                    		icon: "standard:flow"
+                		});
+        				throw new Error('tab info not found');
+		            }).then( tabInfo => {
+                		if (helper.SHOW_DEBUG) console.log('initComponent: tab icon changed',tabInfo);
+            		});
+				}
+                else {
+                		if (helper.SHOW_DEBUG) console.log('initComponent: not in console mode');                    
+                }
+			}).catch(function(error) {
                 console.error('initComponent: error raised',JSON.stringify(error));
                 component.set("v.errorMessage",JSON.stringify(error));
             });   
