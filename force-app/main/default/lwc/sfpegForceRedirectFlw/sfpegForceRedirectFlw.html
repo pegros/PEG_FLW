@@ -1,0 +1,14 @@
+<template>
+    <div if:true={isDebug} class="slds-box slds-theme_default">
+        <h1>Redirecting to:</h1>
+        <p>{objectApiName} with ID {recordId}</p>
+    </div>
+    <div class="slds-float_right" if:true={isDebug}>
+        <lightning-button 
+            variant="brand"
+            label="Navigate"
+            title="Navigate to record"
+            onclick={handleClick}>
+        </lightning-button>
+    </div>
+</template>
