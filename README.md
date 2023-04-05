@@ -134,3 +134,9 @@ before executing the whole deploy
 The **[PEG_LIST](https://github.com/pegros/PEG_LIST)** package may also be 
 leveraged to launch Flows in popups from the utility bar
 (see its **[sfpegActionUtility](https://github.com/pegros/PEG_LIST/blob/master/help/sfpegActionUtilityCmp.md)** component).
+
+## Installation
+<a href="https://githubsfdeploy.herokuapp.com?ref=master">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
