@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Page Redirect</masterLabel>
+    <targets>
+      <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property
+                name="pageRef"
+                label="Page Reference"
+                type="String"
+                required="true"
+                role="inputOnly"
+                description="Page reference to which redirection should be done."/>
+            <property
+                name="recordIds"
+                label="Record IDs to refresh"
+                type="String[]"
+                required="false"
+                role="inputOnly"
+                description="List fo record IDs to refresh before redirecting."/>
+            <property
+                name="isDebug"
+                label="Debug?"
+                type="Boolean"
+                default="false"
+                role="inputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
