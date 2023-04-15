@@ -13,13 +13,15 @@
                 label="Record Id"
                 type="String"
                 required="true"
-                role="inputOnly"/>
+                role="inputOnly"
+                description="ID of the record to which redirection should be done."/>
             <property
                 name="objectApiName"
                 label="Object API Name"
                 type="String"
                 required="true"
-                role="inputOnly"/>
+                role="inputOnly"
+                description="Object of the record to which redirection should be done (required in LWR Sites)."/>
             <property
                 name="isDebug"
                 label="Debug?"

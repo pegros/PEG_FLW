@@ -8,7 +8,7 @@ export default class SfpegForceRedirectCmp extends NavigationMixin(LightningElem
     //----------------------------------------------------------------
     @api recordId;          // Target record Id
     @api objectApiName;     // Target object Name (required in LWR context)
-    @api isDebug;           // Debug actiaton flag
+    @api isDebug;           // Debug activation flag
 
     //----------------------------------------------------------------
     // Component Initialisation
