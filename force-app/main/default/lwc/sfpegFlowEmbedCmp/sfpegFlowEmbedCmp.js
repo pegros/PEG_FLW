@@ -44,9 +44,9 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
     // Configuration Parameters (from page state)
     //-----------------------------------
     flowName;           // API Name of the flow to launch
-    flowParameters;     // List of Flow Input Parameters to set from Page Context (JSON List of string)
-    outputTarget;       // Flow Output parameter providing the target page ref to redirect the user to.
-    outputRefresh;      // Flow Output parameter providing the list of record IDs to refresh prior to redirection.
+    flowParameters;     // List of Flow Input Parameters
+    outputTarget;       // Name of Flow Output parameter providing the target page ref to redirect the user to.
+    outputRefresh;      // Name of Flow Output parameter providing the list of record IDs to refresh prior to redirection.
 
     isDebug = false;   // Flag to activate debug information.
 
@@ -64,7 +64,10 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
     //-----------------------------------
     // Custom Getters
     //-----------------------------------
-    
+    get flowInputs() {
+        return JSON.stringify(flowParameters);
+    }
+
     //-----------------------------------
     // Page Context Parameters
     //-----------------------------------
@@ -72,7 +75,7 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
     wiredPageRef;
 
     //-----------------------------------
-    // Custom Getters
+    // Component Initialisation
     //-----------------------------------
     connectedCallback() {
         this.isDebug = this.wiredPageRef.state.c__isDebug;
@@ -107,35 +110,6 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
             console.warn('connected: END KO for flow embed / Missing Flow Name');
             return;
         }
-
-        /*this.inputParams = this.wiredPageRef.status.c__input;
-        if (this.isDebug) console.log('connected: inputParams ',this.inputParams);
-        if (this.inputParams) {
-            if (this.isDebug) console.log('connected: processing input params');
-            let flowParameters = [];
-            try {
-                let inputList = JSON.parse(this.inputParams);
-                inputList.forEach(item => {
-                    if (this.isDebug) console.log('connected: processing param ', item.name);
-                    if (this.isDebug) console.log('connected: of type ', item.type);
-                    item.value == this.wiredPageRef.status[item.name];
-                    if (this.isDebug) console.log('connected: context value fetched ', item.value);
-                    if (item.value != null) {
-                        if (this.isDebug) console.log('connected: registering value');
-                        flowParameters.push(item);
-                    }
-                    else {
-                        if (this.isDebug) console.log('connected: ignoring field with no value ', item.name);
-                    }
-                });
-            }
-            catch (error) {
-                console.warn('connected: END KO for flow embed / Bad input parameters ', error);
-                this.error = 'Bad Flow input parameters';
-            }
-            if (this.isDebug) console.log('connected: input parameters init ', flowParameters);
-            this.flowParameters = flowParameters;
-        }*/
         
         if (this.isDebug) console.log('connected: outputTarget ',this.outputTarget);
         if (!this.outputTarget) {
@@ -153,39 +127,7 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
 
         if (this.isDebug) console.log('connected: flowParameters ',JSON.stringify(this.flowParameters));
 
-        /*this.inputParams = this.wiredPageRef.status.c__input;
-        if (this.isDebug) console.log('connected: inputParams ',this.inputParams);
-        if (this.inputParams) {
-            if (this.isDebug) console.log('connected: processing input params');
-            let flowParameters = [];
-            try {
-                let inputList = JSON.parse(this.inputParams);
-                inputList.forEach(item => {
-                    if (this.isDebug) console.log('connected: processing param ', item.name);
-                    if (this.isDebug) console.log('connected: of type ', item.type);
-                    item.value == this.wiredPageRef.status[item.name];
-                    if (this.isDebug) console.log('connected: context value fetched ', item.value);
-                    if (item.value != null) {
-                        if (this.isDebug) console.log('connected: registering value');
-                        flowParameters.push(item);
-                    }
-                    else {
-                        if (this.isDebug) console.log('connected: ignoring field with no value ', item.name);
-                    }
-                });
-            }
-            catch (error) {
-                console.warn('connected: END KO for flow embed / Bad input parameters ', error);
-                this.error = 'Bad Flow input parameters';
-            }
-            if (this.isDebug) console.log('connected: input parameters init ', flowParameters);
-            this.flowParameters = flowParameters;
-        }*/
-
         this.isReady = true;
-        /*setTimeout(function (){
-            document.title = 'FLOW';
-        },10000);*/
         if (this.isDebug) console.log('connected: END for flow embed');
     }
 
