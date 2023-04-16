@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Flow Embed</masterLabel>
+    <description>Execution d'un Flow dans un tab standard</description>
+    <targets>
+        <target>lightning__Tab</target>
+    </targets>
+    <!--
+    <targetConfigs>
+        <targetConfig targets="lightning__Tab">
+            <property   name="flowName"
+                        label="Flow Name"
+                        type="String"
+                        description="API name of the flow to launch" />
+            <property   name="inputParams"
+                        label="Input Parameters"
+                        type="String"
+                        description="List of Flow Input Parameters to set from Page Context (JSON List of {name,type})" />
+            <property   name="outputTarget"
+                        label="Target Parameter"
+                        type="String"
+                        description="Flow Output parameter providing the target page ref to redirect the user to." />
+                        
+            <property   name="isDebug"
+                        label="Show Debug?"
+                        type="Boolean"
+                        default="false"
+                        description="Flag to activate debug information."/>
+        </targetConfig>
+    </targetConfigs>
+    -->
+</LightningComponentBundle>
