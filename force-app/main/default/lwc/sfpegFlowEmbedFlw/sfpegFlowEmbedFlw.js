@@ -41,19 +41,19 @@ import { NavigationMixin } from 'lightning/navigation';
 export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement) {
 
     //-----------------------------------
-    // Configuration Parameters
+    // Configuration Parameters (from page state)
     //-----------------------------------
-    @api flowName;          // API Name of the flow to launch
-    @api inputParams;       // List of Flow Input Parameters to set from Page Context (JSON List of string)
-    @api outputTarget;      // Flow Output parameter providing the target page ref to redirect the user to.
+    flowName;           // API Name of the flow to launch
+    flowParameters;     // List of Flow Input Parameters to set from Page Context (JSON List of string)
+    outputTarget;       // Flow Output parameter providing the target page ref to redirect the user to.
+    outputRefresh;      // Flow Output parameter providing the list of record IDs to refresh prior to redirection.
 
-    @api isDebug = false;   // Flag to activate debug information.
+    isDebug = false;   // Flag to activate debug information.
 
     //-----------------------------------
     // Technical Parameters
     //-----------------------------------
-    flowParameters;
-    isReady = false;
+    isReady = false;    
     error = false;
     
     //-----------------------------------
@@ -75,8 +75,7 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
     // Custom Getters
     //-----------------------------------
     connectedCallback() {
-        //this.isDebug = this.wiredPageRef.status.c__isDebug;
-        this.isDebug = true;
+        this.isDebug = this.wiredPageRef.state.c__isDebug;
         if (this.isDebug) console.log('connected: START for flow embed ');
 
         if (this.isDebug) console.log('connected: wiredPageRef ',this.wiredPageRef);
@@ -91,6 +90,9 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
                     break;
                 case 'c__target':
                     this.outputTarget = this.wiredPageRef.state.c__target;
+                    break;
+                case 'c__refresh':
+                    this.outputRefresh = this.wiredPageRef.state.c__refresh;
                     break;
                 default:
                     this.flowParameters.push({name:field.substring(3), type:"String",value:this.wiredPageRef.state[field]});
@@ -202,8 +204,35 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
         }
 
         if (this.isDebug) console.log('handleStatusChange: navigating to target');
-        if (this.isDebug) console.log('handleStatusChange: looking for output param ', this.outputTarget);
+        if (this.isDebug) console.log('handleStatusChange: looking for output target param ', this.outputTarget);
+        if (this.isDebug) console.log('handleStatusChange: looking for output refresh param ', this.outputRefresh);
         if (this.isDebug) console.log('handleStatusChange: flow output ', JSON.stringify(event.detail.outputVariables));
+
+
+        if (this.outputRefresh) {
+            if (this.isDebug) console.log('connected: processing records refresh');
+
+            try {
+                let refreshParam =  event.detail.outputVariables.find(item => {return item.name === this.outputRefresh;});
+                if (this.isDebug) console.log('handleStatusChange: refresh output found ', refreshParam);
+
+                let records = [];
+                refreshParam.forEach(item => {
+                    records.push({recordId: item});
+                });
+                if (this.isDebug) console.log('handleStatusChange: records ID list prepared ',records);
+
+                notifyRecordUpdateAvailable(records);
+                if (this.isDebug) console.log('handleStatusChange: record refresh triggered ');
+            }
+            catch (error) {
+                console.warn('handleStatusChange: refresh processing issue ',error);
+            }
+        }
+        else {
+            if (this.isDebug) console.log('connected: no records refresh to process');
+        }
+
 
         let targetParam =  event.detail.outputVariables.find(item => {return item.name === this.outputTarget;});
         if (this.isDebug) console.log('handleStatusChange: target output found ', targetParam);
