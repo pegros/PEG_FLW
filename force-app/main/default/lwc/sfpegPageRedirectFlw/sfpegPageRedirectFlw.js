@@ -3,7 +3,7 @@
 /***
 * @author P-E GROS
 * @date   Apr. 2023
-* @description  LWC Componentfor Flows enabling to trigger a lightning Data Service
+* @description  LWC Component for Flows enabling to trigger a lightning Data Service
 *               cache refresh of a set of records (modified by the flow) and redirect
 *               the user to a given page reference. Should be positioned in a last Flow
 *               page, the logic being triggered automatically upon component initiation
