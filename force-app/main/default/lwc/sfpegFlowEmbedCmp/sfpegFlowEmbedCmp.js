@@ -33,10 +33,10 @@
 * SOFTWARE.
 ***/
 
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
-
+import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
 
 export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement) {
 
@@ -118,12 +118,7 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
             return;
         }
 
-        if (this.isDebug) console.log('connected: outputTarget ',this.outputTarget);
-        if (!this.outputTarget) {
-            this.error = 'Not output target parameter provided';
-            console.warn('connected: END KO for flow embed / Missing Flow output target');
-            return;
-        }
+        if (this.isDebug) console.log('connected: outputRefresh ',this.outputRefresh);
 
         if (this.isDebug) console.log('connected: flowParameters ',JSON.stringify(this.flowParameters));
 
@@ -152,17 +147,17 @@ export default class SfpegFlowEmbedFlw extends NavigationMixin(LightningElement)
 
 
         if (this.outputRefresh) {
-            if (this.isDebug) console.log('connected: processing records refresh');
+            if (this.isDebug) console.log('handleStatusChange: processing records refresh');
 
             try {
                 let refreshParam =  event.detail.outputVariables.find(item => {return item.name === this.outputRefresh;});
                 if (this.isDebug) console.log('handleStatusChange: refresh output found ', refreshParam);
 
                 let records = [];
-                refreshParam.forEach(item => {
+                refreshParam.value.forEach(item => {
                     records.push({recordId: item});
                 });
-                if (this.isDebug) console.log('handleStatusChange: records ID list prepared ',records);
+                if (this.isDebug) console.log('handleStatusChange: records ID list prepared ',JSON.stringify(records));
 
                 notifyRecordUpdateAvailable(records);
                 if (this.isDebug) console.log('handleStatusChange: record refresh triggered ');

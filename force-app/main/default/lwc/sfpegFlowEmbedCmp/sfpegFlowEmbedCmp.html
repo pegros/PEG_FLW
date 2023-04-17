@@ -8,7 +8,7 @@
                             onstatuschange={handleStatusChange} >
             </lightning-flow>
         </template>
-        <template lwc:else>
+        <template lwc:elseif={error}>
             <lightning-icon icon-name="utility:error" alternative-text="Error!" variant="error" title="Error!" size="small">
             </lightning-icon>
             &nbsp;
@@ -28,10 +28,10 @@
                 <dd class="slds-dl_horizontal__detail">Target: {outputTarget} / Refresh: {outputRefresh}</dd>
                 <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
                 <dd class="slds-dl_horizontal__detail">
-                    <lightning:formattedUrl     value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowEmbedCmp.md"
+                    <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowEmbedCmp.md"
                                                 label="See Help on GitHub"
                                                 target="_blank">
-                    </lightning:formattedUrl>
+                    </lightning-formatted-url>
                 </dd>
             </dl>
         </div>

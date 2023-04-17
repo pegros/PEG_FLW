@@ -1,15 +1,13 @@
-# ![Logo](/media/Logo.png) &nbsp; **sfpegFlowEmbed_CMP** Addressable Component
+# ![Logo](/media/Logo.png) &nbsp; **sfpegFlowEmbedCmp** Flow Embedding Tab Component
 
 ## Introduction
 
-This component enables to execute any Flow in a dedicated Lightning page (or tab in console mode)
-and automatically redirect the user to the proper record decided by the Flow, automatically closing the 
-Flow tab when in console mode.
+This component enables to execute any Flow in a dedicated Lightning Tab (with proper layout) and automatically
+redirect the user to a target page determined as output of the Flow after having possibly forced a **Lightning
+Data Service** data refresh of some records (also determined by the Flow).
 
-It provides a proper component display in a Lightning App (from a SLDS styling perspective) and 
-also enables to adapt the tab label displayed.
-
-When no target record is provided in output, the user is automatically redirecte to the home page.
+⚠️ This LWC component tends to replace and extends the legacy **[sfpegFlowEmbed_CMP](/help/sfpegFlowEmbedCmpLegacy.md)**
+Aura version. It still does not address console mode properly (to close the flow tab upon redirection).
 
 
 ---
@@ -18,58 +16,69 @@ When no target record is provided in output, the user is automatically redirecte
 
 ### Global Layout
 
-You may easily launch a Flow in the FlowEmbed component via an URL button on a record.
+By default, the flow is launched within a standard Lightning Tab.
 
-![Flow Embed](/media/FlowEmbed.png)
+![Flow Embed Execution](/media/sfpegFlowEmbedExecuting.png)
 
+Most parameters are provided as state parameters (see URL) when redirecting the user
+to this page, these parameters being used by the component or pushed as input
+parameters to the Flow.
 
-### Configuration
+### Tab Configuration
 
-This button juste needs to be declared in the Object setup as a detail page button.
+In order to use the component, a Lightning Tab should be configured in Setup.
 
-![Flow Embed Button](/media/FlowEmbedButton.png)
+![Flow Embed Tab Configuration](/media/sfpegFlowEmbedConfig.png)
 
-As Content Source, you just need to build a relative URL built with: 
-* The FlowEmbed relative URL (`/lightning/cmp/c__sfpegFlowEmbed_CMP?`)
-* The devName of the Flow to execute (as `c__flow` parameter)
-* A possible recordID (optional) to be provided as Flow input (as `c__recordId` parameter)
-* The Flow field providing the target record ID to be opened upon completion (as `c__recordId` parameter).
-* The (optional) tab label (as `c__label` parameter)
+Notes:
+* At least one such Tab needs to be configured.
+* The label configured corresponds to the tab being displayed in the App and
+admins may define different tabs to have labels matching the process executed
+in the Flow.
 
-As an example
+### Redirection to the Flow Tab
+
+Opening the Lightning tab may be done in various ways.
+
+#### Base Page Reference
+
+Via the **[Lightning navigation](https://developer.salesforce.com/docs/component-library/bundle/lightning-navigation/documentation)**
+service, the target page reference is simply:
 ```
-/lightning/cmp/c__sfpegFlowEmbed_CMP?c__flow=Account_CreationPP&c__target=TargetId&c__label=Création_PP
-```
-
----
-
-## Configuration Examples
-
-For the time being, it is only possible to redirect the User to a record when ending the Flow,
-usually one of the record having been created / selected in the Flow or back to the original
-one (if the `c__recordId` input parameter was provided).
-
-
-### Launch from Custom Lightning component
-
-You may easily open the flow tab from any custom lightning code leveraging the Aura navigation service,
-e.g. upon click of a button.
-
-```
-let flowName = component.get("v.flowName");
-let tabLabel = component.get("v.tabLabel");
-let recordId = component.get("v.recordId");
-let navService = component.find("navService"); 
-let pageReference = {
-  "type": "standard__webPage", 
+{
+  "type":"standard__navItemPage",
   "attributes": {
-    "url": "/lightning/cmp/c__sfpegFlowEmbed_CMP?c__flow=" + flowName
-          + "&c__recordId=" + saveResult.recordId
-          + "&c__target=targetId&c__label=" + tabLabel
+    "apiName":"TST_Name"
+  },
+  "state":{
+    "c__flow":"TST_Flow",
+    "c__target":"target",
+    "c__isDebug":true,
+    "c__inputText":"Test"
   }
-};
-navService.navigate(pageReference,false);
+}
 ```
+In this exemple, 
+* `TST_Name` is the API Name of the Lightning Tab hosting the flow execution
+* `c__flow` (mandatory) provides the API name of the Flow to be executed
+* `c__target` (optional) provides the name of the Flow output field to be used to fetch the IDs
+of the records to refresh upon Flow termination
+* `c__target` (optional) enables to activate debug logs
+* all other `state` parameters are considered as `String` input parameters to the Flow with
+(`c__inputText` being pushed as `inputText` flow parameter)
+
+⚠️ `c__` prefix in state paremeters is required so that their corresponding values are properly pushed to the Tab.
+
+
+#### Navigation Button
+
+The contextualised URL of the previous example may be easily built as follows:
+`/lightning/n/TST_Name?c__flow=TST_Flow&c__inputText=Test&c__target=target&c__isDebug=true`
+
+More generally, URL buttons may be configured on record page to launch the Flow in a 
+contextualised way.
+![Flow Embed Navigation Configuration](/media/sfpegFlowEmbedNavigation.png)
+
 
 ---
 
