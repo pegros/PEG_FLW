@@ -84,10 +84,9 @@ contextualised way.
 
 ## Technical Details
 
-When in console mode, it works in conjunction with the utility bar **sfpegNavigationManager_CMP** component to 
-close the current tab and open/redirect to the target upon Flow completion.
-
-When in standard mode, it directly relies on the **[lightning:navigation](https://developer.salesforce.com/docs/component-library/bundle/lightning:navigation/documentation)** standard utility component to
-redirect the user to the target page.
-
-It relies on the **[lightning:workspaceAPI](https://developer.salesforce.com/docs/component-library/bundle/lightning:workspaceAPI/documentation)** standard utility component to determine whether it is in console mode.
+This component relies on the following standard base Lightning components and methods:
+* **[lightning-flow](https://developer.salesforce.com/docs/component-library/bundle/lightning-flow/documentation)**
+component for Flow execution and completion tracking
+* **[lightning-navigation](https://developer.salesforce.com/docs/component-library/bundle/lightning:navigation/documentation)** 
+component for navigation to target pages
+* **[notifyRecordUpdateAvailable](https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.reference_notify_record_update)** method of the Lightning Data Service to refresh its record data cache

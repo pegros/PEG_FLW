@@ -96,4 +96,5 @@ This component relies on the following standard base Lightning components:
 for Flow execution and completion tracking
 *  **[lightning-modal](https://developer.salesforce.com/docs/component-library/bundle/lightning-modal/documentation)**
 for popup management (via a the **sfpegFlowPopupDsp** subcomponent)
+* **[notifyRecordUpdateAvailable](https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.reference_notify_record_update)** method of the Lightning Data Service to refresh its record data cache
 
