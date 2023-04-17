@@ -1,0 +1,64 @@
+<template>
+    <!-- Component Display -->
+    <div class={wrappingCss}>
+        <template lwc:if={isReady}>
+            <template lwc:if={isRunning}>
+                <template lwc:if={isPopup}>
+                    <lightning-button   variant={startVariant}
+                                        label={startLabel}
+                                        disabled >
+                    </lightning-button>
+                </template>
+                <template lwc:else>
+                    <div class="closeButtonContainer slds-size_1-of-1">
+                        <lightning-button-icon  icon-name="utility:close"
+                                                variant={stopVariant}
+                                                alternative-text={stopLabel}
+                                                title={stopLabel}
+                                                class="closeButton"
+                                                onclick={stopFlow}>
+                        </lightning-button-icon>
+                        <lightning-flow flow-api-name={flowName}
+                                        flow-input-variables={flowParameters}
+                                        flow-finish-behavior="NONE"
+                                        onstatuschange={trackFlow} >
+                        </lightning-flow>
+                    </div>
+                </template>
+            </template>
+            <template lwc:else>
+                <lightning-button   variant={startVariant}
+                                    label={startLabel}
+                                    onclick={startFlow} >
+                </lightning-button>
+            </template>
+        </template>
+        <template lwc:elseif={error}>
+            <lightning-icon icon-name="utility:error" alternative-text="Error!" variant="error" title="Error!" size="small">
+            </lightning-icon>
+            &nbsp;
+            <lightning-formatted-text class="slds-text-color_error" value={error}></lightning-formatted-text>
+        </template>
+    </div>
+    
+    <!-- Debug Information -->
+    <template lwc:if={isDebug}>
+        <div class="slds-box slds-theme_default slds-m-top_small"  >
+            <dl class="slds-dl_horizontal">
+                <dt class="slds-dl_horizontal__label slds-truncate">Flow:</dt>
+                <dd class="slds-dl_horizontal__detail">{flowName}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Flow Input:</dt>
+                <dd class="slds-dl_horizontal__detail">{flowInputs}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Flow Output:</dt>
+                <dd class="slds-dl_horizontal__detail">Target: {outputTarget} / Refresh: {outputRefresh}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                <dd class="slds-dl_horizontal__detail">
+                    <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegFlowLaunchCmp.md"
+                                                label="See Help on GitHub"
+                                                target="_blank">
+                    </lightning-formatted-url>
+                </dd>
+            </dl>
+        </div>
+    </template>
+</template>

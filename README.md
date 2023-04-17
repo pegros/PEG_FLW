@@ -80,6 +80,18 @@ This component enables to merge 2 records provided as input into another one as 
 
 ![Record Merge Form](/media/RecordMerge.png)
 
+#### **[FlowLaunch](/help/sfpegFlowLaunchCmp.md)**
+
+This App Builder component enables to execute a Flow embedded within a page,
+while initialising and launching it only upon explicit user request.
+It also supports executing it in a Popup for pages where Flow Quick Actions are 
+not available.
+
+#### **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**
+
+This Tab component enables to properly display, execute and terminate
+a Flow from a Lightning Tab, the user being redirected to a target page
+provided as output of the Flow upon completion.
 
 ### Invocable Apex Actions
 
@@ -93,14 +105,16 @@ Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)** for details.
 
 ### Aura Components
 
-#### **[FlowLaunch](/help/sfpegFlowLaunchCmp.md)**
+#### **[FlowLaunch (legacy)](/help/sfpegFlowLaunchCmpLegacy.md)**
 
 This App Builder component enables to execute a Flow embedded within a page,
 while initialising and launching it only upon explicit user request.
 
-#### **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**
+#### **[FlowEmbed (legacy)](/help/sfpegFlowEmbedCmpLegacy.md)**
 
-This addressable component enables to properly display, execute and terminate a Flow launched via URL, the user being redirected to a target record provided as output of the Flow upon completion
+This addressable component enables to properly display, execute and terminate
+a Flow launched via URL, the user being redirected to a target record provided
+as output of the Flow upon completion.
 
 #### **NavigationManager**
 

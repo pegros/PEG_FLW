@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SFPEG Flow Launch</masterLabel>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage,lightning__RecordPage">
+            <property   name="flowName"
+                        label="Flow Name"
+                        type="String"
+                        description="API Name of the flow to launch."/>
+            <property   name="flowInput"
+                        label="Flow Input"
+                        type="String"
+                        description="List of inputs (JSON List of {name,type,value})"/>
+            <property   name="flowOutput"
+                        label="Output Field for Refresh"
+                        type="String"
+                        description="Name of the output field providing the list of record IDs to refresh."/>
+
+            <property   name="startLabel"
+                        label="Start Button Label"
+                        type="String" />
+            <property   name="stopLabel"
+                        label="Stop Button Title"
+                        type="String" />
+
+            <property   name="isPopup"
+                        label="Popup ?"
+                        type="Boolean"
+                        default="false"
+                        description="Flag to launch the flow in a popup"/>
+            <property   name="popupLabel"
+                        label="Popup Label"
+                        type="String" 
+                        description="Top header label of the popup" />
+            <property   name="popupSize"
+                        label="Popup Size"
+                        type="String" 
+                        datasource="small,medium,large"
+                        default="medium" />
+
+            <property   name="wrappingCss"
+                        label="Wrapping CSS"
+                        type="String" 
+                        default="slds-box slds-box_small slds-theme_default slds-grid slds-grid_align-end"
+                        description="CSS classes for the containing div" />
+                        
+            <property   name="isDebug"
+                        label="Debug?"
+                        type="Boolean"
+                        default="false"
+                        description="Flag to display debug information"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

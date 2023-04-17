@@ -1,0 +1,15 @@
+<template>
+    <lightning-modal-header label={label}>
+    </lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-flow flow-api-name={flowName}
+                    flow-input-variables={flowParameters}
+                    flow-finish-behavior="NONE"
+                    onstatuschange={trackFlow} >
+        </lightning-flow>
+    </lightning-modal-body>
+    <!--
+    <lightning-modal-footer >
+    </lightning-modal-footer>
+    -->
+</template>

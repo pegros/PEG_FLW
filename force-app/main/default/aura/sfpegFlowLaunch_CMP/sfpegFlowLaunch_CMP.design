@@ -1,4 +1,4 @@
-<design:component label="SFPEG Launch Flow">
+<design:component label="SFPEG Launch Flow (Legacy)">
     <design:attribute   name="actionLabel"
                         label="Button Label"
                         default="Start"
