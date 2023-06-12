@@ -69,6 +69,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
     @api keyField       = 'Id';     // Record single identification key (usually Salesforce Id)
     @api selectName     = false;    // Flag to tell whether title field should be selected as search option by default
     @api fieldSetName   = null;     // fieldset for additional info in tiles
+    @api fieldNames     = null;     // list of additional custom field labels/names for info in tiles
     @api recordList     = [];       // input record list to display
     @api selectionList  = [];       // output selected record list
     @api preselectionList  = [];    // input preselected record list
@@ -144,6 +145,28 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
                     'name':eachField.name,
                     'iconName': ((eachField.name === this.sortedBy) ? 'utility:arrowup' : null)});
             });
+            
+            if (this.fieldNames) {
+                if (this.isDebug) console.log('wiredFieldSet: processing additional fields ', JSON.stringify(this.fieldNames));
+                let fieldNameList = JSON.parse(this.fieldNames);
+                if (this.isDebug) console.log('wiredFieldSet: additional fields parsed ', JSON.stringify(fieldNameList));
+
+                fieldNameList.forEach(item => {                
+                    this.detailFieldsJson.push(item);
+                    this.searchScopes.push({
+                        'label':item.label,
+                        'value':item.name,
+                        'isChecked':false});
+                    this.sortFields.push({
+                        'label':item.label,
+                        'name':item.name,
+                        'iconName': ((item.name === this.sortedBy) ? 'utility:arrowup' : null)});
+                });
+            }
+            else {
+                if (this.isDebug) console.log('wiredFieldSet: no additional field configured');
+            }
+
             if (this.isDebug) console.log('wiredFieldSet: nameField init ', this.nameField );
             if (this.isDebug) console.log('wiredFieldSet: detailFieldsJson init OK', JSON.stringify(this.detailFieldsJson));
             if (this.isDebug) console.log('wiredFieldSet: searchScopes init OK', JSON.stringify(this.searchScopes));
@@ -165,48 +188,59 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
                 };
                 //'class': 'slds-box slds-box_x-small slds-var-m-around_xx-small ' + ((recordSelectIndex != -1) ? 'slds-theme_info' : 'slds-theme_default'),
                 this.detailFieldsJson.forEach(eachField => {
-                    //console.log('wiredFieldSet: adding detail field', eachField.name);
-                    //console.log('wiredFieldSet: field type', eachField.type);
+                    if (this.isDebug) console.log('wiredFieldSet: adding detail field', eachField.name);
+                    //if (this.isDebug)  console.log('wiredFieldSet: field type', eachField.type);
 
-                    if(eachRecord[eachField.name]) {
+                    let eachValue = this.getValue(eachField.name,eachRecord);
+                    if (this.isDebug) console.log('wiredFieldSet: field value determined ', eachValue);
+
+                    //if(eachRecord[eachField.name]) {
+                    if(eachValue) {
                         switch (eachField.type) {
                             case 'BOOLEAN':
                                 newItem.details.push({
                                     "label": eachField.label,
-                                    "value": (eachRecord[eachField.name]?'☑︎':'☐')});
+                                    "value": (eachValue?'☑︎':'☐')});
+                                    //"value": (eachRecord[eachField.name]?'☑︎':'☐')});
                                 break;
                             case 'STRING':
                                 newItem.details.push({
                                     "label": eachField.label,
-                                    "value":eachRecord[eachField.name]});
+                                    "value":eachValue});
+                                    //"value":eachRecord[eachField.name]});
                                 break;
                             case 'DATE':
                             case 'DATETIME':
                                 newItem.details.push({
                                     "label": eachField.label,
-                                    "value": new Intl.DateTimeFormat(LOCALE).format(new Date(eachRecord[eachField.name]))});
+                                    "value": new Intl.DateTimeFormat(LOCALE).format(new Date(eachValue))});
+                                    //"value": new Intl.DateTimeFormat(LOCALE).format(new Date(eachRecord[eachField.name]))});
                                 break;
                             case 'CURRENCY':
                                 newItem.details.push({
                                     "label": eachField.label,
-                                    "value": CURRENCY_FMT.format(eachRecord[eachField.name])});
+                                    "value": CURRENCY_FMT.format(eachValue)});
+                                    //"value": CURRENCY_FMT.format(eachRecord[eachField.name])});
                                 break;
                             case 'DOUBLE':
                             case 'INT':
                             case 'LONG':
                                 newItem.details.push({
                                     "label": eachField.label,
-                                    "value": NUMBER_FMT.format(eachRecord[eachField.name])});
+                                    "value": NUMBER_FMT.format(eachValue)});
+                                    //"value": NUMBER_FMT.format(eachRecord[eachField.name])});
                                 break;
                             case 'PERCENT':
                                 newItem.details.push({
                                     "label": eachField.label,
-                                    "value": PERCENT_FMT.format(eachRecord[eachField.name]/100)});
+                                    "value": PERCENT_FMT.format(eachValue/100)});
+                                    //"value": PERCENT_FMT.format(eachRecord[eachField.name]/100)});
                                 break;
                             default:
                                 newItem.details.push({
                                     "label": eachField.label,
-                                    "value":'' + eachRecord[eachField.name]});
+                                    "value":'' + eachValue});
+                                    //"value":'' + eachRecord[eachField.name]});
                         }
                     } 
                     else {
@@ -280,6 +314,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
         if (this.isDebug) console.log('connectedCallback: nameLabel configured ', this.nameLabel);
         if (this.isDebug) console.log('connectedCallback: selectName configured ', this.selectName);
         if (this.isDebug) console.log('connectedCallback: fieldSetName configured ', this.fieldSetName);
+        if (this.isDebug) console.log('connectedCallback: additional fieldNames configured ', this.fieldNames);
         if (this.isDebug) console.log('connectedCallback: recordList configured ', JSON.stringify(this.recordList));                            
         if (this.isDebug) console.log('connectedCallback: selectionList configured ', JSON.stringify(this.selectionList));
         if (this.isDebug) console.log('connectedCallback: defaultSortedBy configured ', this.defaultSortedBy);
@@ -686,6 +721,26 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
             a = (key(a) || '');
             b = (key(b) || '');
             return reverse * ((a > b) - (b > a));
+        }
+    }
+
+    //@TODO : optimise logic to avoid redundant name splits
+    getValue = (fieldName, recordData) => {
+        //if (this.isDebug) console.log('getValue: START for name',fieldName);
+        if (fieldName.includes('.')) {
+            let fieldParts = fieldName.split('.');
+            //if (this.isDebug) console.log('getValue: handling compound name',fieldParts);
+            let fieldValue = recordData;
+            fieldParts.forEach(item => {
+                //if (this.isDebug) console.log('getValue: iter value',fieldValue);
+                fieldValue = (fieldValue ? fieldValue[item] : null);
+            });
+            //if (this.isDebug) console.log('getValue: END for compound name ',fieldValue);
+            return fieldValue;
+        }
+        else {
+            //if (this.isDebug) console.log('getValue: END for standard name ',recordData[fieldName]);
+            return recordData[fieldName];
         }
     }
 }
