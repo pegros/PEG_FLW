@@ -45,6 +45,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
     @api cardTitle;             // Title of the wrapping Card
     @api cardIcon;              // Icon of the wrapping Card
     @api tileSize = 4;          // tile size (in tiles mode)
+    @api tileSizeMobile = 12;   // tile size mobile (in tiles mode)
     @api cardClass;             // CSS Classes for the wrapping card div
     @api fieldSetName = null;   // fieldset for additional info in tiles
     @api mainRecord = {};       // input record
@@ -64,7 +65,10 @@ export default class SfpegRecordEditFlw extends LightningElement {
     fieldSetDesc = [];          //fieldset desc received
     objectName = null;          //object API name
     objectRecordType = null;    //Record Type
-    @track lastModif = null;         
+    @track lastModif = null;          
+
+    // Checks if current device is not a desktop device. (Can be an android phone/IOS/tablet etc)
+    isNonDesktopDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
     //Display mode getters
     get displayButtons() {
@@ -134,6 +138,15 @@ export default class SfpegRecordEditFlw extends LightningElement {
 
         this.objectRecordType = this.mainRecord['recordTypeId'] || this.mainRecord['RecordTypeId'];
         if (this.isDebug) console.log('connectedCallback: objectRecordType init', JSON.stringify(this.objectRecordType));    
+
+        // Check if device is not desktop (can be android/ios/tablet etc)
+        if(this.isNonDesktopDevice){
+            this.tileSize = this.tileSizeMobile; // replace tilesize value by tileSizeMobile value
+            if (this.isDebug) console.log('connectedCallback device is not desktop, tile size is: ', this.tileSize); 
+        }
+        else{
+            if (this.isDebug) console.log('connectedCallback device is desktop, tile size is: ', this.tileSize);            
+        }
 
         if (this.isDebug) console.log('connectedCallback: END');        
     }

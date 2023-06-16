@@ -29,6 +29,13 @@
                         type="Integer"
                         role="inputOnly"
                         description="Field display size (X on 12)."/>
+
+            <property   name="tileSizeMobile"
+                        label="Field Size (Mobile)"
+                        type="Integer"
+                        role="inputOnly"
+                        default="12"
+                        description="Field display size (X on 12) for devices other than desktop (Mobile, tablet, etc)."/>
                                     
             <property   name="fieldSetName"
                         label="Detail FieldSet"
