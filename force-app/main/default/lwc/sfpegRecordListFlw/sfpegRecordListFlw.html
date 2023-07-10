@@ -40,7 +40,7 @@
                                     horizontal-align="center" >
                     <template for:each={displayItems} for:item="eachRecord">
                         <lightning-layout-item  key={eachRecord.label}
-                                                size={tileSize} >
+                                                size="12"   medium-device-size={tileSize} >
                             <!-- RECORD DISPLAY -->
                             <div    class="slds-box slds-box_x-small slds-var-m-around_xx-small recordBox " 
                                     id={eachRecord.label}>

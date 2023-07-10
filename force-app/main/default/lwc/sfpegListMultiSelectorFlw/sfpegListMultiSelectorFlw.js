@@ -106,26 +106,26 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
 
     // Display mode getters
     get isTiles() {
-        if (this.isDebug) console.log('connectedCallback: isTiles', this.displayMode === 'tiles');
+        if (this.isDebug) console.log('connectedCallback: MultiSelect isTiles', this.displayMode === 'tiles');
         return this.displayMode === 'tiles';
     }
     get isTable() {
-        if (this.isDebug) console.log('connectedCallback: isTable', this.displayMode === 'table');
+        if (this.isDebug) console.log('connectedCallback: MultiSelect isTable', this.displayMode === 'table');
         return this.displayMode === 'table';
     }
     get searchDivClass() {
-        if (this.isDebug) console.log('connectedCallback: searchDivClass', (this.searchHeight == 0 ? '' :'slds-scrollable_y'));
+        if (this.isDebug) console.log('connectedCallback: MultiSelect searchDivClass', (this.searchHeight == 0 ? '' :'slds-scrollable_y'));
         return "slds-box slds-box_xx-small " + (this.searchHeight == 0 ? '' :'slds-scrollable_y');
     }
     get searchDivStyle() {
-        if (this.isDebug) console.log('connectedCallback: searchDivStyle', (this.searchHeight == 0 ? '' :'max-height:' + this.searchHeight + 'px'));
+        if (this.isDebug) console.log('connectedCallback: MultiSelect searchDivStyle', (this.searchHeight == 0 ? '' :'max-height:' + this.searchHeight + 'px'));
         return "min-height:36px; " + (this.searchHeight == 0 ? '' :'max-height:' + this.searchHeight + 'px;');
     }
 
     // FieldSet Desc Loading
     @wire(getFieldSetDesc, {"name":"$fieldSetName"})
     wiredFieldSet({ error, data }) {
-        if (this.isDebug) console.log('wiredFieldSet: START');
+        if (this.isDebug) console.log('wiredFieldSet: START MultiSelect');
         if (data) {
             if (this.isDebug) console.log('wiredFieldSet: data fetch OK', JSON.stringify(data));
             this.fieldSetDesc = data;
@@ -308,7 +308,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
 
     // Component Initialisation
     connectedCallback() {
-        if (this.isDebug) console.log('connectedCallback: START');
+        if (this.isDebug) console.log('connectedCallback: START MultiSelect');
         if (this.isDebug) console.log('connectedCallback: displayMode configured ', this.displayMode);
         if (this.isDebug) console.log('connectedCallback: nameField configured ', this.nameField);
         if (this.isDebug) console.log('connectedCallback: nameLabel configured ', this.nameLabel);
@@ -341,12 +341,12 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
             console.warn('connectedCallback: missing title name/label parameters');
         }
 
-        console.log('connectedCallback: END');
+        console.log('connectedCallback: END MultiSelect');
     }
 
     // Component Rendering Handling
     renderedCallback() {
-        if (this.isDebug) console.log('renderedCallback: START');
+        if (this.isDebug) console.log('renderedCallback: START MultiSelect');
         if (this.isDebug) console.log('renderedCallback: END');
     }
 
@@ -355,7 +355,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
     //#####################################
     // Record Selection handling
     handleSelect(event) {
-        if (this.isDebug) console.log('handleSelection: START');
+        if (this.isDebug) console.log('handleSelection: START MultiSelect');
         let selectId = event.currentTarget.id;
         if (this.isDebug) console.log('handleSelection: selectId fetched', selectId);
               
@@ -451,7 +451,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
         if (this.isDebug) console.log('handleSelection: END');         
     }
     handleDeselect(event) {
-        if (this.isDebug) console.log('handleRemove: START');
+        if (this.isDebug) console.log('handleRemove: START MultiSelect');
         if (this.isDebug) console.log('handleRemove: event',event);
         if (this.isDebug) console.log('handleRemove: detail',JSON.stringify(event.detail));
 
@@ -474,7 +474,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
     // Selection Record Sorting
     handleSortSelect(event) {
         //if (this.isDebug) 
-        if (this.isDebug) console.log('handleSortSelect: START with ',JSON.stringify(event.detail));
+        if (this.isDebug) console.log('handleSortSelect: START MultiSelect with ',JSON.stringify(event.detail));
 
         if (this.isDebug) console.log('handleSortSelect: current direction ',this.sortDirection);
         if (this.isDebug) console.log('handleSortSelect: current sort field ',this.sortedBy);
@@ -509,7 +509,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
         if (this.isDebug) console.log('handleSortSelect: END');
     }
     doSort() {
-        if (this.isDebug) console.log('doSort: START');
+        if (this.isDebug) console.log('doSort: START MultiSelect');
         if (this.isDebug) console.log('doSort: sortedBy field fetched ',this.sortedBy);
         if (this.isDebug) console.log('doSort: sortDirection fetched ',this.sortDirection);
 
@@ -525,7 +525,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
 
     // Selection Record Search
     handleScopeChange(event) {
-        if (this.isDebug) console.log('handleScopeChange: START');
+        if (this.isDebug) console.log('handleScopeChange: START MultiSelect');
         if (this.isDebug) console.log('handleScopeChange: event',event);
         if (this.isDebug) console.log('handleScopeChange: event detail',JSON.stringify(event.detail));
 
@@ -544,7 +544,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
         if (this.isDebug) console.log('handleScopeChange: END');
     }
     handleSearchEntry(event) {
-        if (this.isDebug) console.log('handleSearchEntry: START');
+        if (this.isDebug) console.log('handleSearchEntry: START MultiSelect');
         if (this.isDebug) console.log('handleSearchEntry: event',event);
         if (this.isDebug) console.log('handleSearchEntry: event detail',JSON.stringify(event.detail));
         if (this.isDebug) console.log('handleSearchEntry: event keyCode',event.keyCode);
@@ -561,7 +561,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
         if (this.isDebug) console.log('handleSearchEntry: END');
     }
     handleSearchChange(event) {
-        if (this.isDebug) console.log('handleSearchChange: START');
+        if (this.isDebug) console.log('handleSearchChange: START MultiSelect');
         if (this.isDebug) console.log('handleSearchChange: event',event);
         if (this.isDebug) console.log('handleSearchChange: event detail',JSON.stringify(event.detail));
         this.searchString = event.detail.value;
@@ -574,7 +574,7 @@ export default class SfpegListMultiSelectorFlw extends LightningElement {
         if (this.isDebug) console.log('handleSearchChange: END');
     }
     doSearch() {
-        if (this.isDebug) console.log('doSearch: START');
+        if (this.isDebug) console.log('doSearch: START MultiSelect');
 
         if (this.isDebug) console.log('doSearch: searchScope', JSON.stringify(this.searchScope));
         if (this.isDebug) console.log('doSearch: searchString',JSON.stringify(this.searchString));

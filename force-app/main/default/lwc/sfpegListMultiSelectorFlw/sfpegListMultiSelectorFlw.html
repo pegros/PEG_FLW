@@ -157,7 +157,8 @@
                             <lightning-layout   multiple-rows="true">
                                 <template for:each={displayItems} for:item="eachItem">
                                     <template if:true={eachItem.isFiltered}>
-                                        <lightning-layout-item  key={eachItem.id}   size={tileSize} >
+                                        <lightning-layout-item  key={eachItem.id}   
+                                                                size="12"   medium-device-size={tileSize} >
                                             <a id={eachItem.id} onclick={handleSelect}>
                                                 <div class={eachItem.class} >
                                                     <lightning-formatted-text   value={eachItem.label}  class="slds-text-title_bold">
@@ -184,7 +185,7 @@
                                 <template for:each={displayItems} for:item="eachItem">
                                     <template if:true={eachItem.isFiltered}>
                                         <lightning-layout-item  key={eachItem.name}
-                                                                size={tileSize} >
+                                                                size="12"   medium-device-size={tileSize} >
                                             <a id={eachItem.id} onclick={handleSelect}>
                                                 <div class={eachItem.class} >
                                                     <lightning-formatted-text   value={eachItem.label}    class="slds-text-title_bold">

@@ -65,7 +65,7 @@
                                          >
                         <template for:each={displayItems} for:item="record">
                             <lightning-layout-item  key={record.name}
-                                                    size={tileSize} >
+                                                    size="12"   medium-device-size={tileSize} >
                                 <div    class="slds-box slds-box_x-small slds-var-m-around_xx-small recordBox" 
                                         id={record.name}
                                         onclick={handleSelection}>
@@ -96,7 +96,7 @@
                     <lightning-layout   multiple-rows="true" >
                         <template for:each={displayItems} for:item="record">
                             <lightning-layout-item  key={record.name}
-                                                    size={tileSize} >
+                                                    size="12"   medium-device-size={tileSize} >
                                 <div    class="slds-box slds-box_x-small slds-var-m-around_xx-small recordBox slds-region_narrow" 
                                         id={record.name}
                                         onclick={handleSelection} >

@@ -25,7 +25,8 @@
                 <div class="slds-p-horizontal_small">
                 <lightning-layout   multiple-rows="true"    horizontal-align="end"   vertical-align="start">
                     <template for:each={sectionList} for:item="iterSection">
-                        <lightning-layout-item  key={iterSection.label}   size={sectionSize}
+                        <lightning-layout-item  key={iterSection.label}
+                                                size="12"       medium-device-size={sectionSize}
                                                 class="slds-m-bottom_x-small">
                             <lightning-checkbox-group   name={iterSection.label}
                                                         label={iterSection.label}

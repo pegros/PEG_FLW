@@ -71,27 +71,27 @@ export default class SfpegListSelectorFlw extends LightningElement {
 
     // Display mode getters
     get isList() {
-        if (this.isDebug) console.log('connectedCallback: isList', this.displayMode === 'list');
+        if (this.isDebug) console.log('connectedCallback: ListSelect isList', this.displayMode === 'list');
         return this.displayMode === 'list';
     }
     get isPills() {
-        if (this.isDebug) console.log('connectedCallback: isPills', this.displayMode === 'pills');
+        if (this.isDebug) console.log('connectedCallback: ListSelect isPills', this.displayMode === 'pills');
         return this.displayMode === 'pills';
     }
     get isTiles() {
-        if (this.isDebug) console.log('connectedCallback: isTiles', this.displayMode === 'tiles');
+        if (this.isDebug) console.log('connectedCallback: ListSelect isTiles', this.displayMode === 'tiles');
         return this.displayMode === 'tiles';
     }
     get isTable() {
-        if (this.isDebug) console.log('connectedCallback: isTable', this.displayMode === 'table');
+        if (this.isDebug) console.log('connectedCallback: ListSelect isTable', this.displayMode === 'table');
         return this.displayMode === 'table';
     }
     get listDivClass() {
-        if (this.isDebug) console.log('connectedCallback: listDivClass', (this.listHeight == 0 ? '' :'slds-scrollable_y'));
+        if (this.isDebug) console.log('connectedCallback: ListSelect listDivClass', (this.listHeight == 0 ? '' :'slds-scrollable_y'));
         return "slds-card__body_inner slds-var-p-horizontal_medium " + (this.listHeight == 0 ? '' :'slds-scrollable_y');
     }
     get listDivStyle() {
-        if (this.isDebug) console.log('connectedCallback: listDivStyle', (this.listHeight == 0 ? '' :'max-height:' + this.listHeight + 'px'));
+        if (this.isDebug) console.log('connectedCallback: ListSelect listDivStyle', (this.listHeight == 0 ? '' :'max-height:' + this.listHeight + 'px'));
         return (this.listHeight == 0 ? '' :'max-height:' + this.listHeight + 'px;');
     }
 
@@ -104,7 +104,7 @@ export default class SfpegListSelectorFlw extends LightningElement {
     // FieldSet Desc Loading
     @wire(getFieldSetDesc, {"name":"$fieldSetName"})
     wiredFieldSet({ error, data }) {
-        if (this.isDebug) console.log('wiredFieldSet: START');
+        if (this.isDebug) console.log('wiredFieldSet: START ListSelect');
         if (data) {
             if (this.isDebug) console.log('wiredFieldSet: data fetch OK', JSON.stringify(data));
             this.fieldSetDesc = data;
@@ -213,12 +213,12 @@ export default class SfpegListSelectorFlw extends LightningElement {
         else {
             if (this.isDebug) console.log('wiredFieldSet: no feedback provided');
         }
-        if (this.isDebug) console.log('wiredFieldSet: END NEW');
+        if (this.isDebug) console.log('wiredFieldSet: END ListSelect');
     }
 
     // Component Initialisation
     connectedCallback() {
-        if (this.isDebug) console.log('connectedCallback: START');
+        if (this.isDebug) console.log('connectedCallback: START ListSelect');
         /*if (this.isDebug) console.log('connectedCallback: displayMode', this.displayMode);
         if (this.isDebug) console.log('connectedCallback: nameField', this.nameField);
         if (this.isDebug) console.log('connectedCallback: fieldSetName', this.fieldSetName);
@@ -228,7 +228,7 @@ export default class SfpegListSelectorFlw extends LightningElement {
 
     // Component Rendering Handling
     renderedCallback() {
-        if (this.isDebug) console.log('renderedCallback: START');
+        if (this.isDebug) console.log('renderedCallback: START ListSelect');
 
         if (this.doSelectInit) {
             if (this.isDebug) console.log('renderedCallback: record selection to initialize');
@@ -262,7 +262,7 @@ export default class SfpegListSelectorFlw extends LightningElement {
 
     // User Interaction Handling
     handleSelection(event) {
-        if (this.isDebug) console.log('handleSelection: START');
+        if (this.isDebug) console.log('handleSelection: START ListSelect');
         /*console.log('handleSelection: event',event);
         console.log('handleSelection: source',JSON.stringify(event.srcElement));
         console.log('handleSelection: source title',JSON.stringify(event.srcElement.title));
@@ -335,7 +335,7 @@ export default class SfpegListSelectorFlw extends LightningElement {
     }
 
     handleRemove(event) {
-        if (this.isDebug) console.log('handleRemove: START');
+        if (this.isDebug) console.log('handleRemove: START ListSelect');
         if (this.isDebug) console.log('handleRemove: event',event);
         if (this.isDebug) console.log('handleRemove: detail',JSON.stringify(event.detail));
 

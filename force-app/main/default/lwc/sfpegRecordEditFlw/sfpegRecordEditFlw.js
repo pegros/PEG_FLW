@@ -86,7 +86,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
     // FieldSet Desc Loading
     @wire(getFieldSetDesc, {"name":"$fieldSetName"})
     wiredFieldSet({ error, data }) {
-        if (this.isDebug) console.log('wiredFieldSet: START');
+        if (this.isDebug) console.log('wiredFieldSet: START RecordEdit');
         //console.log('wiredFieldSet: fieldList',this.fieldList);
         if (data) {
             if (this.isDebug) console.log('wiredFieldSet: data fetch OK', JSON.stringify(data));
@@ -123,7 +123,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
     
     // Component Initialisation
     connectedCallback() {
-        if (this.isDebug) console.log('connectedCallback: START');
+        if (this.isDebug) console.log('connectedCallback: START RecordEdit');
         if (this.isDebug) console.log('connectedCallback: fieldSetName ', this.fieldSetName);
         if (this.fieldSetName) this.objectName = this.fieldSetName.substring(0,this.fieldSetName.indexOf('.'));
         if (this.isDebug) console.log('connectedCallback: objectName set ', this.objectName);
@@ -140,7 +140,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
 
     //Change tracking
     handleChange(event) {
-        if (this.isDebug) console.log('handleChange: START');
+        if (this.isDebug) console.log('handleChange: START RecordEdit');
         //if (this.isDebug) console.log('handleChange: event',event);
         if (this.isDebug) console.log('handleChange: event details ',JSON.stringify(event.detail));
         let fieldName = event.srcElement.fieldName;
@@ -170,7 +170,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
 
     // Cancel/Validate Button event trigger logic
     handleValidate(event) {
-        if (this.isDebug) console.log('handleValidate: START');
+        if (this.isDebug) console.log('handleValidate: START RecordEdit');
 
         // triggering selection event
         let validateEvent = new CustomEvent('validate', { "detail": this.newRecord });
@@ -181,7 +181,7 @@ export default class SfpegRecordEditFlw extends LightningElement {
         if (this.isDebug) console.log('handleValidate: END');   
     }
     handleCancel(event) {
-        if (this.isDebug) console.log('handleCancel: START');
+        if (this.isDebug) console.log('handleCancel: START RecordEdit');
 
         // triggering selection event
         let cancelEvent = new CustomEvent('cancel', null);

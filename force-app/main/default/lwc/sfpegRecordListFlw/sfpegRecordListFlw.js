@@ -126,7 +126,7 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
     // FieldSet Desc Loading
     @wire(getFieldSetDesc, {"name":"$fieldSetName"})
     wiredFieldSet({ error, data }) {
-        if (this.isDebug) console.log('wiredFieldSet: START');
+        if (this.isDebug) console.log('wiredFieldSet: START RecordList');
         if (data) {
             if (this.isDebug) console.log('wiredFieldSet: data fetch OK', JSON.stringify(data));
             this.fieldSetDesc = data;
@@ -201,12 +201,12 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         else {
             console.warn('wiredFieldSet: no feedback provided');
         }
-        if (this.isDebug) console.log('wiredFieldSet: END NEW');
+        if (this.isDebug) console.log('wiredFieldSet: END RecordList');
     }
 
     // Component Initialisation
     connectedCallback() {
-        if (this.isDebug) console.log('connectedCallback: START');
+        if (this.isDebug) console.log('connectedCallback: START RecordList');
 
         this.sobjectName = this.fieldSetName.split('.')[0];
         if (this.isDebug) console.log('connectedCallback: sobjectName init ', this.sobjectName);
@@ -278,18 +278,18 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
             if (this.isDebug) console.log('connectedCallback: no action to parse');  
         }
 
-        if (this.isDebug) console.log('connectedCallback: END');
+        if (this.isDebug) console.log('connectedCallback: END RecordList');
     }
 
     // Component Rendering Handling
     renderedCallback() {
-        if (this.isDebug) console.log('renderedCallback: START');
-        if (this.isDebug) console.log('renderedCallback: END');
+        if (this.isDebug) console.log('renderedCallback: START RecordList');
+        if (this.isDebug) console.log('renderedCallback: END RecordList');
     }
 
     // Component Actions Handling
     onButtonClick(event){
-        if (this.isDebug) console.log('onButtonClick: START');
+        if (this.isDebug) console.log('onButtonClick: START RecordList');
         /*console.log('onButtonClick: event',event);
         console.log('onButtonClick: event target',event.target);
         console.log('onButtonClick: event source',event.srcElement);
@@ -319,11 +319,11 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
             console.warn('onButtonClick: missing record/action context to triogger action');
         }
 
-        if (this.isDebug) console.log('onButtonClick: END');
+        if (this.isDebug) console.log('onButtonClick: END RecordList');
     }
 
     onMenuSelect(event){
-        if (this.isDebug) console.log('onMenuSelect: START');
+        if (this.isDebug) console.log('onMenuSelect: START RecordList');
         /*console.log('onMenuSelect: event',event);
         console.log('onMenuSelect: event target',event.target);
         console.log('onMenuSelect: event source',event.srcElement);
@@ -373,16 +373,16 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
             console.warn('onMenuSelect: missing record/action context to trigger action');
         }
 
-        if (this.isDebug) console.log('onMenuSelect: END');
+        if (this.isDebug) console.log('onMenuSelect: END RecordList');
     }
 
     onModalLoad(event) {
-        if (this.isDebug) console.log('onModalLoad: START');
-        if (this.isDebug) console.log('onModalLoad: END');
+        if (this.isDebug) console.log('onModalLoad: START RecordList');
+        if (this.isDebug) console.log('onModalLoad: END RecordList');
     }
 
     onModalFieldChange(event) {
-        if (this.isDebug) console.log('onModalFieldChange: START');
+        if (this.isDebug) console.log('onModalFieldChange: START RecordList');
 
         let fieldName = event.srcElement.fieldName;
         if (this.isDebug) console.log('onModalFieldChange: field',fieldName);
@@ -400,11 +400,11 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         fieldDesc.value = newValue;
         if (this.isDebug) console.log('onModalFieldChange: fieldDesc updated', JSON.stringify(fieldDesc));
 
-        if (this.isDebug) console.log('onModalFieldChange: END');
+        if (this.isDebug) console.log('onModalFieldChange: END RecordList');
     }
 
     onModalSave(event) {
-        if (this.isDebug) console.log('onModalSave: START');
+        if (this.isDebug) console.log('onModalSave: START RecordList');
         if (this.isDebug) console.log('onModalSave: event',event);
         if (this.isDebug) console.log('onModalSave: event target',event.target);
         if (this.isDebug) console.log('onModalSave: event source',event.srcElement);
@@ -428,11 +428,11 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         this.modalDisplayItem = {};
         this.modalFields = [];
 
-        if (this.isDebug) console.log('onModalSave: END');
+        if (this.isDebug) console.log('onModalSave: END RecordList');
     }
 
     onModalCancel(event) {
-        if (this.isDebug) console.log('onModalCancel: START');
+        if (this.isDebug) console.log('onModalCancel: START RecordList');
         /*console.log('onMenuSelect: event',event);
         console.log('onMenuSelect: event target',event.target);
         console.log('onMenuSelect: event source',event.srcElement);*/
@@ -442,12 +442,12 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         this.modalDisplayItem = {};
         this.modalFields = [];
 
-        if (this.isDebug) console.log('onModalCancel: END');
+        if (this.isDebug) console.log('onModalCancel: END RecordList');
     }
 
     // Action Utilities
     processAction = function(action,context,option) {
-        if (this.isDebug) console.log('processAction: START');
+        if (this.isDebug) console.log('processAction: START RecordList');
 
         if (action) {
             switch (action.type) {
@@ -498,11 +498,11 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
             console.warn('processAction: no action provided');
         }
 
-        if (this.isDebug) console.log('processAction: END');
+        if (this.isDebug) console.log('processAction: END RecordList');
     }
 
     triggerNavigate = function(pageRefStr,context) {
-        if (this.isDebug) console.log('triggerNavigate: START');
+        if (this.isDebug) console.log('triggerNavigate: START RecordList');
         if (this.isDebug) console.log('triggerNavigate: context ', JSON.stringify(context));
         if (this.isDebug) console.log('triggerNavigate: pageRef ', pageRefStr);
         if (pageRefStr.includes('{{{')) {
@@ -526,11 +526,11 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         });
 
         this[NavigationMixin.Navigate](pageRef);
-        if (this.isDebug) console.log('triggerNavigate: END');
+        if (this.isDebug) console.log('triggerNavigate: END RecordList');
     }
 
     triggerOpenURL = function(urlStr,context) {
-        if (this.isDebug) console.log('triggerOpenURL: START');
+        if (this.isDebug) console.log('triggerOpenURL: START RecordList');
         if (this.isDebug) console.log('triggerOpenURL: context ', JSON.stringify(context));
         if (this.isDebug) console.log('triggerOpenURL: urlStr ', urlStr);
         if (urlStr.includes('{{{')) {
@@ -547,11 +547,11 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         }
 
         window.open(urlStr,'_blank');
-        if (this.isDebug) console.log('triggerOpenURL: END');
+        if (this.isDebug) console.log('triggerOpenURL: END RecordList');
     }
 
     updateRecord = function(context,value) {
-        if (this.isDebug) console.log('updateRecord: START');
+        if (this.isDebug) console.log('updateRecord: START RecordList');
 
         if (this.isDebug) console.log('updateRecord: new value ',JSON.stringify(value));
         if (this.isDebug) console.log('updateRecord: current context ',JSON.stringify(context));
@@ -591,11 +591,11 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         if (this.isDebug) console.log('updateRecord: displayItem updated ',JSON.stringify(displayItem));
         if (this.isDebug) console.log('updateRecord: outputItem updated ',JSON.stringify(outputItem));
 
-        if (this.isDebug) console.log('updateRecord: END'); 
+        if (this.isDebug) console.log('updateRecord: END RecordList'); 
     }
 
     editRecord = function(context,params) {
-        if (this.isDebug) console.log('updateRecord: START');
+        if (this.isDebug) console.log('updateRecord: START RecordList');
 
         if (this.isDebug) console.log('updateRecord: context ',JSON.stringify(context));
         if (this.isDebug) console.log('updateRecord: params ',JSON.stringify(params));
@@ -610,14 +610,14 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
         this.modalFields = params.fields;
         this.showModal = true;
 
-        if (this.isDebug) console.log('updateRecord: END'); 
+        if (this.isDebug) console.log('updateRecord: END RecordList'); 
     }
 
 
 
     // Context Merge Utilities
     mergeString = function(templateString,tokens,context) {
-        if (this.isDebug) console.log('mergeString: START with templateString ',templateString);
+        if (this.isDebug) console.log('mergeString: START RecordList with templateString ',templateString);
         //console.log('mergeString: context provided ',JSON.stringify(context));
 
         let mergedString = templateString;
@@ -639,12 +639,12 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
                 console.warn('mergeString: no value available for token ', tokenKey);
             }
         });
-        if (this.isDebug) console.log('mergeString: END with mergedString ',mergedString);
+        if (this.isDebug) console.log('mergeString: END RecordList with mergedString ',mergedString);
         return mergedString;
     }
 
     parseString = function(templateString) {
-        if (this.isDebug) console.log('parseString: START with templateString ',templateString);
+        if (this.isDebug) console.log('parseString: START RecordList with templateString ',templateString);
 
         // eslint-disable-next-line no-useless-escape
         let regexp = /\{\{\{([\.\w]*)\}\}\}/gi;
@@ -669,7 +669,7 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
             });
         });
 
-        if (this.isDebug) console.log('parseString: END / returning ',mergeFields);
+        if (this.isDebug) console.log('parseString: END RecordList / returning ',mergeFields);
         return mergeFields;
     }
 
@@ -704,7 +704,7 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
     }
 
     formatActions = function(actions,record) {
-        if (this.isDebug) console.log('formatActions: START');
+        if (this.isDebug) console.log('formatActions: START RecordList');
 
         let recordActions = [];
         actions.forEach(action => {
@@ -745,7 +745,7 @@ export default class SfpegRecordListFlw extends NavigationMixin(LightningElement
             }
             if (this.isDebug) console.log('formatActions: action contextualised ',recordAction);
         });
-        if (this.isDebug) console.log('formatActions: all actions contextualised ',recordActions);
+        if (this.isDebug) console.log('formatActions: END RecordList / all actions contextualised ',recordActions);
         return recordActions;   
     }
 }

@@ -43,7 +43,8 @@
                     <lightning-layout   multiple-rows="true" >
                         <template for:each={recordFields} for:item="field">
                             <lightning-layout-item  key={field.desc.name}
-                                                    size={tileSize} >
+                                                    size="12"
+                                                    medium-device-size={tileSize} >
                                     <lightning-input-field  field-name={field.desc.name}
                                                             value={field.value}
                                                             variant="label-stacked"

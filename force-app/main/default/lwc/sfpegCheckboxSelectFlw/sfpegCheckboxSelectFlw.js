@@ -76,7 +76,7 @@ export default class SfpegCheckboxSelectFlw extends LightningElement {
     //-------------------------------------------------------------
 
     connectedCallback() {
-        if (this.isDebug) console.log('connected: START');
+        if (this.isDebug) console.log('connected: START CheckboxSelect');
 
         if (this.isDebug) console.log('connected: keyField provided ', this.keyField);
         if (this.isDebug) console.log('connected: sectionField provided ',this.sectionField);
@@ -141,7 +141,7 @@ export default class SfpegCheckboxSelectFlw extends LightningElement {
     // Internal Parameters
     //-------------------------------------------------------------
     handleOptionChange(event) {
-        if (this.isDebug) console.log('handleOptionChange: START');
+        if (this.isDebug) console.log('handleOptionChange: START CheckboxSelect');
 
         let section = event.currentTarget.name;
         if (this.isDebug) console.log('handleOptionChange: section involved ', section);
