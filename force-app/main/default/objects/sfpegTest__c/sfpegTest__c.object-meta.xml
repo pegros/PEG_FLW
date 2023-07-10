@@ -153,7 +153,6 @@
     <enableSearch>false</enableSearch>
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
-    <gender>Feminine</gender>
     <label>sfpegTest</label>
     <nameField>
         <label>Name</label>
