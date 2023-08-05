@@ -9,12 +9,48 @@
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
             <property
-                name="pageRef"
-                label="Page Reference"
-                type="String"
-                required="true"
+                name="showButton"
+                label="Show Button?"
+                type="Boolean"
+                default="false"
                 role="inputOnly"
-                description="Page reference to which redirection should be done."/>
+                description="Flag to display a button to trigger redirection instead of automatically triggering it upon initialisation."/>
+
+            <property
+                name="buttonLabel"
+                label="Button Label"
+                type="String"
+                default="Navigate"
+                role="inputOnly"
+                description="Label of the navigation button displayed when not in automatic mode."/>
+            <property
+                name="buttonTitle"
+                label="Button Title"
+                type="String"
+                role="inputOnly"
+                description="Label of the navigation button displayed when not in automatic mode."/>
+            <property
+                name="buttonVariant"
+                label="Button Variant"
+                type="String"
+                default="brand"
+                role="inputOnly"
+                description="Variant of the navigation button displayed when not in automatic mode (base, neutral, brand, brand-outline, destructive, destructive-text, inverse or success)."/>
+            <property
+                name="wrappingCss"
+                label="Wrapping CSS"
+                type="String"
+                default="slds-float_right"
+                role="inputOnly"
+                description="CSS styling classes for the button container"/>
+
+            <property
+                name="pageRef"
+                label="Target Page Reference"
+                type="String"
+                required="false"
+                role="inputOnly"
+                description="Page reference towards which redirection should be done."/>
             <property
                 name="recordIds"
                 label="Record IDs to refresh"
@@ -22,6 +58,7 @@
                 required="false"
                 role="inputOnly"
                 description="List fo record IDs to refresh before redirecting."/>
+
             <property
                 name="isDebug"
                 label="Debug?"

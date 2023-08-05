@@ -42,8 +42,13 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
     //----------------------------------------------------------------
     // Main configuration fields (for Flow Builder)
     //----------------------------------------------------------------
+    @api showButton;        // Flag to display a manual navigation button instead of automatically navigation upon init
+    @api buttonLabel;       // Label of the navigate button            
+    @api buttonTitle;       // Title of the navigate button            
+    @api buttonVariant;     // Variant of the navigate button            
     @api pageRef;           // Target page Ref to redirect the user to
     @api recordIds;         // List of record IDs to refresh before redirecting
+    @api wrappingCss;       // Wrapping class for the component
     @api isDebug;           // Debug activation flag
 
     //----------------------------------------------------------------
@@ -64,30 +69,13 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
     connectedCallback() {
         if (this.isDebug) console.log('connected: START page redirect');
 
+        if (this.isDebug) console.log('connected: showButton provided ', this.showButton);
+        if (this.isDebug) console.log('connected: buttonLabel provided ', this.buttonLabel);
         if (this.isDebug) console.log('connected: pageRef provided ', this.pageRef);
         if (this.isDebug) console.log('connected: recordIds provided ', this.recordIds);
 
-        try {
-            if (this.recordIds) {
-                if (this.isDebug) console.log('connected: processing records refresh');
-                let records = [];
-                this.recordIds.forEach(item => {
-                    records.push({recordId: item});
-                });
-                if (this.isDebug) console.log('connected: records ID list prepared ',records);
-
-                notifyRecordUpdateAvailable(records);
-                if (this.isDebug) console.log('connected: record refresh triggered ');
-            }
-        }
-        catch (error) {
-            console.warn('connected: END KO page redirect / record refresh issue ',error);
-            this.error = 'Record refresh issue: ' + JSON.stringify(error);
-            return;
-        }
-
-        if (!this.isDebug) {
-            if (this.isDebug) console.log('connected: processing redirection');
+        if (!this.showButton) {
+            if (this.isDebug) console.log('connected: processing automatic redirection');
 
             if (this.redirect()) {
                 if (this.isDebug) console.log('connected: END OK page redirect');
@@ -105,7 +93,7 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
     // Event Handlers
     //----------------------------------------------------------------
     handleClick(event) {
-        if (this.isDebug) console.log('handleClick: START page redirect');
+        if (this.isDebug) console.log('handleClick: START manual page redirect');
 
         if (this.redirect()) {
             if (this.isDebug) console.log('handleClick: END OK page redirect');
@@ -122,12 +110,37 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
         if (this.isDebug) console.log('redirect: START');
 
         try {
-            let targetPage = JSON.parse(this.pageRef);
-            if (this.isDebug) console.log('redirect: targetPage parsed ',targetPage);
+            if (this.recordIds) {
+                if (this.isDebug) console.log('redirect: processing records refresh');
+                let records = [];
+                this.recordIds.forEach(item => {
+                    records.push({recordId: item});
+                });
+                if (this.isDebug) console.log('redirect: records ID list prepared ',records);
 
-            this[NavigationMixin.Navigate](targetPage);
-            if (this.isDebug) console.log('redirect: END OK');
-            return true;
+                notifyRecordUpdateAvailable(records);
+                if (this.isDebug) console.log('redirect: record refresh triggered ');
+            }
+        }
+        catch (error) {
+            console.warn('redirect: END KO / record refresh issue ',error);
+            this.error = 'Record refresh issue: ' + JSON.stringify(error);
+            return false; 
+        }
+
+        try {
+            if (this.pageRef) {
+                let targetPage = JSON.parse(this.pageRef);
+                if (this.isDebug) console.log('redirect: targetPage parsed ',targetPage);
+
+                this[NavigationMixin.Navigate](targetPage);
+                if (this.isDebug) console.log('redirect: END OK');
+                return true;
+            }
+            else {
+                if (this.isDebug) console.log('redirect: END OK / no rdirection');
+                return true;
+            }
         }
         catch (error) {
             console.warn('redirect: END KO / parsing or redirection issue ',error);

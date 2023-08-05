@@ -6,18 +6,16 @@
         </div>
     </template>
     <template lwc:if={isDebug}>
-        <div class="slds-box slds-theme_default">
-            <h1>Redirecting to:</h1>
-            <p>{pageRef}</p>
-            <h1>Refreshing records:</h1>
-            <p>{recordIdList}</p>
+        <div class="slds-box slds-theme_default slds-m-bottom_small">
+            <p>Redirecting to: {pageRef}</p>
+            <p>Refreshing records: {recordIdList}</p>
         </div>
-        <div class="slds-float_right" if:true={isDebug}>
-            <lightning-button 
-                variant="brand"
-                label="Navigate"
-                title="Navigate to page"
-                onclick={handleClick}>
+    </template>
+    <template lwc:if={showButton}>
+        <div class={wrappingCss} >
+            <lightning-button   variant={buttonVariant}
+                                label={buttonLabel}     title={buttonTitle}
+                                onclick={handleClick}>
             </lightning-button>
         </div>
     </template>
