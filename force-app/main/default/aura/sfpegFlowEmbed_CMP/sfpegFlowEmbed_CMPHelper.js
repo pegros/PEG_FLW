@@ -105,7 +105,7 @@
         helper.SHOW_DEBUG = component.get("v.isDebug");
         if (helper.SHOW_DEBUG) console.log('navigate2target: START');
 
-        let outputVar = event.getParam("outputVariables");
+        let outputVar = event.getParam("outputVariables") || [];
         if (helper.SHOW_DEBUG) console.log('navigate2target: outputVar fetched',JSON.stringify(outputVar));
 
         let target = component.get("v.target");
