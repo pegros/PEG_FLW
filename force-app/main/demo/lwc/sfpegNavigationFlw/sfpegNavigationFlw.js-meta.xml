@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="sfpegFlowPathFlw">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SF PEG Navigation</masterLabel>
+    <description>This component enables to custom navigation buttons dynamically activable.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property   name="mainMessage"      label="Main Message"
+                        type="String"           role="inputOnly"/>
+            <property   name="mainLabel"        label="Main Label"
+                        type="String"           role="inputOnly"/>
+            <property   name="enabled"        label="Enabled?"
+                        type="Boolean"          role="inputOnly"/>
+            <property   name="status"           label="Status"
+                        type="Boolean"          />
+
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
