@@ -72,7 +72,7 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
         if (this.isDebug) console.log('connected: showButton provided ', this.showButton);
         if (this.isDebug) console.log('connected: buttonLabel provided ', this.buttonLabel);
         if (this.isDebug) console.log('connected: pageRef provided ', this.pageRef);
-        if (this.isDebug) console.log('connected: recordIds provided ', this.recordIds);
+        if (this.isDebug) console.log('connected: recordIds provided ', JSON.stringify(this.recordIds));
 
         if (!this.showButton) {
             if (this.isDebug) console.log('connected: processing automatic redirection');
@@ -116,7 +116,7 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
                 this.recordIds.forEach(item => {
                     records.push({recordId: item});
                 });
-                if (this.isDebug) console.log('redirect: records ID list prepared ',records);
+                if (this.isDebug) console.log('redirect: records ID list prepared ',JSON.stringify(records));
 
                 notifyRecordUpdateAvailable(records);
                 if (this.isDebug) console.log('redirect: record refresh triggered ');
