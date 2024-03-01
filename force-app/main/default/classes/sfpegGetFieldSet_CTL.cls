@@ -53,7 +53,7 @@ public static Map<String,Object> getFieldSetDesc(final String name) {
     String fsName  = fsParts[1];
     System.debug('getFieldSetDesc: fsName extracted ' + fsName);
 
-    Schema.SObjectType objDesc = ((SObject)Type.forName(objName).newInstance()).getSObjectType();
+    Schema.SObjectType objDesc = ((SObject)Type.forName('Schema.' + objName).newInstance()).getSObjectType();
     //Schema.SObjectType objDesc = Schema.getGlobalDescribe().get(objName);
     if (objDesc == null) throw new AuraHandledException(
         'Unknown Object Name for field set ' + name + ' !');
