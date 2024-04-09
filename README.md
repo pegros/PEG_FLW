@@ -33,6 +33,10 @@ The Flow process is in charge of getting / processing / updating record data
 while the Components only display record data and supports local user interaction
 (selection, data input) in the browser. 
 
+⚠️ **Warning**: the provided components often provide default values for properties. However, you might need to actually reconfigure these default
+values for them to be actually taken into account (Standard Flow Builder 
+issue).
+
 
 ## Content of the Package
 
@@ -56,11 +60,13 @@ This component is similar to the ListSelector but in multi-select mode with a se
 
 ![List Multi-Selector](/media/ListMultiSelect.png)
 
+
 #### **[CheckboxSelectFlw](/help/sfpegCheckboxSelectFlw.md)**
 
 This component enables to select multiple items within a single record list via multiple checkbox groups.
 
 ![Checkbox Selector](/media/CheckboxSelect.png)
+
 
 #### **[RecordEdit](/help/sfpegRecordEditFlw.md)**
 
@@ -68,17 +74,20 @@ This component enables to display a record card in edit/read mode based on a fie
 
 ![Record Edit Form](/media/RecordEdit.png)
 
+
 #### **[RecordList](/help/sfpegRecordListFlw.md)**
 
 This component displays a list of records and enables to launch various actions conditionally.
 
 ![Record List](/media/RecordList.png)
 
+
 #### **[RecordMerge](/help/sfpegRecordMergeFlw.md)**
 
 This component enables to merge 2 records provided as input into another one as output, based on a fieldset, the user being also able to modify it manually.
 
 ![Record Merge Form](/media/RecordMerge.png)
+
 
 #### **[FlowLaunch](/help/sfpegFlowLaunchCmp.md)**
 
@@ -87,11 +96,27 @@ while initialising and launching it only upon explicit user request.
 It also supports executing it in a Popup for pages where Flow Quick Actions are 
 not available.
 
+
 #### **[FlowEmbed](/help/sfpegFlowEmbedCmp.md)**
 
 This Tab component enables to properly display, execute and terminate
 a Flow from a Lightning Tab, the user being redirected to a target page
 provided as output of the Flow upon completion.
+
+
+#### **[ForceRedirect](/help/sfpegForceRedirectFlw.md)**
+
+This component for Flow pages enables to automatically redirect the User to a
+record page from within a terminating Flow page.
+
+
+#### **[PageRedirect](/help/sfpegPageRedirectFlw.md)**
+
+This component for Flow pages enables to automatically (when entering the page) or manually (via button click) execute all or any of the following operations (in this order):
+* force the LDS refresh of a list of records (to refresh the current local cache when DML operations have been done from the Flow).
+* redirect the User to any page (e.g. to the standard page of a record just created)
+* trigger a move to the next page of teh flow or its completion (e.g. when the flow is used in console mode in a tab)
+
 
 ### Invocable Apex Actions
 
@@ -102,6 +127,7 @@ provided as output of the Flow upon completion.
 * **Execute DML**: to bypass “warn” duplicate rules upon record insert / update.
 
 Please refer to **[Flow Actions](/help/sfpegFlowApexActions.md)** for details.
+
 
 ### Aura Components
 

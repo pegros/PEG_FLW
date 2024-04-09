@@ -34,8 +34,9 @@
 ***/
 
 import { LightningElement, api } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
 import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
+import { FlowNavigationFinishEvent, FlowNavigationNextEvent } from 'lightning/flowSupport';
+import { NavigationMixin } from 'lightning/navigation';
 
 export default class SfpegPageRedirectFlw extends NavigationMixin(LightningElement) {
 
@@ -48,6 +49,7 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
     @api buttonVariant;     // Variant of the navigate button            
     @api pageRef;           // Target page Ref to redirect the user to
     @api recordIds;         // List of record IDs to refresh before redirecting
+    @api triggerNext;       // Flag to trigger "next" or "complete" when no redirection is triggered
     @api wrappingCss;       // Wrapping class for the component
     @api isDebug;           // Debug activation flag
 
@@ -55,6 +57,8 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
     // Technical parameters
     //----------------------------------------------------------------
     error;                  // Error displayed
+
+    @api   availableActions = [];   // Flow Context Information
 
     //----------------------------------------------------------------
     // Custom Getters
@@ -71,8 +75,11 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
 
         if (this.isDebug) console.log('connected: showButton provided ', this.showButton);
         if (this.isDebug) console.log('connected: buttonLabel provided ', this.buttonLabel);
+        if (this.isDebug) console.log('connected: buttonTitle provided ', this.buttonTitle);
         if (this.isDebug) console.log('connected: pageRef provided ', this.pageRef);
         if (this.isDebug) console.log('connected: recordIds provided ', JSON.stringify(this.recordIds));
+        if (this.isDebug) console.log('connected: triggerNext provided ', this.triggerNext);
+        if (this.isDebug) console.log('connected: available flow actions',JSON.stringify(this.availableActions));
 
         if (!this.showButton) {
             if (this.isDebug) console.log('connected: processing automatic redirection');
@@ -109,9 +116,9 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
     redirect = function() {
         if (this.isDebug) console.log('redirect: START');
 
-        try {
-            if (this.recordIds) {
-                if (this.isDebug) console.log('redirect: processing records refresh');
+        if (this.recordIds) {
+            if (this.isDebug) console.log('redirect: processing records refresh', JSON.stringify(this.recordIds));
+            try {
                 let records = [];
                 this.recordIds.forEach(item => {
                     records.push({recordId: item});
@@ -121,31 +128,69 @@ export default class SfpegPageRedirectFlw extends NavigationMixin(LightningEleme
                 notifyRecordUpdateAvailable(records);
                 if (this.isDebug) console.log('redirect: record refresh triggered ');
             }
+            catch (error) {
+                console.warn('redirect: END KO / record refresh failed for records ',JSON.stringify(this.recordIds));
+                this.error = 'Record refresh issue: ' + JSON.stringify(error);
+                return false; 
+            }
         }
-        catch (error) {
-            console.warn('redirect: END KO / record refresh issue ',error);
-            this.error = 'Record refresh issue: ' + JSON.stringify(error);
-            return false; 
+        else {
+            if (this.isDebug) console.log('redirect: no record refresh to process');
         }
 
-        try {
-            if (this.pageRef) {
-                let targetPage = JSON.parse(this.pageRef);
-                if (this.isDebug) console.log('redirect: targetPage parsed ',targetPage);
+        if (this.pageRef) {
+            if (this.isDebug) console.log('redirect: processing redirect to pageRef ',this.pageRef);
+            let targetPage;
+            try {
+                targetPage = JSON.parse(this.pageRef);
+                if (this.isDebug) console.log('redirect: targetPage parsed ',JSON.stringify(targetPage));
+            }
+            catch (error) {
+                console.warn('redirect: targetPage parsing failed with input ',this.pageRef);
+                this.error = 'Target page parsing issue: ' + JSON.stringify(error);
+                return false;
+            }
 
+            try {
                 this[NavigationMixin.Navigate](targetPage);
-                if (this.isDebug) console.log('redirect: END OK');
-                return true;
+                if (this.isDebug) console.log('redirect: navigation triggered');
+            }
+            catch (error) {
+                console.warn('redirect: targetPage navigation failed ',JSON.stringify(targetPage));
+                this.error = 'Navigation to target page failed: ' + JSON.stringify(error);
+                return false;
+            }
+        }
+        else {
+            if (this.isDebug) console.log('redirect: no redirection configured');
+        }
+
+        if (this.triggerNext) {
+            if (this.isDebug) console.log('redirect: processing NEXT/FINISH trigger with available flow actions',JSON.stringify(this.availableActions));
+
+            if (this.availableActions.find(action => action === 'FINISH')) {
+                // terminate the flow
+                if (this.isDebug) console.log('redirect: triggering FINISH event');
+                const navigateFinishEvent = new FlowNavigationFinishEvent();
+                this.dispatchEvent(navigateFinishEvent);
+                if (this.isDebug) console.log('redirect: FINISH event triggered');
+            }
+            else if (this.availableActions.find(action => action === 'NEXT')) {
+                // navigate to the next screen
+                if (this.isDebug) console.log('redirect: triggering NEXT event');
+                const navigateNextEvent = new FlowNavigationNextEvent();
+                this.dispatchEvent(navigateNextEvent);
+                if (this.isDebug) console.log('redirect: NEXT event triggered');
             }
             else {
-                if (this.isDebug) console.log('redirect: END OK / no rdirection');
-                return true;
+                if (this.isDebug) console.log('redirect: NEXT or FINISH events not available');
             }
         }
-        catch (error) {
-            console.warn('redirect: END KO / parsing or redirection issue ',error);
-            this.error = 'Redirection issue: ' + JSON.stringify(error);
-            return false;
+        else {
+            if (this.isDebug) console.log('redirect: no trigger NEXT/FINISH configured');
         }
+
+        if (this.isDebug) console.log('redirect: END OK');
+        return true;
     }
 }

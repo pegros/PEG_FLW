@@ -1,14 +1,22 @@
 <template>
-    <div if:true={isDebug} class="slds-box slds-theme_default">
-        <h1>Redirecting to:</h1>
-        <p>{objectApiName} with ID {recordId}</p>
-    </div>
-    <div class="slds-float_right" if:true={isDebug}>
-        <lightning-button 
-            variant="brand"
-            label="Navigate"
-            title="Navigate to record"
-            onclick={handleClick}>
-        </lightning-button>
-    </div>
+    <template lwc:if={isDebug}>
+        <div class="slds-box slds-theme_default slds-text-align_left slds-m-bottom_small">
+            <dl class="slds-dl_horizontal slds-text-align_left">
+                <dt class="slds-dl_horizontal__label slds-truncate">Redirection:</dt>
+                <dd class="slds-dl_horizontal__detail debugDetail">{objectApiName} with ID {recordId}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                <dd class="slds-dl_horizontal__detail">
+                    <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegForceRedirectFlw.md"
+                                                label="See Help on GitHub"
+                                                target="_blank">
+                    </lightning-formatted-url>
+                </dd>
+            </dl>
+        </div>
+        <div class="slds-float_right">
+            <lightning-button   label="Navigate"    title="Navigate to record"
+                                variant="brand"     onclick={handleClick}>
+            </lightning-button>
+        </div>
+    </template>
 </template>

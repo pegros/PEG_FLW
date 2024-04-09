@@ -28,7 +28,7 @@
                 label="Button Title"
                 type="String"
                 role="inputOnly"
-                description="Label of the navigation button displayed when not in automatic mode."/>
+                description="Title displayed when hovering over the navigation button displayed when not in automatic mode."/>
             <property
                 name="buttonVariant"
                 label="Button Variant"
@@ -57,8 +57,15 @@
                 type="String[]"
                 required="false"
                 role="inputOnly"
-                description="List fo record IDs to refresh before redirecting."/>
-
+                description="List of record IDs to refresh before redirecting (as a list of string)."/>
+            <property
+                name="triggerNext"
+                label="Trigger Next/Finish?"
+                type="Boolean"
+                default="false"
+                role="inputOnly"
+                description="Flag to automatically move to the next flow page or complete it."/>
+                
             <property
                 name="isDebug"
                 label="Debug?"

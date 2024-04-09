@@ -1,14 +1,27 @@
 <template>
     <template lwc:if={error} >
         <div class="slds-box slds-theme_default slds-m-bottom_small">
-            <h1 class="slds-text-color_error">Processing failure</h1>
-            <p>{error}</p>
+            <h1 class="slds-text-color_destructive debugDetail">Processing failure</h1>
+            <p class="slds-text-color_error debugDetail">{error}</p>
         </div>
     </template>
     <template lwc:if={isDebug}>
-        <div class="slds-box slds-theme_default slds-m-bottom_small">
-            <p>Redirecting to: {pageRef}</p>
-            <p>Refreshing records: {recordIdList}</p>
+        <div class="slds-box slds-theme_default slds-text-align_left slds-m-bottom_small">
+            <dl class="slds-dl_horizontal slds-text-align_left">
+                <dt class="slds-dl_horizontal__label slds-truncate">Redirection:</dt>
+                <dd class="slds-dl_horizontal__detail debugDetail">{pageRef}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Refresh List:</dt>
+                <dd class="slds-dl_horizontal__detail debugDetail">{recordIdList}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Trigger Next?:</dt>
+                <dd class="slds-dl_horizontal__detail debugDetail">{triggerNext}</dd>
+                <dt class="slds-dl_horizontal__label slds-truncate">Documentation:</dt>
+                <dd class="slds-dl_horizontal__detail">
+                    <lightning-formatted-url    value="https://github.com/pegros/PEG_FLW/blob/master/help/sfpegPageRedirectFlw.md"
+                                                label="See Help on GitHub"
+                                                target="_blank">
+                    </lightning-formatted-url>
+                </dd>
+            </dl>
         </div>
     </template>
     <template lwc:if={showButton}>
