@@ -5,7 +5,7 @@
 This component for Flow pages enables to automatically (when entering the page) or manually (via button click) execute all or any of the following operations (in this order):
 * force the LDS refresh of a list of records (to refresh the current local cache when DML operations have been done from the Flow).
 * redirect the User to any page (e.g. to the standard page of a record just created)
-* trigger a move to the next page of teh flow or its completion (e.g. when the flow is used in console mode in a tab)
+* trigger a move to the next page of the flow or its completion (e.g. when the flow is used in console mode in a tab)
 
 This component is invisible when the logic is executed automatically
 or displays a single button when manual trigger is configured (e.g. to

@@ -49,7 +49,7 @@ export default class SfpegFlowPopupDsp extends LightningModal {
     //-----------------------------------
     // Technical Parameters
     //-----------------------------------
-//-----------------------------------
+    //-----------------------------------
     // Component Initialisation
     //-----------------------------------
     connectedCallback() {
